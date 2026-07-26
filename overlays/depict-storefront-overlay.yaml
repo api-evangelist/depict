@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Depict Storefront API
+  version: 1.0.0
+extends: openapi/depict-storefront-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: depict
+    x-apievangelist-api: Depict Storefront API
+    x-apievangelist-docs: https://docs.depict.ai/api-reference/headless/overview
+    x-apievangelist-notes: >-
+      Public, browser-callable product-discovery API. Shops are identified by merchant + market
+      parameters. Errors use the FastAPI validation envelope (not RFC 9457).
+- target: $.servers
+  update:
+  - url: https://api.depict.ai
+    description: Depict Storefront API production host
+- target: $.info
+  update:
+    x-apievangelist-artifacts:
+      authentication: authentication/depict-authentication.yml
+      conventions: conventions/depict-conventions.yml
+      errors: errors/depict-problem-types.yml
+      data_model: data-model/depict-data-model.yml
+      packages: packages/depict-packages.yml

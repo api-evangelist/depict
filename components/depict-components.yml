@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.depict.ai/js-ui-guide
+notes: >-
+  Client-side, embeddable UI components Depict ships for storefront integration — distinct from
+  server-side SDKs. The Depict UI library renders search, product listing (PLP), and recommendation
+  surfaces directly in the merchant's storefront, in both React and framework-agnostic JavaScript
+  flavours, loaded from the @depict-ai npm scope.
+families:
+- family: Depict UI (React)
+  description: >-
+    React components (e.g. DepictSearchProvider, DepictProvider) that render search, category/
+    collection listing pages, and recommendation zones with Depict ranking and merchandising rules.
+  loader: "@depict-ai/react-ui"
+  docs: https://docs.depict.ai/react-ui-guide
+- family: Depict UI (JavaScript)
+  description: >-
+    Framework-agnostic JavaScript flavour of the Depict UI library for non-React and headless
+    storefronts, providing the same search, listing, and recommendation surfaces.
+  loader: "@depict-ai/js-ui"
+  docs: https://docs.depict.ai/js-ui-guide
+- family: PLP styling
+  description: SCSS styling package for Depict product listing page components.
+  loader: "@depict-ai/plp-styling"
+- family: Depict Performance Client (DPC)
+  description: >-
+    Storefront tracking client that instruments product cards, product pages, add-to-cart and
+    purchase events feeding Depict's ranking and analytics.
+  loader: "@depict-ai/dpc"
+  docs: https://docs.depict.ai/api-guide/tracking/introduction
+- family: Portal components
+  description: UI component library used by the Depict merchant portal.
+  loader: "@depict-ai/portal-components"

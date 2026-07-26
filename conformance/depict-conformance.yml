@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/depict-storefront-openapi-original.json, openapi/depict-portal-openapi-original.json, openapi/depict-lite-openapi-original.json
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: All three published specs declare openapi 3.1.0.
+- id: oauth2
+  conforms: true
+  evidence: Portal and Lite APIs declare an oauth2 securityScheme (Auth0, authorizationCode flow).
+- id: oidc
+  conforms: true
+  evidence: Auth0 flow requests openid/profile/email scopes; token is an id_token (OpenID Connect).
+- id: api-key
+  conforms: true
+  evidence: Storefront API declares apiKey schemes (X-API-KEY header/query/cookie).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use FastAPI validation envelope (detail[]), not application/problem+json.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset/Deprecation header or deprecation policy documented.
+- id: json-api
+  conforms: false
+- id: fhir
+  conforms: false
+- id: scim
+  conforms: false

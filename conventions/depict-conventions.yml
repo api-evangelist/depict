@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.depict.ai/api-reference/headless/overview
+notes: >-
+  Cross-cutting request/response semantics for the Depict APIs, captured from the API overview and
+  derived from the OpenAPI. Cross-links: authentication/depict-authentication.yml,
+  errors/depict-problem-types.yml, lifecycle/depict-lifecycle.yml.
+authentication:
+  storefront: >-
+    Shops are identified by `merchant` and `market` parameters in the request body or query string;
+    designed to be called directly from the browser. An X-API-KEY (header/query/cookie) or bearer
+    token may also be accepted.
+  portal_and_lite: Bearer token (id_token) issued by Depict's Auth0 tenant, authorized per merchant_id.
+content_type:
+  request: application/json
+  response: application/json
+  notes: All endpoints accept and return JSON unless otherwise noted.
+versioning:
+  style: uri-path
+  values: [v0, v2, v3]
+idempotency:
+  supported: false
+  notes: No idempotency-key header or documented idempotency contract was found.
+pagination:
+  style: cursor
+  notes: >-
+    Storefront listing/search operations accept a `cursor` and result payloads carry a paging cursor
+    for continuation; not all read operations paginate.
+localization:
+  parameters: [market, locale]
+  notes: Product discovery is scoped by market and locale; multimarket merchandising is supported.
+timestamps:
+  style: unix
+  parameters: [start_timestamp, end_timestamp]
+  notes: >-
+    Metrics endpoints use Unix timestamps; when omitted they default to the last 30 days compared
+    against the previous 30 days.
+metrics_deltas:
+  notes: >-
+    Comparative metric values return a `value` with `delta_pct` (relative change) or `delta_pts`
+    (percentage-point change for rates such as CTR).
+error_envelope:
+  format: fastapi-validation
+  ref: errors/depict-problem-types.yml
+rate_limiting:
+  documented: false
+  notes: No rate-limit headers or quota policy documented for the public Storefront API.

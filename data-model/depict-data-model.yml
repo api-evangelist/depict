@@ -1,0 +1,66 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/depict-storefront-openapi-original.json, openapi/depict-portal-openapi-original.json
+notes: >-
+  Entity-relationship graph derived from the Depict OpenAPI schemas and the id-reference parameters
+  (merchant, market, locale, listing_id, external_id, product_id, category_id, collection).
+entities:
+- name: Merchant
+  description: A Depict customer / shop. Root tenant that owns all other resources.
+  id_fields: [merchant, merchant_id]
+- name: Market
+  description: A market (region/currency context) configured for a merchant.
+  id_fields: [market]
+- name: Locale
+  description: A language/locale configured for a merchant.
+  id_fields: [locale]
+- name: Listing
+  description: >-
+    A category/collection node in the merchant's listing hierarchy. Addressable by Depict listing_id
+    or the merchant's external_id (Shopify/Centra/WooCommerce). Has ancestors, siblings and children.
+  id_fields: [listing_id, external_id]
+- name: Product
+  description: A product/SKU in the catalog, returned in listings, search and recommendations.
+  id_fields: [product_id, product_ids]
+- name: Category
+  description: A catalog category pushed via the Catalog Push API; supports attribute config.
+  id_fields: [category_id, category_ids]
+- name: Collection
+  description: A merchandised collection managed in the Portal (curation, pinning, boost/bury rules).
+  id_fields: [collection]
+- name: Event
+  description: A storefront tracking event (page_view, click, add_to_cart, purchase, element_visible).
+  id_fields: []
+relationships:
+- from: Merchant
+  to: Market
+  type: has_many
+  via: market
+- from: Merchant
+  to: Locale
+  type: has_many
+  via: locale
+- from: Merchant
+  to: Listing
+  type: has_many
+  via: merchant
+- from: Listing
+  to: Listing
+  type: has_many
+  via: parent (ancestors/children hierarchy)
+- from: Listing
+  to: Product
+  type: has_many
+  via: listing_id
+- from: Category
+  to: Product
+  type: has_many
+  via: category_id
+- from: Collection
+  to: Product
+  type: has_many
+  via: collection
+- from: Event
+  to: Product
+  type: belongs_to
+  via: product_id

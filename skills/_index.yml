@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/depict-storefront-openapi-original.json
+notes: >-
+  Packaged Agent Skills for the public Depict Storefront API. Every step is grounded in a real
+  operationId from openapi/depict-storefront-openapi-original.json. Generated as an operating
+  starting point; no provider-published AGENTS.md/skill files were found.
+skills:
+- file: depict-search-products.md
+  name: Search a storefront catalog
+  api: openapi/depict-storefront-openapi-original.json
+  operations:
+  - Get_suggestions_v3_search_suggestions_get
+  - Get_results_v3_search_results_post
+- file: depict-recommend-products.md
+  name: Get personalized product recommendations
+  api: openapi/depict-storefront-openapi-original.json
+  operations:
+  - Recommendations_v3_recommend_products_post
+  - Get_related_recommendations_v3_search_related_post
+- file: depict-browse-listing.md
+  name: Browse a product listing page
+  api: openapi/depict-storefront-openapi-original.json
+  operations:
+  - Get_Listings_v3_listings_get
+  - Get_Listing_v3_listings__listing_id__get
+  - Get_Products_in_Listing_v3_listings__listing_id__products_post

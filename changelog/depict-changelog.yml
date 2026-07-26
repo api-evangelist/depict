@@ -1,0 +1,17 @@
+generated: '2026-07-18'
+method: searched
+source: https://depict.ai/updates
+scheme: dated-product-updates
+notes: >-
+  Depict publishes a dated product-updates feed rather than a semantic API changelog. The Portal API
+  also exposes a Get_Changelog operation. API versioning is path-based (v0 Catalog Push, v2, v3).
+  Recent product-update entries captured below.
+entries:
+- date: '2026-02-25'
+  title: Scheduled Publishing
+  highlight: Merchandise collections in advance and let them go live automatically.
+  breaking: false
+- date: '2025-10-21'
+  title: Multimarket Merchandising
+  highlight: Merchandise collections globally with room for local, per-market adjustments.
+  breaking: false

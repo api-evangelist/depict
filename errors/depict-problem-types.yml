@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/depict-storefront-openapi-original.json, openapi/depict-portal-openapi-original.json, openapi/depict-lite-openapi-original.json
+format: fastapi-validation
+envelope:
+  description: >-
+    Depict's APIs are FastAPI services. Client/validation errors return a JSON body with a `detail`
+    array of {loc, msg, type} entries (HTTPValidationError / ValidationError schemas). Responses are
+    not RFC 9457 application/problem+json.
+  media_type: application/json
+  schema: HTTPValidationError
+problems:
+- status: 400
+  title: Bad Request
+  description: Malformed request (e.g. missing or invalid merchant/market parameters on the Storefront API).
+- status: 404
+  title: Not Found
+  description: >-
+    Requested resource (listing, collection, product, merchant) does not exist or is not accessible
+    to the caller. The most common non-2xx status across the Portal and Lite APIs.
+- status: 422
+  title: Unprocessable Entity (Validation Error)
+  description: >-
+    Request failed schema validation. Body carries `detail[]` with `loc` (field path), `msg`
+    (human-readable message) and `type` (error code). Present on nearly every operation.
+  schema: HTTPValidationError
+status_codes_observed: [200, 204, 400, 404, 422]

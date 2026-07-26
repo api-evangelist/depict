@@ -1,7 +1,16 @@
 aid: depict
-name: depict
-description: depict is a company surfaced as a portfolio company of slow-ventures and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: Depict
+description: >-
+  Depict is an AI-assisted merchandising platform for e-commerce brands, headquartered in Stockholm,
+  Sweden and backed by Slow Ventures and Y Combinator. Depict helps fashion and lifestyle retailers
+  curate visual merchandising, hybrid AI-plus-keyword site search, and personalized product
+  recommendations across their storefronts, automating routine merchandising and optimization while
+  keeping brand rules intact. For developers, Depict exposes a public Storefront API (served from
+  api.depict.ai) that returns search results, query suggestions, product listings, and
+  recommendations and accepts tracking events, plus an Auth0-protected Portal API and a Lite API
+  that power the merchant portal and the Depict Lite Shopify app. The platform integrates with
+  Shopify, Centra, WooCommerce, and headless/composable storefronts through JavaScript and React UI
+  libraries as well as direct REST API access.
 url: https://raw.githubusercontent.com/api-evangelist/depict/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +18,455 @@ x-backed-by:
 - slow-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://depict.ai/favicon.ico
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- E-commerce
+- Merchandising
+- Product Recommendations
+- Search
+- Personalization
+- Artificial Intelligence
+- Retail
+- Fashion
+- Shopify
+apis:
+- aid: depict:depict-ab-test-api
+  name: Depict Ab Test API
+  description: The Ab Test API from Depict — 2 operation(s) for ab test.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Ab Test
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-ab-test-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-analytics-api
+  name: Depict Analytics API
+  description: The Analytics API from Depict — 1 operation(s) for analytics.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-boost-bury-api
+  name: Depict Boost Bury API
+  description: The Boost Bury API from Depict — 3 operation(s) for boost bury.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Boost Bury
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-boost-bury-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-brand-features-api
+  name: Depict Brand Features API
+  description: The Brand Features API from Depict — 3 operation(s) for brand features.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Brand Features
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-brand-features-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-catalog-push-api-v0-api
+  name: Depict Catalog Push API (v0) API
+  description: The Catalog Push API (v0) API from Depict — 6 operation(s) for catalog push api (v0).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Catalog Push API (v0)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-catalog-push-api-v0-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-collections-api
+  name: Depict Collections API
+  description: The Collections API from Depict — 25 operation(s) for collections.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-collections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-dashboard-api
+  name: Depict Dashboard API
+  description: The Dashboard API from Depict — 2 operation(s) for dashboard.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Dashboard
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-dashboard-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-events-v2-api
+  name: Depict Events (v2) API
+  description: The Events (v2) API from Depict — 3 operation(s) for events (v2).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Events (v2)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-events-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-instagram-api
+  name: Depict Instagram API
+  description: The Instagram API from Depict — 4 operation(s) for instagram.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Instagram
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-instagram-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-listing-v2-api
+  name: Depict Listing (v2) API
+  description: The Listing (v2) API from Depict — 1 operation(s) for listing (v2).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Listing (v2)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-listing-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-listing-v3-api
+  name: Depict Listing (v3) API
+  description: The Listing (v3) API from Depict — 5 operation(s) for listing (v3).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Listing (v3)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-listing-v3-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-media-api
+  name: Depict Media API
+  description: The Media API from Depict — 2 operation(s) for media.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-media-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-merchant-api
+  name: Depict merchant API
+  description: The merchant API from Depict — 6 operation(s) for merchant.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - merchant
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-merchant-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-merchant-create-api
+  name: Depict merchant-create API
+  description: The merchant-create API from Depict — 1 operation(s) for merchant-create.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - merchant-create
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-merchant-create-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-merchants-api
+  name: Depict Merchants API
+  description: The Merchants API from Depict — 2 operation(s) for merchants.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Merchants
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-merchants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-multi-store-api
+  name: Depict multi-store API
+  description: The multi-store API from Depict — 7 operation(s) for multi-store.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - multi-store
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-multi-store-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-onboarding-api
+  name: Depict Onboarding API
+  description: The Onboarding API from Depict — 3 operation(s) for onboarding.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-onboarding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-other-v3-api
+  name: Depict Other (v3) API
+  description: The Other (v3) API from Depict — 3 operation(s) for other (v3).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Other (v3)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-other-v3-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-product-funnel-metrics-api
+  name: Depict Product Funnel Metrics API
+  description: The Product Funnel Metrics API from Depict — 1 operation(s) for product funnel metrics.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Product Funnel Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-product-funnel-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-product-images-api
+  name: Depict Product Images API
+  description: The Product Images API from Depict — 2 operation(s) for product images.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Product Images
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-product-images-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-product-metrics-api
+  name: Depict Product Metrics API
+  description: The Product Metrics API from Depict — 4 operation(s) for product metrics.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Product Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-product-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-products-api
+  name: Depict Products API
+  description: The Products API from Depict — 6 operation(s) for products.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-products-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-published-collections-api
+  name: Depict Published Collections API
+  description: The Published Collections API from Depict — 3 operation(s) for published collections.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Published Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-published-collections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-recommendations-v2-api
+  name: Depict Recommendations (v2) API
+  description: The Recommendations (v2) API from Depict — 4 operation(s) for recommendations (v2).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Recommendations (v2)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-recommendations-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-recommendations-v3-api
+  name: Depict Recommendations (v3) API
+  description: The Recommendations (v3) API from Depict — 1 operation(s) for recommendations (v3).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Recommendations (v3)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-recommendations-v3-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-search-metrics-api
+  name: Depict Search Metrics API
+  description: The Search Metrics API from Depict — 1 operation(s) for search metrics.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Search Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-search-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-search-v2-api
+  name: Depict Search (v2) API
+  description: The Search (v2) API from Depict — 4 operation(s) for search (v2).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Search (v2)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-search-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-search-v3-api
+  name: Depict Search (v3) API
+  description: The Search (v3) API from Depict — 3 operation(s) for search (v3).
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Search (v3)
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-search-v3-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-settings-api
+  name: Depict Settings API
+  description: The Settings API from Depict — 12 operation(s) for settings.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-shopify-api
+  name: Depict Shopify API
+  description: The Shopify API from Depict — 3 operation(s) for shopify.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Shopify
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-shopify-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-shopify-collection-template-api
+  name: Depict Shopify Collection Template API
+  description: >-
+    The Shopify Collection Template API from Depict — 4 operation(s) for shopify collection template.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Shopify Collection Template
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-shopify-collection-template-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-tracking-api
+  name: Depict tracking API
+  description: The tracking API from Depict — 2 operation(s) for tracking.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-translations-api
+  name: Depict translations API
+  description: The translations API from Depict — 1 operation(s) for translations.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - translations
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-translations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-users-api
+  name: Depict Users API
+  description: The Users API from Depict — 1 operation(s) for users.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
+- aid: depict:depict-vitals-api
+  name: Depict Vitals API
+  description: The Vitals API from Depict — 1 operation(s) for vitals.
+  humanURL: https://docs.depict.ai/api-reference/headless/overview
+  baseURL: https://api.depict.ai
+  tags:
+  - Vitals
+  properties:
+  - type: OpenAPI
+    url: openapi/depict-vitals-api-openapi.yml
+  - type: Documentation
+    url: https://docs.depict.ai/api-guide/introduction
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +474,70 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://depict.com
+  url: https://depict.ai
+- type: DeveloperPortal
+  url: https://docs.depict.ai
+- type: Documentation
+  url: https://docs.depict.ai
+- type: APIReference
+  url: https://docs.depict.ai/api-reference/headless/overview
+- type: GettingStarted
+  url: https://docs.depict.ai/api-guide/introduction
+- type: Blog
+  url: https://depict.ai/resources/blog
+- type: Pricing
+  url: https://depict.ai/pricing
+- type: SignUp
+  url: https://app.depict.ai
+- type: Login
+  url: https://app.depict.ai
+- type: TermsOfService
+  url: https://depict.ai/legal/terms
+- type: PrivacyPolicy
+  url: https://depict.ai/legal/privacy
+- type: GitHubOrganization
+  url: https://github.com/depict-ai
+- type: StatusPage
+  url: https://status.depict.ai
+- type: ChangeLog
+  url: https://depict.ai/updates
+- type: Authentication
+  url: authentication/depict-authentication.yml
+- type: OAuthScopes
+  url: scopes/depict-scopes.yml
+- type: AgenticAccess
+  url: agentic-access/depict-agentic-access.yml
+- type: DomainSecurity
+  url: security/depict-domain-security.yml
+- type: Packages
+  url: packages/depict-packages.yml
+- type: SDKs
+  url: packages/depict-packages.yml
+- type: Components
+  url: components/depict-components.yml
+- type: LLMsTxt
+  url: llms/depict-llms.txt
+- type: Conventions
+  url: conventions/depict-conventions.yml
+- type: ErrorCatalog
+  url: errors/depict-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/depict-lifecycle.yml
+- type: ChangeLog
+  name: Depict Changelog (structured)
+  url: changelog/depict-changelog.yml
+- type: MCPServer
+  url: mcp/depict-mcp.yml
+- type: Overlay
+  url: overlays/depict-storefront-overlay.yaml
+- type: Conformance
+  url: conformance/depict-conformance.yml
+- type: DataModel
+  url: data-model/depict-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

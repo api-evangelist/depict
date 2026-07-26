@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.depict.ai/api-reference/headless/overview
+versioning:
+  scheme: uri-path
+  current: v3
+  observed: [v0, v2, v3]
+  notes: >-
+    API versions are carried in the URL path. The Storefront API exposes v2 and v3 search/listing/
+    recommendation surfaces; the Catalog Push API is at v0; the Portal API uses /api/v1/ paths.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation or sunset policy was found in the docs or product-updates feed.
+sla:
+  url: null
+status_page: https://status.depict.ai
+changelog: https://depict.ai/updates
+deprecated_operations: []
