@@ -1,0 +1,186 @@
+{
+  "item": [
+    {
+      "id": "4a41badf-1053-4da1-a8d2-d1456ec224d6",
+      "name": "Recommendations (v3)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bdaa466e-1e6c-4bb5-b545-965f0b78ea7f",
+          "name": "Recommendations",
+          "request": {
+            "name": "Recommendations",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "recommend",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "referer",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant\": \"<string>\",\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"type\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"session_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "570148fb-db6b-4394-ae42-d684808590f4",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "recommend",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "referer",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"type\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"session_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"displays\": [\n    {\n      \"variant_index\": 2958,\n      \"variant_skus\": [\n        \"string\",\n        \"string\"\n      ],\n      \"variant_product_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"variant_index\": 2512,\n      \"variant_skus\": [\n        \"string\",\n        \"string\"\n      ],\n      \"variant_product_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec725b04-bc40-41f9-b625-a393201772ca",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "recommend",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "referer",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"type\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"session_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/lite",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "136cd819-0b62-440d-a6c1-ee10c56a87e0",
+    "name": "Depict Lite Ab Test Recommendations (v3) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "item": [
+    {
+      "id": "ae925392-6df0-4a12-a2b3-3e62577c2920",
+      "name": "Vitals",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0239f6fa-1cb0-406e-8f36-31bc3896c526",
+          "name": "Vitals",
+          "request": {
+            "name": "Vitals",
+            "description": {},
+            "url": {
+              "path": [
+                "vitals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\",\n  \"appLoadId\": \"<string>\",\n  \"metrics\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ],\n  \"origin\": \"<string>\",\n  \"path\": \"<string>\",\n  \"shopId\": \"<string>\",\n  \"userId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f455a674-f0b6-484a-8a0c-ac9705927a7b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vitals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"appLoadId\": \"<string>\",\n  \"metrics\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"FID\",\n      \"value\": 283.2308672461292\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"LCP\",\n      \"value\": 9879.394297938994\n    }\n  ],\n  \"origin\": \"<string>\",\n  \"path\": \"<string>\",\n  \"shopId\": \"<string>\",\n  \"userId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28f1fde4-72eb-40ad-a90d-37c962a9ed33",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vitals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"appLoadId\": \"<string>\",\n  \"metrics\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"FID\",\n      \"value\": 283.2308672461292\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"LCP\",\n      \"value\": 9879.394297938994\n    }\n  ],\n  \"origin\": \"<string>\",\n  \"path\": \"<string>\",\n  \"shopId\": \"<string>\",\n  \"userId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/lite",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "13339002-56bc-4b46-9b98-8a129d7fd20f",
+    "name": "Depict Lite Ab Test Vitals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.",
+      "type": "text/plain"
+    }
+  }
+}

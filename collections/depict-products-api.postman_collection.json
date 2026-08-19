@@ -1,0 +1,2021 @@
+{
+  "item": [
+    {
+      "id": "7c151f74-ce8e-4f15-b3a9-9887da43c9ff",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66dcfa39-adfe-4e6d-b4d0-197df19545cb",
+          "name": "List Products Post Endpoint",
+          "request": {
+            "name": "List Products Post Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limit\": 50,\n  \"sort_by\": \"revenue_desc\",\n  \"include_metrics\": false,\n  \"shopper_facing_only\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe235949-26e1-406a-9101-5493d7e65d87",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 50,\n  \"sort_by\": \"revenue_desc\",\n  \"include_metrics\": false,\n  \"shopper_facing_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"main_product_id\": \"string\",\n      \"title\": \"string\",\n      \"main_image_url\": \"string\",\n      \"hover_image_url\": \"string\",\n      \"metadata\": [\n        {\n          \"min_percentage\": 8329,\n          \"max_percentage\": 1096,\n          \"type\": \"on_sale\"\n        },\n        {\n          \"min_percentage\": 5354,\n          \"max_percentage\": 1080,\n          \"type\": \"on_sale\"\n        }\n      ],\n      \"metrics\": {\n        \"clicks\": 0,\n        \"prev_clicks\": 0,\n        \"views\": 0,\n        \"prev_views\": 0,\n        \"sold\": 0,\n        \"prev_sold\": 0,\n        \"revenue\": 7429.014161747199,\n        \"prev_revenue\": 1196.0828840249317,\n        \"revenue_currency\": \"\",\n        \"inventory\": 0,\n        \"click_through_rate\": 0,\n        \"prev_click_through_rate\": 0,\n        \"sell_through_rate\": 0,\n        \"prev_sell_through_rate\": 0,\n        \"add_to_carts\": 0,\n        \"prev_add_to_carts\": 0\n      },\n      \"is_auto_hidden\": false\n    },\n    {\n      \"main_product_id\": \"string\",\n      \"title\": \"string\",\n      \"main_image_url\": \"string\",\n      \"hover_image_url\": \"string\",\n      \"metadata\": [\n        {\n          \"min_percentage\": 8024,\n          \"max_percentage\": 6503,\n          \"type\": \"on_sale\"\n        },\n        {\n          \"min_percentage\": 7204,\n          \"max_percentage\": 3197,\n          \"type\": \"on_sale\"\n        }\n      ],\n      \"metrics\": {\n        \"clicks\": 0,\n        \"prev_clicks\": 0,\n        \"views\": 0,\n        \"prev_views\": 0,\n        \"sold\": 0,\n        \"prev_sold\": 0,\n        \"revenue\": 1315.033075109474,\n        \"prev_revenue\": 8873.798777071914,\n        \"revenue_currency\": \"\",\n        \"inventory\": 0,\n        \"click_through_rate\": 0,\n        \"prev_click_through_rate\": 0,\n        \"sell_through_rate\": 0,\n        \"prev_sell_through_rate\": 0,\n        \"add_to_carts\": 0,\n        \"prev_add_to_carts\": 0\n      },\n      \"is_auto_hidden\": false\n    }\n  ],\n  \"sort_options\": [\n    {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"selected\": false\n    },\n    {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"selected\": false\n    }\n  ],\n  \"stats\": {\n    \"all_products\": 8672,\n    \"all_out_of_stock\": 8273,\n    \"all_low_stock\": 6861,\n    \"total_products\": 8274,\n    \"out_of_stock\": 1206,\n    \"low_stock\": 5260,\n    \"on_sale\": 505,\n    \"new_in\": 1986,\n    \"inactive\": 5936,\n    \"bestseller\": 1552,\n    \"trending\": 9054,\n    \"slow_mover\": 1739,\n    \"star_product\": 8232\n  },\n  \"next_cursor\": \"string\",\n  \"has_more\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1559b56e-94dd-4b07-aa21-65ceca42cd7c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 50,\n  \"sort_by\": \"revenue_desc\",\n  \"include_metrics\": false,\n  \"shopper_facing_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5006412b-b58b-49fa-917f-4dfd91284e66",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 50,\n  \"sort_by\": \"revenue_desc\",\n  \"include_metrics\": false,\n  \"shopper_facing_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c93579c1-3951-4bae-846f-07d1b31d9ec9",
+          "name": "Get Products Metrics Endpoint",
+          "request": {
+            "name": "Get Products Metrics Endpoint",
+            "description": {
+              "content": "Per-product metrics for an explicit set of products.\n\nLets the collection grid paint immediately (products are fetched without\nmetrics) and then overlay the numbers. The expensive whole-catalog fetch is\nshared via the cached, single-flighted ``fetch_collection_metrics``, so on a\nwarm cache this endpoint is just an in-memory slice keyed by the requested\nids. Missing ids resolve to zeroed metrics, mirroring the inline\n``include_metrics`` path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "products",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"main_product_ids\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35fb0024-0848-4bb5-8768-31350a07d354",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"main_product_ids\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metrics\": {\n    \"key_0\": {\n      \"clicks\": 0,\n      \"prev_clicks\": 0,\n      \"views\": 0,\n      \"prev_views\": 0,\n      \"sold\": 0,\n      \"prev_sold\": 0,\n      \"revenue\": 8929.4654750344,\n      \"prev_revenue\": 6470.099945176969,\n      \"revenue_currency\": \"\",\n      \"inventory\": 0,\n      \"click_through_rate\": 0,\n      \"prev_click_through_rate\": 0,\n      \"sell_through_rate\": 0,\n      \"prev_sell_through_rate\": 0,\n      \"add_to_carts\": 0,\n      \"prev_add_to_carts\": 0\n    }\n  },\n  \"revenue_currency\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddb8fe47-82b0-4288-82cd-4c84b2cdd3ff",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"main_product_ids\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6f8d848-1363-4d69-9701-8711710c8e19",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"main_product_ids\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e3e818d-c0bc-4cec-aab9-cd1b8930ac7a",
+          "name": "Get Dead Stock Products Endpoint",
+          "request": {
+            "name": "Get Dead Stock Products Endpoint",
+            "description": {
+              "content": "Merchant-wide dead stock: products with stock on hand but zero sales in\nthe metrics period (the same definition as\n``CollectionMetricsSummary.dead_stock``, which counts these per collection).\nBacked by the cached whole-catalog ``fetch_collection_metrics``, so on a\nwarm cache this is an in-memory filter. Items are sorted by inventory\n(worst offenders first) and capped at ``DEAD_STOCK_MAX_ITEMS``; ``total``\nis the uncapped count. Products no longer in the catalog are dropped.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "products",
+                "dead-stock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "market_group_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f9ee8d16-4711-44cc-9ab3-0238987133c8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "dead-stock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "market_group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"main_product_id\": \"string\",\n      \"inventory\": 2454,\n      \"views\": 3772,\n      \"clicks\": 643,\n      \"ctr\": 6075.951594283082,\n      \"prev_sold\": 8247,\n      \"title\": \"string\",\n      \"image_url\": \"string\"\n    },\n    {\n      \"main_product_id\": \"string\",\n      \"inventory\": 3431,\n      \"views\": 9259,\n      \"clicks\": 4893,\n      \"ctr\": 6152.778419024183,\n      \"prev_sold\": 8100,\n      \"title\": \"string\",\n      \"image_url\": \"string\"\n    }\n  ],\n  \"total\": 7882,\n  \"low_stock_units\": 6887\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77ef1c36-6237-4126-82a2-fe18634ecce0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "dead-stock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "market_group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "981e1bfd-4846-4d71-be73-505222a009b2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "dead-stock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "market_group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d0d9f4a-5c6d-4b48-a346-8446374dc4d1",
+          "name": "List Product Filters Endpoint",
+          "request": {
+            "name": "List Product Filters Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "products",
+                "filters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shopper_facing_only\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fbad8f77-1168-4b96-8470-1c4a586d2952",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shopper_facing_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e2eef57-d765-4f26-b004-e66d2ae0b7d0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shopper_facing_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "83704ab2-e929-4304-b219-d5d7aa9bf99c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shopper_facing_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48c09f25-3088-4e6c-98cb-9f0f505d8b91",
+          "name": "Get Product Visibility Endpoint",
+          "request": {
+            "name": "Get Product Visibility Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "products",
+                "visibility"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "main_product_ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "market_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market_group_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market_group_ids",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f0c45f07-6762-4951-a6d6-57083ef8d83c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "visibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "main_product_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_group_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_group_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"visibility\": {\n    \"key_0\": {\n      \"key_0\": {\n        \"key_0\": {\n          \"visible\": true,\n          \"hidden\": true,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1985-07-15T22:30:08.389Z\",\n          \"resolved_market_group_id\": \"string\"\n        },\n        \"key_1\": {\n          \"visible\": false,\n          \"hidden\": true,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1980-01-24T14:00:23.031Z\",\n          \"resolved_market_group_id\": \"string\"\n        }\n      },\n      \"key_1\": {\n        \"key_0\": {\n          \"visible\": true,\n          \"hidden\": false,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"2012-07-05T00:51:34.483Z\",\n          \"resolved_market_group_id\": \"string\"\n        }\n      },\n      \"key_2\": {\n        \"key_0\": {\n          \"visible\": true,\n          \"hidden\": false,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1950-06-27T15:19:56.727Z\",\n          \"resolved_market_group_id\": \"string\"\n        },\n        \"key_1\": {\n          \"visible\": false,\n          \"hidden\": false,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1947-05-10T09:40:51.134Z\",\n          \"resolved_market_group_id\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0378dd4-1711-4d88-942e-dff9ded65cda",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "visibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "main_product_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_group_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_group_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80128f0b-427c-4bdf-a42b-20835103890f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "visibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "main_product_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_group_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market_group_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ef41953-ccf0-40fd-a827-ff8b54a9e590",
+          "name": "Patch Product Visibility Endpoint",
+          "request": {
+            "name": "Patch Product Visibility Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "products",
+                "visibility"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"updates\": [\n    {\n      \"main_product_id\": \"<string>\",\n      \"plp\": \"<string>\",\n      \"search\": \"<string>\",\n      \"recs\": \"<string>\",\n      \"expected_updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"scope\": \"market_group\",\n  \"market_id\": \"<string>\",\n  \"market_group_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9dac07f2-11eb-45d6-a373-571ffe1aa616",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "visibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"updates\": [\n    {\n      \"main_product_id\": \"string\",\n      \"plp\": \"hidden_explicit\",\n      \"search\": \"inherit\",\n      \"recs\": \"visible_explicit\",\n      \"expected_updated_at\": \"1969-04-03T18:29:17.884Z\"\n    }\n  ],\n  \"scope\": \"market_group\",\n  \"market_id\": \"<string>\",\n  \"market_group_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"visibility\": {\n    \"key_0\": {\n      \"key_0\": {\n        \"key_0\": {\n          \"visible\": true,\n          \"hidden\": true,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1985-07-15T22:30:08.389Z\",\n          \"resolved_market_group_id\": \"string\"\n        },\n        \"key_1\": {\n          \"visible\": false,\n          \"hidden\": true,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1980-01-24T14:00:23.031Z\",\n          \"resolved_market_group_id\": \"string\"\n        }\n      },\n      \"key_1\": {\n        \"key_0\": {\n          \"visible\": true,\n          \"hidden\": false,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"2012-07-05T00:51:34.483Z\",\n          \"resolved_market_group_id\": \"string\"\n        }\n      },\n      \"key_2\": {\n        \"key_0\": {\n          \"visible\": true,\n          \"hidden\": false,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1950-06-27T15:19:56.727Z\",\n          \"resolved_market_group_id\": \"string\"\n        },\n        \"key_1\": {\n          \"visible\": false,\n          \"hidden\": false,\n          \"source\": \"string\",\n          \"scope\": \"string\",\n          \"reason\": \"string\",\n          \"updated_at\": \"1947-05-10T09:40:51.134Z\",\n          \"resolved_market_group_id\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "735354e7-4f46-4044-b854-c5b686550b93",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "visibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"updates\": [\n    {\n      \"main_product_id\": \"string\",\n      \"plp\": \"hidden_explicit\",\n      \"search\": \"inherit\",\n      \"recs\": \"visible_explicit\",\n      \"expected_updated_at\": \"1969-04-03T18:29:17.884Z\"\n    }\n  ],\n  \"scope\": \"market_group\",\n  \"market_id\": \"<string>\",\n  \"market_group_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b33c14ea-96c5-46e2-b026-40bd2d50a6c4",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    "visibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"updates\": [\n    {\n      \"main_product_id\": \"string\",\n      \"plp\": \"hidden_explicit\",\n      \"search\": \"inherit\",\n      \"recs\": \"visible_explicit\",\n      \"expected_updated_at\": \"1969-04-03T18:29:17.884Z\"\n    }\n  ],\n  \"scope\": \"market_group\",\n  \"market_id\": \"<string>\",\n  \"market_group_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf936fe1-4819-4ab6-9182-da793facb581",
+          "name": "Get Product Endpoint",
+          "request": {
+            "name": "Get Product Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "products",
+                ":main_product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "main_product_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e913b23b-cc78-4129-8d67-f555815d68aa",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    ":main_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "main_product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"main_product_id\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"color_name\": \"string\",\n  \"size\": \"string\",\n  \"main_image_url\": \"http://KbEfOueUfYVyyrKM.zdkze9gB+dsfbS1uLSkopQ-SsGfqc27Q9Fd-veJUtuiJitQaQlAavURR6ap70OlvmZSXZXCLz\",\n  \"hover_image_url\": \"http://ur.vqxjuQW\",\n  \"image_urls\": [\n    \"https://KTrSuepPiRmemSSFgUzDOvoKz.kusfoJ8auuGyWwTSbR96dDOJAFj6W0a8sPrPoZR-c.RmI\",\n    \"http://nepZUpJk.zfcOZOEOFYJGgMLFXFJ1IcHe1Jnh2cnlcJ\"\n  ],\n  \"metadata\": [\n    {\n      \"min_percentage\": 8000,\n      \"max_percentage\": 6275,\n      \"type\": \"on_sale\"\n    },\n    {\n      \"min_percentage\": 4294,\n      \"max_percentage\": 4371,\n      \"type\": \"on_sale\"\n    }\n  ],\n  \"collections\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"filter\": \"string\",\n      \"exist\": false,\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app__usecase__get_product__Collection detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app__usecase__get_product__Collection detected>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"filter\": \"string\",\n      \"exist\": false,\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app__usecase__get_product__Collection detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app__usecase__get_product__Collection detected>\"\n        }\n      ]\n    }\n  ],\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"main_product_id\": \"string\",\n      \"name\": \"string\",\n      \"color_name\": \"string\",\n      \"image_url\": \"https://bjYMTiVVk.yclee5fYQoXpXPD6qm9pN1aaVL6yFfiPr1ZPM..Muo7CS8ciKqWfoFuGahfPWLtj4tQuXoTr+EYi,\"\n    },\n    {\n      \"id\": \"string\",\n      \"main_product_id\": \"string\",\n      \"name\": \"string\",\n      \"color_name\": \"string\",\n      \"image_url\": \"https://SgviFniOIfsOVa.hfbPw7tdf\"\n    }\n  ],\n  \"inventories\": [\n    {\n      \"id\": \"string\",\n      \"sizes\": [\n        {\n          \"size\": \"string\",\n          \"quantity\": 8847\n        },\n        {\n          \"size\": \"string\",\n          \"quantity\": 7323\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"sizes\": [\n        {\n          \"size\": \"string\",\n          \"quantity\": 6382\n        },\n        {\n          \"size\": \"string\",\n          \"quantity\": 7662\n        }\n      ]\n    }\n  ],\n  \"price_lists\": [\n    {\n      \"id\": \"string\",\n      \"original_price\": 6961.535037338748,\n      \"sale_price\": 572.7284512114927,\n      \"currency\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"original_price\": 8210.561007445029,\n      \"sale_price\": 9891.648972376652,\n      \"currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fad023a-5aa6-4e6e-8811-27c944403c02",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    ":main_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "main_product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "630f5570-2f30-4c31-892a-889e9926964d",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "products",
+                    ":main_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "main_product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/lite",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "eeaf90f2-9634-4bd8-a960-350922f83c48",
+    "name": "Depict Lite Ab Test Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.",
+      "type": "text/plain"
+    }
+  }
+}

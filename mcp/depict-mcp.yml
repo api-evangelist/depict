@@ -2,10 +2,9 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/depict-storefront-openapi-original.json
-notes: >-
-  No official hosted/remote Depict MCP server was found (no @depict-ai MCP package, no registry
-  entry, no docs). This is a candidate tool list derived from the public Storefront API operations —
-  the browser-callable, key-identified surface most suitable for agent product discovery.
+notes: No official hosted/remote Depict MCP server was found (no @depict-ai MCP package, no registry entry,
+  no docs). This is a candidate tool list derived from the public Storefront API operations — the browser-callable,
+  key-identified surface most suitable for agent product discovery.
 server:
   name: depict-storefront
   transport: http
@@ -41,3 +40,9 @@ tools:
 - name: get_locales
   description: List the locales configured for a merchant.
   source_operation: openapi/depict-storefront-openapi-original.json#get_locales_v3_locales_get
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census

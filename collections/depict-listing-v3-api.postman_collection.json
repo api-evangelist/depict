@@ -1,0 +1,1000 @@
+{
+  "item": [
+    {
+      "id": "e62ffb61-059e-4525-825d-a1a038c40847",
+      "name": "Listing (v3)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5bdfe08-2d25-47eb-afed-17f00a347232",
+          "name": "Get Listings",
+          "request": {
+            "name": "Get Listings",
+            "description": {
+              "content": "Returns the full listing hierarchy. Useful for navigation menus, listing selection dialogs, etc.\nCan optionally be filtered to only show listings of certain types.\n\nExample response:\n<pre>\n[\n    {\n        \"listing_id\": \"f346c448-4cf1-4373-9156-49e222cd6db0\",\n        \"listing_type\": \"smart_pick\",\n        \"show_in_breadcrumbs\": false,\n        \"show_in_quicklinks\": false,\n        \"title\": \"Trending\",\n        \"children\": []\n    },\n    {\n        \"listing_id\": \"2efca23d-f077-4477-8830-cc7143c49173\",\n        \"external_id\": \"1001\",\n        \"listing_type\": \"category\",\n        \"show_in_breadcrumbs\": true,\n        \"show_in_quicklinks\": true,\n        \"title\": \"Clothes\",\n        \"slug\": \"mens-cloths\",\n        \"children\": [\n            {\n                \"listing_id\": \"06b234cf-ce21-4252-90e6-db47246b1d98\",\n                \"external_id\": \"1011\",\n                \"listing_type\": \"category\",\n                \"show_in_breadcrumbs\": true,\n                \"show_in_quicklinks\": true,\n                \"title\": \"Suits\",\n                \"slug\": \"mens-suits\",\n                \"children\": []\n            },\n            {\n                \"listing_id\": \"1e648857-4aad-4606-9e7a-5290cb3576e5\",\n                \"external_id\": \"1012\",\n                \"listing_type\": \"category\",\n                \"show_in_breadcrumbs\": true,\n                \"show_in_quicklinks\": true,\n                \"title\": \"Shirts\",\n                \"slug\": \"mens-shirts\",\n                \"children\": []\n            }\n        ]\n    }\n]\n</pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "556ac6d0-f9de-41cd-a646-0b74835de1f3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"listing_id\": \"972e3bd7-84ed-39f0-2821-849091e2de52\",\n    \"listing_type\": \"smart_pick\",\n    \"show_in_breadcrumbs\": false,\n    \"show_in_quicklinks\": false,\n    \"image_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"title\": \"string\",\n    \"children\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ListListingsResponseItem detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ListListingsResponseItem detected>\"\n      }\n    ],\n    \"external_id\": \"string\",\n    \"slug\": \"string\"\n  },\n  {\n    \"listing_id\": \"8c423246-2f75-f4fc-6ed9-7d348bb2803b\",\n    \"listing_type\": \"brand\",\n    \"show_in_breadcrumbs\": true,\n    \"show_in_quicklinks\": false,\n    \"image_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"title\": \"string\",\n    \"children\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ListListingsResponseItem detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ListListingsResponseItem detected>\"\n      }\n    ],\n    \"external_id\": \"string\",\n    \"slug\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc535b05-6003-4395-96c1-4ab371af57aa",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8b109ac-e1ba-4c3b-8e35-6fd54a2e2e1f",
+          "name": "Get Listing Via External Id",
+          "request": {
+            "name": "Get Listing Via External Id",
+            "description": {
+              "content": "Returns a single listing, including its ancestors, siblings and children. Listings can be queried by either their Depict ID,\nor \"external\" ID, which is the ID used by the merchant's system (ie Shopify, Centra, WooCommerce, etc) to refer to the listing.\n\nUseful for showing breadcrumbs and other navigation elements while showing a product listing page.\n\nExample response:\n<pre>\n{\n    \"listing_id\": \"06b234cf-ce21-4252-90e6-db47246b1d98\",\n    \"external_id\": \"1011\",\n    \"listing_type\": \"category\",\n    \"show_in_breadcrumbs\": true,\n    \"show_in_quicklinks\": true,\n    \"title\": \"Suits\",\n    \"slug\": \"mens-suits\",\n    \"ancestors\": [\n        {\n            \"listing_id\": \"2efca23d-f077-4477-8830-cc7143c49173\",\n            \"external_id\": \"1001\",\n            \"listing_type\": \"category\",\n            \"show_in_breadcrumbs\": true,\n            \"show_in_quicklinks\": true,\n            \"title\": \"Clothes\",\n            \"slug\": \"mens-cloths\"\n        }\n    ],\n    \"siblings\": [\n        {\n            \"listing_id\": \"1e648857-4aad-4606-9e7a-5290cb3576e5\",\n            \"external_id\": \"1012\",\n            \"listing_type\": \"category\",\n            \"show_in_breadcrumbs\": true,\n            \"show_in_quicklinks\": true,\n            \"title\": \"Shirts\",\n            \"slug\": \"mens-shirts\"\n        }\n    ],\n    \"children\": []\n}\n</pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "listings",
+                "external_id",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "listing_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "session_id",
+                  "value": ""
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "62078d50-a39c-4dff-b59d-00d31a2d9fcb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    "external_id",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listing_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"listing_id\": \"64497d83-2096-006b-02e8-f4aa67a43877\",\n  \"listing_type\": \"category\",\n  \"show_in_breadcrumbs\": false,\n  \"show_in_quicklinks\": true,\n  \"image_urls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"title\": \"string\",\n  \"ancestors\": [\n    {\n      \"listing_id\": \"cc9fff49-25af-6b2b-8a1c-5f6f08efa360\",\n      \"listing_type\": \"long_tail_collection\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": true,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"listing_id\": \"5a385da3-2455-cc0d-0347-8ad999ea2a52\",\n      \"listing_type\": \"long_tail_collection\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": true,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    }\n  ],\n  \"siblings\": [\n    {\n      \"listing_id\": \"3789191d-1cee-193b-ccce-690da4f41040\",\n      \"listing_type\": \"brand\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": true,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"listing_id\": \"ac877ff7-3201-0adc-6143-79ceba2dc0f0\",\n      \"listing_type\": \"style\",\n      \"show_in_breadcrumbs\": false,\n      \"show_in_quicklinks\": false,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    }\n  ],\n  \"children\": [\n    {\n      \"listing_id\": \"bb584149-62b1-7df8-d232-0667190d53ae\",\n      \"listing_type\": \"category\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": false,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"listing_id\": \"deb8a878-1165-c6d3-ef3c-0083656cbc29\",\n      \"listing_type\": \"style\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": false,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    }\n  ],\n  \"external_id\": \"string\",\n  \"slug\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ddf7341-9942-4f7f-95e4-0f455c971798",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    "external_id",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listing_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96f8ade0-0887-42e9-98be-5a3fc48095fe",
+          "name": "Get Listing",
+          "request": {
+            "name": "Get Listing",
+            "description": {
+              "content": "Returns a single listing, including its ancestors, siblings and children. Listings can be queried by either their Depict ID,\nor \"external\" ID, which is the ID used by the merchant's system (ie Shopify, Centra, WooCommerce, etc) to refer to the listing.\n\nUseful for showing breadcrumbs and other navigation elements while showing a product listing page.\n\nExample response:\n<pre>\n{\n    \"listing_id\": \"06b234cf-ce21-4252-90e6-db47246b1d98\",\n    \"external_id\": \"1011\",\n    \"listing_type\": \"category\",\n    \"show_in_breadcrumbs\": true,\n    \"show_in_quicklinks\": true,\n    \"title\": \"Suits\",\n    \"slug\": \"mens-suits\",\n    \"ancestors\": [\n        {\n            \"listing_id\": \"2efca23d-f077-4477-8830-cc7143c49173\",\n            \"external_id\": \"1001\",\n            \"listing_type\": \"category\",\n            \"show_in_breadcrumbs\": true,\n            \"show_in_quicklinks\": true,\n            \"title\": \"Clothes\",\n            \"slug\": \"mens-cloths\"\n        }\n    ],\n    \"siblings\": [\n        {\n            \"listing_id\": \"1e648857-4aad-4606-9e7a-5290cb3576e5\",\n            \"external_id\": \"1012\",\n            \"listing_type\": \"category\",\n            \"show_in_breadcrumbs\": true,\n            \"show_in_quicklinks\": true,\n            \"title\": \"Shirts\",\n            \"slug\": \"mens-shirts\"\n        }\n    ],\n    \"children\": []\n}\n</pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "listings",
+                ":listing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "session_id",
+                  "value": ""
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "listing_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e1f9e4f1-f0f5-4a34-b62e-c2b8f58f424b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "listing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"listing_id\": \"64497d83-2096-006b-02e8-f4aa67a43877\",\n  \"listing_type\": \"category\",\n  \"show_in_breadcrumbs\": false,\n  \"show_in_quicklinks\": true,\n  \"image_urls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"title\": \"string\",\n  \"ancestors\": [\n    {\n      \"listing_id\": \"cc9fff49-25af-6b2b-8a1c-5f6f08efa360\",\n      \"listing_type\": \"long_tail_collection\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": true,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"listing_id\": \"5a385da3-2455-cc0d-0347-8ad999ea2a52\",\n      \"listing_type\": \"long_tail_collection\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": true,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    }\n  ],\n  \"siblings\": [\n    {\n      \"listing_id\": \"3789191d-1cee-193b-ccce-690da4f41040\",\n      \"listing_type\": \"brand\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": true,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"listing_id\": \"ac877ff7-3201-0adc-6143-79ceba2dc0f0\",\n      \"listing_type\": \"style\",\n      \"show_in_breadcrumbs\": false,\n      \"show_in_quicklinks\": false,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    }\n  ],\n  \"children\": [\n    {\n      \"listing_id\": \"bb584149-62b1-7df8-d232-0667190d53ae\",\n      \"listing_type\": \"category\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": false,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"listing_id\": \"deb8a878-1165-c6d3-ef3c-0083656cbc29\",\n      \"listing_type\": \"style\",\n      \"show_in_breadcrumbs\": true,\n      \"show_in_quicklinks\": false,\n      \"image_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"title\": \"string\",\n      \"external_id\": \"string\",\n      \"slug\": \"string\"\n    }\n  ],\n  \"external_id\": \"string\",\n  \"slug\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b62ec1a-8814-4ee8-8352-5c8bab7d49fd",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "listing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a8b6d24-7c92-4834-b0f2-e545242b35e1",
+          "name": "Get Products In Listing, Via External Id",
+          "request": {
+            "name": "Get Products In Listing, Via External Id",
+            "description": {
+              "content": "Returns products in a listing, optionally filtered. Used for product listing pages.\n\nExample response:\n<pre>\n{\n    \"displays\": [\n        {\n        \"variant_index\": 1,\n        \"variant_displays\": [\n            {\n            \"in_stock\": true,\n            \"original_price\": 1999,\n            \"sale_price\": 1999,\n            \"title\": \"Short Sleeve Polo Shirt\",\n            \"size\": \"210\",\n            \"product_id\": \"1500-10-210\",\n            \"image_urls\": [\n                \"https://example.cdn.com/1.jpg\",\n                \"https://example.cdn.com/2.jpg\",\n                ]\n            },\n            {\n            \"in_stock\": true,\n            \"original_price\": 1999,\n            \"sale_price\": 1999,\n            \"title\": \"Short Sleeve Polo Shirt\",\n            \"size\": \"200\",\n            \"product_id\": \"1500-10-200\",\n            \"image_urls\": [\n                \"https://example.cdn.com/1.jpg\",\n                \"https://example.cdn.com/2.jpg\",\n                ]\n            },\n        ],\n        \"product_listing_result_id\": \"50877e3b-26a4-4ea7-a6e1-1a7696f76f66\"\n        },\n        {\n        \"variant_index\": 0,\n        \"variant_displays\": [\n            {\n            \"in_stock\": false,\n            \"original_price\": 1400,\n            \"sale_price\": 1200,\n            \"title\": \"Collar Polo Shirt\",\n            \"size\": \"210\",\n            \"product_id\": \"1600-10-210\",\n            \"image_urls\": [\n                \"https://example.cdn.com/10.jpg\",\n                \"https://example.cdn.com/11.jpg\",\n                ]\n            }\n        ],\n        \"product_listing_result_id\": \"671740b5-6828-41fc-8a3f-2869993d000c\"\n        }\n    ],\n    \"n_hits\": 2,\n    \"sorts\": [\n        {\n        \"field\": \"_relevance\",\n        \"order\": \"desc\",\n        \"meta\": {\n            \"title\": \"Recommended\",\n            \"values\": [\n            \"desc\"\n            ],\n            \"names\": [\n            \"Recommended\"\n            ]\n        }\n        },\n        {\n        \"field\": \"title\",\n        \"order\": \"asc\",\n        \"meta\": {\n            \"title\": \"Alphabetical, A-Z\",\n            \"values\": [\n            \"asc\"\n            ],\n            \"names\": [\n            \"Alphabetical, A-Z\"\n            ]\n        }\n        },\n        {\n        \"field\": \"title\",\n        \"order\": \"desc\",\n        \"meta\": {\n            \"title\": \"Alphabetical, Z-A\",\n            \"values\": [\n            \"desc\"\n            ],\n            \"names\": [\n            \"Alphabetical, Z-A\"\n            ]\n        }\n        },\n        {\n        \"field\": \"sale_price\",\n        \"order\": \"asc\",\n        \"meta\": {\n            \"title\": \"Price, low to high\",\n            \"values\": [\n            \"asc\"\n            ],\n            \"names\": [\n            \"Price, low to high\"\n            ]\n        }\n        },\n        {\n        \"field\": \"sale_price\",\n        \"order\": \"desc\",\n        \"meta\": {\n            \"title\": \"Price, high to low\",\n            \"values\": [\n            \"desc\"\n            ],\n            \"names\": [\n            \"Price, high to low\"\n            ]\n        }\n        }\n    ],\n    \"filters\": [\n        {\n        \"field\": \"sale_price\",\n        \"op\": \"inrange\",\n        \"data\": [\n            1200,\n            1999\n        ],\n        \"meta\": {\n            \"group_title\": \"Price\",\n            \"type\": \"range\",\n            \"min\": 1200,\n            \"max\": 1999,\n            \"currency\": \"SEK\"\n        },\n        \"id\": \"price0\"\n        },\n        {\n        \"field\": \"size_name\",\n        \"op\": \"in\",\n        \"meta\": {\n            \"group_title\": \"Size\",\n            \"type\": \"checkbox-grid\",\n            \"values\": [\n            \"200\",\n            \"210\",\n            ],\n            \"counts\": [\n            1,\n            2\n            ]\n        },\n        \"id\": \"size1\"\n        }\n    ],\n    \"product_listing_request_id\": \"4bf1eeb0-0b0a-4b0e-9b0a-0a0b0a0b0a0b\",\n    \"cursor\": \"eyJjIjogMjAsICJyIjogMjB9\"\n    }\n</pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "listings",
+                "external_id",
+                ":external_id",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "listing_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-use-db-display-store",
+                "value": "false",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"market\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"op\": \"<string>\",\n      \"data\": \"<string>\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": \"<number>\",\n        \"max\": \"<number>\",\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"op\": \"<string>\",\n      \"data\": \"<string>\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": \"<number>\",\n        \"max\": \"<number>\",\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"<string>\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"<string>\",\n    \"order\": \"<string>\",\n    \"meta\": {\n      \"title\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  },\n  \"listing_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ff5104f-6b0c-43ec-81cf-c49a378bb865",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    "external_id",
+                    ":external_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listing_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "x-use-db-display-store",
+                    "value": "false",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 5763.778310705574,\n        \"max\": 9567.259431034774,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"inrange\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 3702.7811234272167,\n        \"max\": 35.88491614772593,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"string\",\n    \"order\": \"asc\",\n    \"meta\": {\n      \"title\": \"string\",\n      \"values\": [\n        \"asc\",\n        \"desc\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"listing_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"displays\": [],\n  \"n_hits\": 1781,\n  \"product_listing_request_id\": \"string\",\n  \"sorts\": [\n    {\n      \"field\": \"string\",\n      \"order\": \"asc\",\n      \"meta\": {\n        \"title\": \"string\",\n        \"values\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"names\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"field\": \"string\",\n      \"order\": \"asc\",\n      \"meta\": {\n        \"title\": \"string\",\n        \"values\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"names\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"neq\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 630.7535221263516,\n        \"max\": 1663.5393398390509,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"eq\",\n      \"data\": \"true\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 5931.905170104229,\n        \"max\": 540.1941876670768,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "004866d1-dc36-4419-bad2-5cf12ca87d21",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    "external_id",
+                    ":external_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listing_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "x-use-db-display-store",
+                    "value": "false",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 5763.778310705574,\n        \"max\": 9567.259431034774,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"inrange\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 3702.7811234272167,\n        \"max\": 35.88491614772593,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"string\",\n    \"order\": \"asc\",\n    \"meta\": {\n      \"title\": \"string\",\n      \"values\": [\n        \"asc\",\n        \"desc\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"listing_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bc2e51c-11ec-4af5-93e7-606851fdfd92",
+          "name": "Get Products In Listing",
+          "request": {
+            "name": "Get Products In Listing",
+            "description": {
+              "content": "Returns products in a listing, optionally filtered. Used for product listing pages.\n\nExample response:\n<pre>\n{\n    \"displays\": [\n        {\n        \"variant_index\": 1,\n        \"variant_displays\": [\n            {\n            \"in_stock\": true,\n            \"original_price\": 1999,\n            \"sale_price\": 1999,\n            \"title\": \"Short Sleeve Polo Shirt\",\n            \"size\": \"210\",\n            \"product_id\": \"1500-10-210\",\n            \"image_urls\": [\n                \"https://example.cdn.com/1.jpg\",\n                \"https://example.cdn.com/2.jpg\",\n                ]\n            },\n            {\n            \"in_stock\": true,\n            \"original_price\": 1999,\n            \"sale_price\": 1999,\n            \"title\": \"Short Sleeve Polo Shirt\",\n            \"size\": \"200\",\n            \"product_id\": \"1500-10-200\",\n            \"image_urls\": [\n                \"https://example.cdn.com/1.jpg\",\n                \"https://example.cdn.com/2.jpg\",\n                ]\n            },\n        ],\n        \"product_listing_result_id\": \"50877e3b-26a4-4ea7-a6e1-1a7696f76f66\"\n        },\n        {\n        \"variant_index\": 0,\n        \"variant_displays\": [\n            {\n            \"in_stock\": false,\n            \"original_price\": 1400,\n            \"sale_price\": 1200,\n            \"title\": \"Collar Polo Shirt\",\n            \"size\": \"210\",\n            \"product_id\": \"1600-10-210\",\n            \"image_urls\": [\n                \"https://example.cdn.com/10.jpg\",\n                \"https://example.cdn.com/11.jpg\",\n                ]\n            }\n        ],\n        \"product_listing_result_id\": \"671740b5-6828-41fc-8a3f-2869993d000c\"\n        }\n    ],\n    \"n_hits\": 2,\n    \"sorts\": [\n        {\n        \"field\": \"_relevance\",\n        \"order\": \"desc\",\n        \"meta\": {\n            \"title\": \"Recommended\",\n            \"values\": [\n            \"desc\"\n            ],\n            \"names\": [\n            \"Recommended\"\n            ]\n        }\n        },\n        {\n        \"field\": \"title\",\n        \"order\": \"asc\",\n        \"meta\": {\n            \"title\": \"Alphabetical, A-Z\",\n            \"values\": [\n            \"asc\"\n            ],\n            \"names\": [\n            \"Alphabetical, A-Z\"\n            ]\n        }\n        },\n        {\n        \"field\": \"title\",\n        \"order\": \"desc\",\n        \"meta\": {\n            \"title\": \"Alphabetical, Z-A\",\n            \"values\": [\n            \"desc\"\n            ],\n            \"names\": [\n            \"Alphabetical, Z-A\"\n            ]\n        }\n        },\n        {\n        \"field\": \"sale_price\",\n        \"order\": \"asc\",\n        \"meta\": {\n            \"title\": \"Price, low to high\",\n            \"values\": [\n            \"asc\"\n            ],\n            \"names\": [\n            \"Price, low to high\"\n            ]\n        }\n        },\n        {\n        \"field\": \"sale_price\",\n        \"order\": \"desc\",\n        \"meta\": {\n            \"title\": \"Price, high to low\",\n            \"values\": [\n            \"desc\"\n            ],\n            \"names\": [\n            \"Price, high to low\"\n            ]\n        }\n        }\n    ],\n    \"filters\": [\n        {\n        \"field\": \"sale_price\",\n        \"op\": \"inrange\",\n        \"data\": [\n            1200,\n            1999\n        ],\n        \"meta\": {\n            \"group_title\": \"Price\",\n            \"type\": \"range\",\n            \"min\": 1200,\n            \"max\": 1999,\n            \"currency\": \"SEK\"\n        },\n        \"id\": \"price0\"\n        },\n        {\n        \"field\": \"size_name\",\n        \"op\": \"in\",\n        \"meta\": {\n            \"group_title\": \"Size\",\n            \"type\": \"checkbox-grid\",\n            \"values\": [\n            \"200\",\n            \"210\",\n            ],\n            \"counts\": [\n            1,\n            2\n            ]\n        },\n        \"id\": \"size1\"\n        }\n    ],\n    \"product_listing_request_id\": \"4bf1eeb0-0b0a-4b0e-9b0a-0a0b0a0b0a0b\",\n    \"cursor\": \"eyJjIjogMjAsICJyIjogMjB9\"\n    }\n</pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "listings",
+                ":listing_id",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "listing_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-use-db-display-store",
+                "value": "false",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"market\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"op\": \"<string>\",\n      \"data\": \"<string>\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": \"<number>\",\n        \"max\": \"<number>\",\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"op\": \"<string>\",\n      \"data\": \"<string>\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": \"<number>\",\n        \"max\": \"<number>\",\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"<string>\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"<string>\",\n    \"order\": \"<string>\",\n    \"meta\": {\n      \"title\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  },\n  \"listing_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "311e1eb5-98b4-4748-9dd9-d20f2598f043",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    ":listing_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "external_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "listing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "x-use-db-display-store",
+                    "value": "false",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 5763.778310705574,\n        \"max\": 9567.259431034774,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"inrange\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 3702.7811234272167,\n        \"max\": 35.88491614772593,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"string\",\n    \"order\": \"asc\",\n    \"meta\": {\n      \"title\": \"string\",\n      \"values\": [\n        \"asc\",\n        \"desc\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"listing_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"displays\": [],\n  \"n_hits\": 1781,\n  \"product_listing_request_id\": \"string\",\n  \"sorts\": [\n    {\n      \"field\": \"string\",\n      \"order\": \"asc\",\n      \"meta\": {\n        \"title\": \"string\",\n        \"values\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"names\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"field\": \"string\",\n      \"order\": \"asc\",\n      \"meta\": {\n        \"title\": \"string\",\n        \"values\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"names\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"neq\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 630.7535221263516,\n        \"max\": 1663.5393398390509,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"eq\",\n      \"data\": \"true\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 5931.905170104229,\n        \"max\": 540.1941876670768,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72514f40-f3d0-4ce9-823c-d45f15a30978",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "listings",
+                    ":listing_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "external_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "listing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "x-use-db-display-store",
+                    "value": "false",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 5763.778310705574,\n        \"max\": 9567.259431034774,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"inrange\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 3702.7811234272167,\n        \"max\": 35.88491614772593,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"string\",\n    \"order\": \"asc\",\n    \"meta\": {\n      \"title\": \"string\",\n      \"values\": [\n        \"asc\",\n        \"desc\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"listing_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/lite",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f79e1ad9-ca7e-4eca-a103-15e232802af0",
+    "name": "Depict Lite Ab Test Listing (v3) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.",
+      "type": "text/plain"
+    }
+  }
+}

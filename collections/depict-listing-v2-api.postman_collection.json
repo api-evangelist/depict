@@ -1,0 +1,183 @@
+{
+  "item": [
+    {
+      "id": "ee86c260-189e-45b8-8c0e-fb1d3ab0dd5d",
+      "name": "Listing (v2)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9d98f8b-2af4-43b5-9da1-d075945e600a",
+          "name": "Get Products",
+          "request": {
+            "name": "Get Products",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "product-listing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-use-db-display-store",
+                "value": "false",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"market\": \"<string>\",\n  \"tenant\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"op\": \"<string>\",\n      \"data\": \"<string>\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": \"<number>\",\n        \"max\": \"<number>\",\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"op\": \"<string>\",\n      \"data\": \"<string>\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": \"<number>\",\n        \"max\": \"<number>\",\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"<string>\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"<string>\",\n    \"order\": \"<string>\",\n    \"meta\": {\n      \"title\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"locale\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"dsid\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "169881e5-edff-4173-95d7-6a84b616d095",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "product-listing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "x-use-db-display-store",
+                    "value": "false",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"tenant\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 6883.1817965907485,\n        \"max\": 5117.458668806201,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 9044.921055541194,\n        \"max\": 7426.454385305144,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"string\",\n    \"order\": \"asc\",\n    \"meta\": {\n      \"title\": \"string\",\n      \"values\": [\n        \"asc\",\n        \"desc\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  },\n  \"locale\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"dsid\": \"<string>\",\n  \"type\": \"scollection\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"displays\": [],\n  \"n_hits\": 407,\n  \"product_listing_request_id\": \"string\",\n  \"sorts\": [\n    {\n      \"field\": \"string\",\n      \"order\": \"asc\",\n      \"meta\": {\n        \"title\": \"string\",\n        \"values\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"names\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"field\": \"string\",\n      \"order\": \"asc\",\n      \"meta\": {\n        \"title\": \"string\",\n        \"values\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"names\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"geq\",\n      \"data\": \"true\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 4595.281706346075,\n        \"max\": 2836.1640972119317,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"in\",\n      \"data\": \"true\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 3046.6673022712885,\n        \"max\": 1407.2451226742598,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"cursor\": \"string\",\n  \"breadcrumb\": [\n    {\n      \"category_id\": \"string\",\n      \"title\": \"string\",\n      \"page_url\": \"string\",\n      \"query_id\": \"string\",\n      \"uri\": \"string\",\n      \"category_type\": \"CATEGORY\"\n    },\n    {\n      \"category_id\": \"string\",\n      \"title\": \"string\",\n      \"page_url\": \"string\",\n      \"query_id\": \"string\",\n      \"uri\": \"string\",\n      \"category_type\": \"CATEGORY\"\n    }\n  ],\n  \"quick_links\": [\n    {\n      \"category_id\": \"string\",\n      \"title\": \"string\",\n      \"page_url\": \"string\",\n      \"query_id\": \"string\",\n      \"uri\": \"string\",\n      \"category_type\": \"CATEGORY\"\n    },\n    {\n      \"category_id\": \"string\",\n      \"title\": \"string\",\n      \"page_url\": \"string\",\n      \"query_id\": \"string\",\n      \"uri\": \"string\",\n      \"category_type\": \"CATEGORY\"\n    }\n  ],\n  \"metadata\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"replace_meta_tags\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0f71a4e-30a3-4530-abf6-a18b88752a48",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "product-listing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "x-use-db-display-store",
+                    "value": "false",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"tenant\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"filters\": [\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 6883.1817965907485,\n        \"max\": 5117.458668806201,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"op\": \"nin\",\n      \"data\": \"false\",\n      \"meta\": {\n        \"type\": {},\n        \"min\": 9044.921055541194,\n        \"max\": 7426.454385305144,\n        \"group_title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"group_expanded\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"sort\": {\n    \"field\": \"string\",\n    \"order\": \"asc\",\n    \"meta\": {\n      \"title\": \"string\",\n      \"values\": [\n        \"asc\",\n        \"desc\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"session_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  },\n  \"locale\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"dsid\": \"<string>\",\n  \"type\": \"scollection\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/lite",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3e8fb889-1e95-4530-8b59-d7f65d85d746",
+    "name": "Depict Lite Ab Test Listing (v2) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.",
+      "type": "text/plain"
+    }
+  }
+}

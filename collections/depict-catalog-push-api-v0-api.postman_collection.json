@@ -1,0 +1,1408 @@
+{
+  "item": [
+    {
+      "id": "a9ad532b-22a8-42ed-b15b-76917a606770",
+      "name": "Catalog Push API (v0)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82ac4cd0-0f5e-40a7-9f8d-5117132c7c43",
+          "name": "List Product Ids",
+          "request": {
+            "name": "List Product Ids",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "product_ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "8eda8ed7-b3f0-4a36-8e18-1ab47bba9fe7",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "product_ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ab85fa2-eefb-4a4e-a30d-1971e02dd78a",
+          "name": "List Category Ids",
+          "request": {
+            "name": "List Category Ids",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "category_ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "4edeba5a-7da7-4d52-8b69-f272641b9832",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "category_ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8fdd08a-9198-4768-b99a-bc90795400fa",
+          "name": "Get Products",
+          "request": {
+            "name": "Get Products",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product_ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "product_ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "33bb501b-0af6-4219-8f42-5dc5064f4c41",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "293f9305-b8c1-4260-9fe8-019aa8ef427b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2d8bea4-61ed-46ad-9960-67f81f1ea231",
+          "name": "Upsert Products",
+          "request": {
+            "name": "Upsert Products",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant\": \"<string>\",\n  \"products\": [\n    {\n      \"product_id\": \"<string>\",\n      \"item_group_id\": \"<string>\",\n      \"main_product_id\": \"<string>\",\n      \"image_urls\": [\n        \"<uri>\"\n      ],\n      \"category_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"transaction_product_id\": \"<string>\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"color_name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"size_name\": \"<string>\",\n          \"material\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"color_name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"size_name\": \"<string>\",\n          \"material\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"inventory_attributes\": [\n        {\n          \"inventory_id\": \"<string>\",\n          \"in_stock\": \"<boolean>\",\n          \"quantity\": \"<integer>\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"inventory_id\": \"<string>\",\n          \"in_stock\": \"<boolean>\",\n          \"quantity\": \"<integer>\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"pricelist_attributes\": [\n        {\n          \"pricelist_id\": \"<string>\",\n          \"sale_price\": \"<number>\",\n          \"original_price\": \"<number>\",\n          \"currency\": \"<string>\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"pricelist_id\": \"<string>\",\n          \"sale_price\": \"<number>\",\n          \"original_price\": \"<number>\",\n          \"currency\": \"<string>\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"brand\": \"<string>\",\n      \"inactive\": false,\n      \"store_attributes\": {},\n      \"gender\": \"<string>\",\n      \"age\": \"<string>\",\n      \"size\": \"<string>\",\n      \"is_second_hand\": \"<boolean>\",\n      \"color_hex\": \"<string>\",\n      \"custom_attributes\": {}\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"item_group_id\": \"<string>\",\n      \"main_product_id\": \"<string>\",\n      \"image_urls\": [\n        \"<uri>\"\n      ],\n      \"category_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"transaction_product_id\": \"<string>\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"color_name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"size_name\": \"<string>\",\n          \"material\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"color_name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"size_name\": \"<string>\",\n          \"material\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"inventory_attributes\": [\n        {\n          \"inventory_id\": \"<string>\",\n          \"in_stock\": \"<boolean>\",\n          \"quantity\": \"<integer>\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"inventory_id\": \"<string>\",\n          \"in_stock\": \"<boolean>\",\n          \"quantity\": \"<integer>\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"pricelist_attributes\": [\n        {\n          \"pricelist_id\": \"<string>\",\n          \"sale_price\": \"<number>\",\n          \"original_price\": \"<number>\",\n          \"currency\": \"<string>\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"pricelist_id\": \"<string>\",\n          \"sale_price\": \"<number>\",\n          \"original_price\": \"<number>\",\n          \"currency\": \"<string>\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"brand\": \"<string>\",\n      \"inactive\": false,\n      \"store_attributes\": {},\n      \"gender\": \"<string>\",\n      \"age\": \"<string>\",\n      \"size\": \"<string>\",\n      \"is_second_hand\": \"<boolean>\",\n      \"color_hex\": \"<string>\",\n      \"custom_attributes\": {}\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "165ed315-02c5-46a9-b105-c4c5f75fd7c2",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"products\": [\n    {\n      \"product_id\": \"string\",\n      \"item_group_id\": \"string\",\n      \"main_product_id\": \"string\",\n      \"image_urls\": [\n        \"http://esjLORmNCEUHClZdGRuHehWI.odlAfmiG\"\n      ],\n      \"category_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transaction_product_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"inventory_attributes\": [\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": false,\n          \"quantity\": 549,\n          \"custom_attributes\": {}\n        },\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": true,\n          \"quantity\": 2227,\n          \"custom_attributes\": {}\n        }\n      ],\n      \"pricelist_attributes\": [\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 5820.7990784223575,\n          \"original_price\": 1482.3642609657838,\n          \"currency\": \"LRD\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 2370.732556330797,\n          \"original_price\": 3515.896632076736,\n          \"currency\": \"HUF\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"brand\": \"string\",\n      \"inactive\": false,\n      \"store_attributes\": {},\n      \"gender\": \"unisex\",\n      \"age\": \"kid\",\n      \"size\": \"string\",\n      \"is_second_hand\": true,\n      \"color_hex\": \"string\",\n      \"custom_attributes\": {}\n    },\n    {\n      \"product_id\": \"string\",\n      \"item_group_id\": \"string\",\n      \"main_product_id\": \"string\",\n      \"image_urls\": [\n        \"https://jQZPKDRpfYcLQUuwQyGyeqyoG.wkjTSP8F95\"\n      ],\n      \"category_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transaction_product_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"inventory_attributes\": [\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": false,\n          \"quantity\": 5993,\n          \"custom_attributes\": {}\n        },\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": true,\n          \"quantity\": 7507,\n          \"custom_attributes\": {}\n        }\n      ],\n      \"pricelist_attributes\": [\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 411.03291455429127,\n          \"original_price\": 992.1295460075852,\n          \"currency\": \"KMF\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 1146.460286179708,\n          \"original_price\": 2591.548070062021,\n          \"currency\": \"MGA\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"brand\": \"string\",\n      \"inactive\": false,\n      \"store_attributes\": {},\n      \"gender\": \"unisex\",\n      \"age\": \"teen\",\n      \"size\": \"string\",\n      \"is_second_hand\": true,\n      \"color_hex\": \"string\",\n      \"custom_attributes\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea79e427-7e10-4e19-bb17-58ccfed6f726",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"products\": [\n    {\n      \"product_id\": \"string\",\n      \"item_group_id\": \"string\",\n      \"main_product_id\": \"string\",\n      \"image_urls\": [\n        \"http://esjLORmNCEUHClZdGRuHehWI.odlAfmiG\"\n      ],\n      \"category_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transaction_product_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"inventory_attributes\": [\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": false,\n          \"quantity\": 549,\n          \"custom_attributes\": {}\n        },\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": true,\n          \"quantity\": 2227,\n          \"custom_attributes\": {}\n        }\n      ],\n      \"pricelist_attributes\": [\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 5820.7990784223575,\n          \"original_price\": 1482.3642609657838,\n          \"currency\": \"LRD\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 2370.732556330797,\n          \"original_price\": 3515.896632076736,\n          \"currency\": \"HUF\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"brand\": \"string\",\n      \"inactive\": false,\n      \"store_attributes\": {},\n      \"gender\": \"unisex\",\n      \"age\": \"kid\",\n      \"size\": \"string\",\n      \"is_second_hand\": true,\n      \"color_hex\": \"string\",\n      \"custom_attributes\": {}\n    },\n    {\n      \"product_id\": \"string\",\n      \"item_group_id\": \"string\",\n      \"main_product_id\": \"string\",\n      \"image_urls\": [\n        \"https://jQZPKDRpfYcLQUuwQyGyeqyoG.wkjTSP8F95\"\n      ],\n      \"category_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transaction_product_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"color_name\": \"string\",\n          \"description\": \"string\",\n          \"size_name\": \"string\",\n          \"material\": [\n            \"string\",\n            \"string\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"inventory_attributes\": [\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": false,\n          \"quantity\": 5993,\n          \"custom_attributes\": {}\n        },\n        {\n          \"inventory_id\": \"string\",\n          \"in_stock\": true,\n          \"quantity\": 7507,\n          \"custom_attributes\": {}\n        }\n      ],\n      \"pricelist_attributes\": [\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 411.03291455429127,\n          \"original_price\": 992.1295460075852,\n          \"currency\": \"KMF\",\n          \"custom_attributes\": {}\n        },\n        {\n          \"pricelist_id\": \"string\",\n          \"sale_price\": 1146.460286179708,\n          \"original_price\": 2591.548070062021,\n          \"currency\": \"MGA\",\n          \"custom_attributes\": {}\n        }\n      ],\n      \"brand\": \"string\",\n      \"inactive\": false,\n      \"store_attributes\": {},\n      \"gender\": \"unisex\",\n      \"age\": \"teen\",\n      \"size\": \"string\",\n      \"is_second_hand\": true,\n      \"color_hex\": \"string\",\n      \"custom_attributes\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0112ec2-1750-4133-8034-d46d50337775",
+          "name": "Delete Products",
+          "request": {
+            "name": "Delete Products",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "62d38d9b-6da7-4d0b-a85f-9278993a88c0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "234c267d-1114-4500-95b0-a9a53cf8e63c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7a4c583-9220-44a1-ad91-9df44a133e45",
+          "name": "Get Categories",
+          "request": {
+            "name": "Get Categories",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category_ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "category_ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a47cb49a-f321-45d3-9738-6701e6413cdd",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8162377f-978f-47eb-ae73-346168389a06",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70e05ac6-3d12-4e32-af8e-d4f9b14ed878",
+          "name": "Upsert Categories",
+          "request": {
+            "name": "Upsert Categories",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant\": \"<string>\",\n  \"categories\": [\n    {\n      \"category_id\": \"<string>\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"uri\": \"<string>\"\n        },\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"uri\": \"<string>\"\n        }\n      ],\n      \"parent_id\": \"<string>\",\n      \"store_attributes\": {},\n      \"display_breadcrumb\": true,\n      \"appear_in_quicklinks\": false,\n      \"show_in_filter\": true,\n      \"show_in_search_suggestions\": true\n    },\n    {\n      \"category_id\": \"<string>\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"uri\": \"<string>\"\n        },\n        {\n          \"locale_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"uri\": \"<string>\"\n        }\n      ],\n      \"parent_id\": \"<string>\",\n      \"store_attributes\": {},\n      \"display_breadcrumb\": true,\n      \"appear_in_quicklinks\": false,\n      \"show_in_filter\": true,\n      \"show_in_search_suggestions\": true\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31d49ab2-b4c6-4f35-95c5-0af61ca0d37c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"categories\": [\n    {\n      \"category_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        }\n      ],\n      \"parent_id\": \"string\",\n      \"store_attributes\": {},\n      \"display_breadcrumb\": true,\n      \"appear_in_quicklinks\": false,\n      \"show_in_filter\": true,\n      \"show_in_search_suggestions\": true\n    },\n    {\n      \"category_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        }\n      ],\n      \"parent_id\": \"string\",\n      \"store_attributes\": {},\n      \"display_breadcrumb\": true,\n      \"appear_in_quicklinks\": false,\n      \"show_in_filter\": true,\n      \"show_in_search_suggestions\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2602d048-4d2d-423e-9f40-cbd0dfa9a592",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"categories\": [\n    {\n      \"category_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        }\n      ],\n      \"parent_id\": \"string\",\n      \"store_attributes\": {},\n      \"display_breadcrumb\": true,\n      \"appear_in_quicklinks\": false,\n      \"show_in_filter\": true,\n      \"show_in_search_suggestions\": true\n    },\n    {\n      \"category_id\": \"string\",\n      \"locale_attributes\": [\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        },\n        {\n          \"locale_id\": \"string\",\n          \"title\": \"string\",\n          \"uri\": \"string\"\n        }\n      ],\n      \"parent_id\": \"string\",\n      \"store_attributes\": {},\n      \"display_breadcrumb\": true,\n      \"appear_in_quicklinks\": false,\n      \"show_in_filter\": true,\n      \"show_in_search_suggestions\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf9a0d7d-f7cb-4daa-8018-d8ca9462082c",
+          "name": "Delete Categories",
+          "request": {
+            "name": "Delete Categories",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "category_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "c5940fa0-5e8a-4a0f-aac7-cff5e5042483",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd8829e2-b6b3-4510-882b-5301ed22f4e3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f02a282d-6687-4d6f-998b-a4b3630e4f93",
+          "name": "Get Product Attribute Config",
+          "request": {
+            "name": "Get Product Attribute Config",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "product_attribute_config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "8d704ed7-557e-487a-b1da-ab19cfd660cf",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "product_attribute_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"attribute_type\": \"int\",\n    \"dimension\": \"base\",\n    \"dimension_keys\": [\n      \"string\"\n    ],\n    \"required\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4691238c-8af8-4f34-99cf-3373d9f4fbe7",
+          "name": "Set Product Attribute Config",
+          "request": {
+            "name": "Set Product Attribute Config",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "product_attribute_config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": {\n      \"attribute_type\": \"<string>\",\n      \"dimension\": \"<string>\",\n      \"required\": true\n    }\n  },\n  \"locales\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pricelists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"inventories\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a25ff50e-024b-4106-8736-fc195ab8c978",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "product_attribute_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": {\n      \"attribute_type\": \"any\",\n      \"dimension\": \"base\",\n      \"required\": true\n    },\n    \"key_1\": {\n      \"attribute_type\": \"datetime\",\n      \"dimension\": \"base\",\n      \"required\": true\n    },\n    \"key_2\": {\n      \"attribute_type\": \"int\",\n      \"dimension\": \"locale\",\n      \"required\": true\n    },\n    \"key_3\": {\n      \"attribute_type\": \"str\",\n      \"dimension\": \"store\",\n      \"required\": true\n    },\n    \"key_4\": {\n      \"attribute_type\": \"list[bool]\",\n      \"dimension\": \"base\",\n      \"required\": true\n    }\n  },\n  \"locales\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pricelists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"inventories\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0f6db0a-2078-43f4-8a26-1c294b4eb6e6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "product_attribute_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": {\n      \"attribute_type\": \"any\",\n      \"dimension\": \"base\",\n      \"required\": true\n    },\n    \"key_1\": {\n      \"attribute_type\": \"datetime\",\n      \"dimension\": \"base\",\n      \"required\": true\n    },\n    \"key_2\": {\n      \"attribute_type\": \"int\",\n      \"dimension\": \"locale\",\n      \"required\": true\n    },\n    \"key_3\": {\n      \"attribute_type\": \"str\",\n      \"dimension\": \"store\",\n      \"required\": true\n    },\n    \"key_4\": {\n      \"attribute_type\": \"list[bool]\",\n      \"dimension\": \"base\",\n      \"required\": true\n    }\n  },\n  \"locales\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pricelists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"inventories\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5df41fb-e95c-4e34-a51f-622ccea89aaf",
+          "name": "Get Category Attribute Config",
+          "request": {
+            "name": "Get Category Attribute Config",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "category_attribute_config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "80c53a58-63f1-4298-815e-9bafe03dbf0b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "category_attribute_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"attribute_type\": \"list[uuid]\",\n    \"dimension\": \"inventory\",\n    \"dimension_keys\": [\n      \"string\"\n    ],\n    \"required\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b78dbf29-b7a6-4f2e-83cc-2a2c09cbc412",
+          "name": "Set Category Attribute Config",
+          "request": {
+            "name": "Set Category Attribute Config",
+            "description": {},
+            "url": {
+              "path": [
+                "catalog",
+                "v0",
+                "category_attribute_config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": {\n      \"attribute_type\": \"<string>\",\n      \"dimension\": \"<string>\",\n      \"required\": true\n    }\n  },\n  \"locales\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f646428-b8b0-43fe-b435-63fd9d300f88",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "category_attribute_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": {\n      \"attribute_type\": \"list[bool]\",\n      \"dimension\": \"base\",\n      \"required\": true\n    },\n    \"key_1\": {\n      \"attribute_type\": \"list[int]\",\n      \"dimension\": \"store\",\n      \"required\": true\n    },\n    \"key_2\": {\n      \"attribute_type\": \"datetime\",\n      \"dimension\": \"pricelist\",\n      \"required\": true\n    }\n  },\n  \"locales\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a826eed7-013e-4a53-bedc-701bc5bf45d9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "v0",
+                    "category_attribute_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": {\n      \"attribute_type\": \"list[bool]\",\n      \"dimension\": \"base\",\n      \"required\": true\n    },\n    \"key_1\": {\n      \"attribute_type\": \"list[int]\",\n      \"dimension\": \"store\",\n      \"required\": true\n    },\n    \"key_2\": {\n      \"attribute_type\": \"datetime\",\n      \"dimension\": \"pricelist\",\n      \"required\": true\n    }\n  },\n  \"locales\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/lite",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "36558ad6-c62b-4455-bc55-95c2ce5fa997",
+    "name": "Depict Lite Ab Test Catalog Push API (v0) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.",
+      "type": "text/plain"
+    }
+  }
+}

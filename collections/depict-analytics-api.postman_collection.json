@@ -1,0 +1,285 @@
+{
+  "item": [
+    {
+      "id": "633eec79-1769-41f6-890b-afae4d56ca7f",
+      "name": "Analytics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "023da297-34fe-4448-b84d-5748bbd79f29",
+          "name": "Get Analytics Overview Endpoint",
+          "request": {
+            "name": "Get Analytics Overview Endpoint",
+            "description": {
+              "content": "Merchant-wide analytics for the hub page: catalog-wide totals (same\naggregate as per-collection metrics), top / declining collections with true\npage-level PLP traffic, and a pinned-vs-auto health rollup across\ncollections. Last 30 days vs the previous 30.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchants",
+                ":merchant_id",
+                "analytics",
+                "overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid profile email"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://depict.eu.auth0.com/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a4f89ee-98bb-40dc-b471-2fabd1df5bed",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "analytics",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totals\": {\n    \"period\": {\n      \"start\": \"1973-04-20\",\n      \"end\": \"1994-07-25\"\n    },\n    \"total_revenue\": {\n      \"value\": 8060.406466747591,\n      \"currency\": \"\",\n      \"delta_pct\": 7613.735689465301\n    },\n    \"total_views\": {\n      \"value\": 3494.6281042017267,\n      \"delta_pct\": 6236.426109446947\n    },\n    \"total_clicks\": {\n      \"value\": 8858.190197659274,\n      \"delta_pct\": 765.1008586522435\n    },\n    \"avg_ctr\": {\n      \"value\": 0,\n      \"delta_pts\": 1574.8856122952436\n    },\n    \"units_sold\": {\n      \"value\": 4639.165928720723,\n      \"delta_pct\": 8393.796305122249\n    },\n    \"avg_str\": {\n      \"value\": 0,\n      \"delta_pts\": 6625.872813527738\n    },\n    \"add_to_carts\": {\n      \"value\": 0\n    },\n    \"dead_stock\": {\n      \"value\": 0\n    },\n    \"avg_stock_coverage_days\": 2302.540960544428,\n    \"rpm\": {\n      \"value\": 0,\n      \"currency\": \"\"\n    },\n    \"velocity\": {\n      \"value\": 0\n    },\n    \"auto_lift\": {\n      \"pinned_ctr\": 0,\n      \"auto_ctr\": 0\n    },\n    \"top_product\": {\n      \"main_product_id\": \"string\",\n      \"title\": \"string\",\n      \"image_url\": \"string\",\n      \"revenue\": 8236.259480111292\n    }\n  },\n  \"pinned_vs_auto\": {\n    \"healthy\": 0,\n    \"warning\": 0,\n    \"critical\": 0,\n    \"no_pins\": 0\n  },\n  \"collections_considered\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be1af6fb-9655-4cf8-83d8-89369cf71b33",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "analytics",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f2d35a1-de30-4b17-8c9d-c5dc31001228",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchants",
+                    ":merchant_id",
+                    "analytics",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/lite",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "53352abc-c165-4b6b-aacd-1bd9c25beddb",
+    "name": "Depict Lite Ab Test Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.",
+      "type": "text/plain"
+    }
+  }
+}
