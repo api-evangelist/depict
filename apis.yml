@@ -36,6 +36,17 @@ created: '2026-07-17'
 modified: '2026-07-18'
 tags:
 - Company
+- E-Commerce
+- Merchandising
+- Product Recommendations
+- Search
+- Personalization
+- Artificial Intelligence
+- Retail
+- Fashion
+- Shopify
+tags_raw:
+- Company
 - E-commerce
 - Merchandising
 - Product Recommendations
@@ -112,6 +123,8 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -196,6 +209,8 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
+  - Merchant
+  tags_raw:
   - merchant
   properties:
   - type: OpenAPI
@@ -304,6 +319,8 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -425,6 +442,8 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
+  - Tracking
+  tags_raw:
   - tracking
   properties:
   - type: OpenAPI
@@ -437,6 +456,8 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
+  - Translations
+  tags_raw:
   - translations
   properties:
   - type: OpenAPI
@@ -449,6 +470,8 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
