@@ -509,6 +509,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/depict-capability-edges.yml
+  name: Depict Business Capability Map
 - type: Website
   url: https://depict.ai
 - type: DeveloperPortal
