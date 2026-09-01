@@ -221,7 +221,7 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
-  - merchant
+  - Merchant
   tags_raw:
   - merchant
   properties:
@@ -454,7 +454,7 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
-  - tracking
+  - Tracking
   tags_raw:
   - tracking
   properties:
