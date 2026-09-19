@@ -149,6 +149,8 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
+  - Dashboards
+  tags_raw:
   - Dashboard
   properties:
   - type: OpenAPI
@@ -221,7 +223,7 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
-  - Merchant
+  - Merchants
   tags_raw:
   - merchant
   properties:
@@ -468,7 +470,7 @@ apis:
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
   tags:
-  - Translations
+  - Translation
   tags_raw:
   - translations
   properties:
