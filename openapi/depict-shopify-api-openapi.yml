@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Depict Lite Ab Test Shopify API
+  title: Depict Lite Shopify API
   version: 1.0.0
   description: 'REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.'
 servers:
@@ -96,19 +96,6 @@ paths:
       - Shopify
 components:
   schemas:
-    ShopifyStorefrontApiCredentials:
-      properties:
-        storefront_api_key:
-          type: string
-          title: Storefront Api Key
-        store_domain:
-          type: string
-          title: Store Domain
-      type: object
-      required:
-      - storefront_api_key
-      - store_domain
-      title: ShopifyStorefrontApiCredentials
     HTTPValidationError:
       properties:
         detail:
@@ -139,6 +126,19 @@ components:
       - msg
       - type
       title: ValidationError
+    ShopifyStorefrontApiCredentials:
+      properties:
+        storefront_api_key:
+          type: string
+          title: Storefront Api Key
+        store_domain:
+          type: string
+          title: Store Domain
+      type: object
+      required:
+      - storefront_api_key
+      - store_domain
+      title: ShopifyStorefrontApiCredentials
   securitySchemes:
     Auth0:
       type: oauth2

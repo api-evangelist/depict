@@ -1,10 +1,10 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Depict Lite Ab Test Search Metrics API
+  title: Depict Portal Search Metrics API
   version: 1.0.0
-  description: 'REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.'
+  description: 'REST API behind the Depict merchant portal: merchants, products, collections, curation, metrics, analytics and search insights. All endpoints require an Auth0-issued bearer token.'
 servers:
-- url: /api/lite
+- url: ''
 tags:
 - name: Search Metrics
 paths:
@@ -69,23 +69,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    SearchQueryStatsResponse:
-      properties:
-        markets:
-          items:
-            $ref: '#/components/schemas/MarketSearchQueries'
-          type: array
-          title: Markets
-        prev_markets:
-          items:
-            $ref: '#/components/schemas/MarketSearchQueries'
-          type: array
-          title: Prev Markets
-      type: object
-      required:
-      - markets
-      - prev_markets
-      title: SearchQueryStatsResponse
     HTTPValidationError:
       properties:
         detail:
@@ -158,6 +141,23 @@ components:
       - count
       - locale
       title: SearchQuery
+    SearchQueryStatsResponse:
+      properties:
+        markets:
+          items:
+            $ref: '#/components/schemas/MarketSearchQueries'
+          type: array
+          title: Markets
+        prev_markets:
+          items:
+            $ref: '#/components/schemas/MarketSearchQueries'
+          type: array
+          title: Prev Markets
+      type: object
+      required:
+      - markets
+      - prev_markets
+      title: SearchQueryStatsResponse
   securitySchemes:
     Auth0:
       type: oauth2

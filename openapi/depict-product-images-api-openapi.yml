@@ -1,10 +1,10 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Depict Lite Ab Test Product Images API
+  title: Depict Portal Product Images API
   version: 1.0.0
-  description: 'REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.'
+  description: 'REST API behind the Depict merchant portal: merchants, products, collections, curation, metrics, analytics and search insights. All endpoints require an Auth0-issued bearer token.'
 servers:
-- url: /api/lite
+- url: ''
 tags:
 - name: Product Images
 paths:
@@ -101,21 +101,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    UpdateProductMediaResult:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        product_ids:
-          items:
-            type: string
-          type: array
-          title: Product Ids
-      type: object
-      required:
-      - main_product_id
-      - product_ids
-      title: UpdateProductMediaResult
     HTTPValidationError:
       properties:
         detail:
@@ -125,6 +110,25 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    UpdateCollectionProductImagesResult:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        collection_id:
+          type: string
+          title: Collection Id
+        product_ids:
+          items:
+            type: string
+          type: array
+          title: Product Ids
+      type: object
+      required:
+      - main_product_id
+      - collection_id
+      - product_ids
+      title: UpdateCollectionProductImagesResult
     ValidationError:
       properties:
         loc:
@@ -146,14 +150,11 @@ components:
       - msg
       - type
       title: ValidationError
-    UpdateCollectionProductImagesResult:
+    UpdateProductMediaResult:
       properties:
         main_product_id:
           type: string
           title: Main Product Id
-        collection_id:
-          type: string
-          title: Collection Id
         product_ids:
           items:
             type: string
@@ -162,23 +163,8 @@ components:
       type: object
       required:
       - main_product_id
-      - collection_id
       - product_ids
-      title: UpdateCollectionProductImagesResult
-    UpdateProductMediaRequest:
-      properties:
-        main_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Main Image Url
-        hover_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hover Image Url
-      type: object
-      title: UpdateProductMediaRequest
+      title: UpdateProductMediaResult
     UpdateCollectionProductImagesRequest:
       properties:
         main_image_url:
@@ -198,6 +184,20 @@ components:
           title: Video
       type: object
       title: UpdateCollectionProductImagesRequest
+    UpdateProductMediaRequest:
+      properties:
+        main_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Main Image Url
+        hover_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hover Image Url
+      type: object
+      title: UpdateProductMediaRequest
   securitySchemes:
     Auth0:
       type: oauth2

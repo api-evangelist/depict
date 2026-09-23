@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Depict Lite Ab Test Settings API
+  title: Depict Settings API
   version: 1.0.0
-  description: 'REST API behind Depict Lite, the native Shopify app: onboarding, collections, boost & bury, dashboards, A/B testing and multi-store management. Endpoints are served under the /api/lite prefix and require an Auth0-issued bearer token.'
+  description: 'Operations tagged Settings across 2 of this provider''s published API definitions: depict-lite-openapi-original.json, depict-portal-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: /api/lite
 tags:
@@ -66,6 +66,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/subscription/essentials:
     post:
       summary: Create Subscription Essentials
@@ -124,6 +126,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/subscription/pro:
     post:
       summary: Create Subscription Pro
@@ -182,6 +186,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/subscription:
     delete:
       summary: Cancel Subscription
@@ -226,6 +232,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/subscription/status:
     get:
       summary: Subscription Status
@@ -254,6 +262,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/track/{merchant_id}/install:
     post:
       summary: Track Install
@@ -281,6 +291,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/{merchant_id}/wizard-complete:
     post:
       summary: Mark Wizard As Complete
@@ -308,6 +320,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/track/insight-widget-seen:
     post:
       summary: Insight Widget Seen
@@ -341,6 +355,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/dynamic-status:
     get:
       summary: Get Dynamic Status
@@ -401,6 +417,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /settings/sync-data:
     post:
       summary: Trigger Sync
@@ -428,6 +446,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Settings
+    servers:
+    - url: /api/lite
   /api/v1/settings/{merchant_id}/auto-hide:
     get:
       tags:
@@ -493,6 +513,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+    servers:
+    - url: ''
   /api/v1/settings/{merchant_id}/auto-hide/exclude-products:
     put:
       tags:
@@ -529,8 +551,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+    servers:
+    - url: ''
 components:
   schemas:
+    SubscriptionDiscount:
+      properties:
+        percentage:
+          type: number
+          title: Percentage
+        duration_intervals:
+          type: integer
+          title: Duration Intervals
+      type: object
+      required:
+      - percentage
+      - duration_intervals
+      title: SubscriptionDiscount
     SubscriptionStatus:
       properties:
         num_active_collections:
@@ -599,6 +636,88 @@ components:
       - store_error
       - subscription
       title: SubscriptionStatus
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SubscriptionName:
+      type: string
+      enum:
+      - Basic
+      - Essential
+      - Pro
+      - Custom
+      title: SubscriptionName
+    ShopifyAppSubscriptionCreatePayload:
+      properties:
+        confirmation_url:
+          type: string
+          title: Confirmation Url
+      type: object
+      required:
+      - confirmation_url
+      title: ShopifyAppSubscriptionCreatePayload
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    AppPricingInterval:
+      type: string
+      enum:
+      - ANNUAL
+      - EVERY_30_DAYS
+      title: AppPricingInterval
+    DynamicStatusConfig:
+      properties:
+        new_in_days:
+          type: integer
+          title: New In Days
+        bestseller_n_products:
+          type: integer
+          title: Bestseller N Products
+        slowmover_n_products:
+          type: integer
+          title: Slowmover N Products
+        low_in_stock_percentage:
+          type: integer
+          title: Low In Stock Percentage
+        order_data_days:
+          type: integer
+          title: Order Data Days
+        trending_n_products:
+          type: integer
+          title: Trending N Products
+          default: 30
+      type: object
+      required:
+      - new_in_days
+      - bestseller_n_products
+      - slowmover_n_products
+      - low_in_stock_percentage
+      - order_data_days
+      title: DynamicStatusConfig
     ActiveSubscriptionDTO:
       properties:
         id:
@@ -646,64 +765,6 @@ components:
       - test
       - status
       title: ActiveSubscriptionDTO
-    ShopifyAppSubscriptionCreatePayload:
-      properties:
-        confirmation_url:
-          type: string
-          title: Confirmation Url
-      type: object
-      required:
-      - confirmation_url
-      title: ShopifyAppSubscriptionCreatePayload
-    AppPricingInterval:
-      type: string
-      enum:
-      - ANNUAL
-      - EVERY_30_DAYS
-      title: AppPricingInterval
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SubscriptionDiscount:
-      properties:
-        percentage:
-          type: number
-          title: Percentage
-        duration_intervals:
-          type: integer
-          title: Duration Intervals
-      type: object
-      required:
-      - percentage
-      - duration_intervals
-      title: SubscriptionDiscount
     GetAutoHideSettingsResult:
       properties:
         auto_hide_oos:
@@ -719,17 +780,6 @@ components:
       - auto_hide_oos
       - exclude_main_product_ids
       title: GetAutoHideSettingsResult
-    UpdateExcludeProductsResult:
-      properties:
-        exclude_main_product_ids:
-          items:
-            type: string
-          type: array
-          title: Exclude Main Product Ids
-      type: object
-      required:
-      - exclude_main_product_ids
-      title: UpdateExcludeProductsResult
     UpdateExcludeProductsRequest:
       properties:
         main_product_ids:
@@ -745,14 +795,26 @@ components:
       - main_product_ids
       - exclude
       title: UpdateExcludeProductsRequest
-    SubscriptionName:
-      type: string
-      enum:
-      - Basic
-      - Essential
-      - Pro
-      - Custom
-      title: SubscriptionName
+    UpdateExcludeProductsResult:
+      properties:
+        exclude_main_product_ids:
+          items:
+            type: string
+          type: array
+          title: Exclude Main Product Ids
+      type: object
+      required:
+      - exclude_main_product_ids
+      title: UpdateExcludeProductsResult
+    UpdateAutoHideSettingsRequest:
+      properties:
+        auto_hide_oos:
+          type: boolean
+          title: Auto Hide Oos
+      type: object
+      required:
+      - auto_hide_oos
+      title: UpdateAutoHideSettingsRequest
     UpdateAutoHideSettingsResult:
       properties:
         auto_hide_oos:
@@ -768,44 +830,6 @@ components:
       - auto_hide_oos
       - exclude_main_product_ids
       title: UpdateAutoHideSettingsResult
-    DynamicStatusConfig:
-      properties:
-        new_in_days:
-          type: integer
-          title: New In Days
-        bestseller_n_products:
-          type: integer
-          title: Bestseller N Products
-        slowmover_n_products:
-          type: integer
-          title: Slowmover N Products
-        low_in_stock_percentage:
-          type: integer
-          title: Low In Stock Percentage
-        order_data_days:
-          type: integer
-          title: Order Data Days
-        trending_n_products:
-          type: integer
-          title: Trending N Products
-          default: 30
-      type: object
-      required:
-      - new_in_days
-      - bestseller_n_products
-      - slowmover_n_products
-      - low_in_stock_percentage
-      - order_data_days
-      title: DynamicStatusConfig
-    UpdateAutoHideSettingsRequest:
-      properties:
-        auto_hide_oos:
-          type: boolean
-          title: Auto Hide Oos
-      type: object
-      required:
-      - auto_hide_oos
-      title: UpdateAutoHideSettingsRequest
   securitySchemes:
     Auth0:
       type: oauth2
@@ -818,3 +842,6 @@ components:
           authorizationUrl: https://depict.eu.auth0.com/oauth/authorize
           tokenUrl: https://depict.eu.auth0.com/oauth/token
       x-tokenName: id_token
+x-refined-from:
+- depict-lite-openapi-original.json
+- depict-portal-openapi-original.json
