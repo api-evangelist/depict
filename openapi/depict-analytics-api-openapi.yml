@@ -95,15 +95,61 @@ components:
         and ``auto_ctr`` are percentages (0-100); ``delta_pts`` is
 
         ``auto_ctr - pinned_ctr`` in percentage points.'
-    HTTPValidationError:
+    CollectionMetricValue:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+          default: 0
+        delta_pct:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Delta Pct
       type: object
-      title: HTTPValidationError
+      title: CollectionMetricValue
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CollectionRevenueMetric:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+          default: 0
+        currency:
+          type: string
+          title: Currency
+          default: ''
+        delta_pct:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Delta Pct
+      type: object
+      title: CollectionRevenueMetric
     MerchantAnalyticsOverview:
       properties:
         totals:
@@ -146,59 +192,55 @@ components:
         meaningless there and should be ignored). ``collections_considered`` is how
 
         many collections the rollups cover (capped at ``_MAX_COLLECTIONS``).'
-    OverviewCollection:
+    CollectionRateMetric:
       properties:
-        collection_id:
+        value:
+          type: number
+          title: Value
+          default: 0
+        delta_pts:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Delta Pts
+      type: object
+      title: CollectionRateMetric
+    CollectionTopProduct:
+      properties:
+        main_product_id:
           type: string
-          format: uuid
-          title: Collection Id
+          title: Main Product Id
         title:
-          type: string
+          anyOf:
+          - type: string
+          - type: 'null'
           title: Title
+        image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Url
         revenue:
           anyOf:
           - type: number
           - type: 'null'
           title: Revenue
-        revenue_delta_pct:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenue Delta Pct
-        views:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Views
-        views_delta_pct:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Views Delta Pct
-        avg_ctr:
-          type: number
-          title: Avg Ctr
-          default: 0
-        unique_views:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Unique Views
-        distinct_devices:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Distinct Devices
       type: object
       required:
-      - collection_id
-      - title
-      title: OverviewCollection
-      description: 'One collection row for the hub''s top/declining lists. ``unique_views``
+      - main_product_id
+      title: CollectionTopProduct
+      description: 'The highest-revenue product in a collection, for the overview table''s
 
-        and ``distinct_devices`` are true page-level numbers from the PLP summary
-
-        pipe (not member-product sums); ``None`` when the pipe had no row.'
+        "Top Product" column. ``image_url`` is the product''s first image (or None).'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CollectionMetricsSummary:
       properties:
         period:
@@ -261,21 +303,6 @@ components:
       - units_sold
       - avg_str
       title: CollectionMetricsSummary
-    CollectionMetricValue:
-      properties:
-        value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Value
-          default: 0
-        delta_pct:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Delta Pct
-      type: object
-      title: CollectionMetricValue
     CollectionMetricsPeriod:
       properties:
         start:
@@ -291,86 +318,59 @@ components:
       - start
       - end
       title: CollectionMetricsPeriod
-    CollectionTopProduct:
+    OverviewCollection:
       properties:
-        main_product_id:
+        collection_id:
           type: string
-          title: Main Product Id
+          format: uuid
+          title: Collection Id
         title:
-          anyOf:
-          - type: string
-          - type: 'null'
+          type: string
           title: Title
-        image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Image Url
         revenue:
           anyOf:
           - type: number
           - type: 'null'
           title: Revenue
-      type: object
-      required:
-      - main_product_id
-      title: CollectionTopProduct
-      description: 'The highest-revenue product in a collection, for the overview table''s
-
-        "Top Product" column. ``image_url`` is the product''s first image (or None).'
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CollectionRevenueMetric:
-      properties:
-        value:
+        revenue_delta_pct:
           anyOf:
           - type: number
           - type: 'null'
-          title: Value
-          default: 0
-        currency:
-          type: string
-          title: Currency
-          default: ''
-        delta_pct:
+          title: Revenue Delta Pct
+        views:
           anyOf:
           - type: number
           - type: 'null'
-          title: Delta Pct
-      type: object
-      title: CollectionRevenueMetric
-    CollectionRateMetric:
-      properties:
-        value:
+          title: Views
+        views_delta_pct:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Views Delta Pct
+        avg_ctr:
           type: number
-          title: Value
+          title: Avg Ctr
           default: 0
-        delta_pts:
+        unique_views:
           anyOf:
-          - type: number
+          - type: integer
           - type: 'null'
-          title: Delta Pts
+          title: Unique Views
+        distinct_devices:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Distinct Devices
       type: object
-      title: CollectionRateMetric
+      required:
+      - collection_id
+      - title
+      title: OverviewCollection
+      description: 'One collection row for the hub''s top/declining lists. ``unique_views``
+
+        and ``distinct_devices`` are true page-level numbers from the PLP summary
+
+        pipe (not member-product sums); ``None`` when the pipe had no row.'
     PinnedVsAutoRollup:
       properties:
         healthy:

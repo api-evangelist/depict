@@ -290,6 +290,33 @@ paths:
       - APIKeyCookie: []
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    EUnavailabilityType:
+      type: string
+      enum:
+      - out_of_stock
+      - missing
+      title: EUnavailabilityType
     PurchaseEvent:
       properties:
         user_id:
@@ -343,15 +370,33 @@ components:
       - currency
       - products
       title: PurchaseEvent
-    HTTPValidationError:
+    TrackV2Request:
       properties:
-        detail:
+        tenant:
+          type: string
+          minLength: 1
+          title: Tenant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          minLength: 1
+          title: Market
+          description: Market identifier
+        events:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - $ref: '#/components/schemas/UserTransactionMappingEvent'
+            - $ref: '#/components/schemas/PurchaseEvent'
+            - $ref: '#/components/schemas/ProductUnavailableEvent'
           type: array
-          title: Detail
+          title: Events
+      additionalProperties: false
       type: object
-      title: HTTPValidationError
+      required:
+      - tenant
+      - market
+      - events
+      title: TrackV2Request
     ProductUnavailableEvent:
       properties:
         user_id:
@@ -395,91 +440,15 @@ components:
       - product_id
       - unavailability_type
       title: ProductUnavailableEvent
-    TrackV2Request:
+    HTTPValidationError:
       properties:
-        tenant:
-          type: string
-          minLength: 1
-          title: Tenant
-          description: Identifier associated with the API integration
-        market:
-          type: string
-          minLength: 1
-          title: Market
-          description: Market identifier
-        events:
+        detail:
           items:
-            anyOf:
-            - $ref: '#/components/schemas/UserTransactionMappingEvent'
-            - $ref: '#/components/schemas/PurchaseEvent'
-            - $ref: '#/components/schemas/ProductUnavailableEvent'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Events
-      additionalProperties: false
+          title: Detail
       type: object
-      required:
-      - tenant
-      - market
-      - events
-      title: TrackV2Request
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PurchasedProduct:
-      properties:
-        sku:
-          type: string
-          minLength: 1
-          title: Sku
-          description: Stock keeping unit, a distinct item for sale. If you are using Google Analytics, it should be the same id used for products there.
-        price:
-          anyOf:
-          - type: number
-            minimum: 0
-          - type: string
-          title: Price
-          description: Price per unit. If there are discounts because of quantity, the unit price should be adjusted accordingly.
-        quantity:
-          type: integer
-          minimum: 1
-          title: Quantity
-          description: The number of times the product was purchased.
-      additionalProperties: false
-      type: object
-      required:
-      - sku
-      - price
-      - quantity
-      title: PurchasedProduct
-    EEventType:
-      type: string
-      enum:
-      - page_view
-      - click
-      - add_to_cart
-      - purchase
-      - element_visible
-      - ws_click
-      - recommendations_inserted
-      title: EEventType
+      title: HTTPValidationError
     UserTransactionMappingEvent:
       properties:
         user_id:
@@ -519,12 +488,17 @@ components:
       required:
       - transaction_id
       title: UserTransactionMappingEvent
-    EUnavailabilityType:
+    EEventType:
       type: string
       enum:
-      - out_of_stock
-      - missing
-      title: EUnavailabilityType
+      - page_view
+      - click
+      - add_to_cart
+      - purchase
+      - element_visible
+      - ws_click
+      - recommendations_inserted
+      title: EEventType
     Event:
       properties:
         tenant:
@@ -671,6 +645,32 @@ components:
       - market
       - type
       title: Event
+    PurchasedProduct:
+      properties:
+        sku:
+          type: string
+          minLength: 1
+          title: Sku
+          description: Stock keeping unit, a distinct item for sale. If you are using Google Analytics, it should be the same id used for products there.
+        price:
+          anyOf:
+          - type: number
+            minimum: 0
+          - type: string
+          title: Price
+          description: Price per unit. If there are discounts because of quantity, the unit price should be adjusted accordingly.
+        quantity:
+          type: integer
+          minimum: 1
+          title: Quantity
+          description: The number of times the product was purchased.
+      additionalProperties: false
+      type: object
+      required:
+      - sku
+      - price
+      - quantity
+      title: PurchasedProduct
   securitySchemes:
     APIKeyQuery:
       type: apiKey

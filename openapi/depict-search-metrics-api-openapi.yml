@@ -69,15 +69,40 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
+    SearchQueryStatsResponse:
       properties:
-        detail:
+        markets:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/MarketSearchQueries'
           type: array
-          title: Detail
+          title: Markets
+        prev_markets:
+          items:
+            $ref: '#/components/schemas/MarketSearchQueries'
+          type: array
+          title: Prev Markets
       type: object
-      title: HTTPValidationError
+      required:
+      - markets
+      - prev_markets
+      title: SearchQueryStatsResponse
+    SearchQuery:
+      properties:
+        query:
+          type: string
+          title: Query
+        count:
+          type: integer
+          title: Count
+        locale:
+          type: string
+          title: Locale
+      type: object
+      required:
+      - query
+      - count
+      - locale
+      title: SearchQuery
     ValidationError:
       properties:
         loc:
@@ -99,6 +124,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     MarketSearchQueries:
       properties:
         market:
@@ -124,40 +158,6 @@ components:
       - top_queries
       - top_no_result_queries
       title: MarketSearchQueries
-    SearchQuery:
-      properties:
-        query:
-          type: string
-          title: Query
-        count:
-          type: integer
-          title: Count
-        locale:
-          type: string
-          title: Locale
-      type: object
-      required:
-      - query
-      - count
-      - locale
-      title: SearchQuery
-    SearchQueryStatsResponse:
-      properties:
-        markets:
-          items:
-            $ref: '#/components/schemas/MarketSearchQueries'
-          type: array
-          title: Markets
-        prev_markets:
-          items:
-            $ref: '#/components/schemas/MarketSearchQueries'
-          type: array
-          title: Prev Markets
-      type: object
-      required:
-      - markets
-      - prev_markets
-      title: SearchQueryStatsResponse
   securitySchemes:
     Auth0:
       type: oauth2

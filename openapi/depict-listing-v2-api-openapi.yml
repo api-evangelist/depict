@@ -46,6 +46,25 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    PLPMetadata:
+      properties:
+        title:
+          type: string
+          title: Title
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        replace_meta_tags:
+          type: boolean
+          title: Replace Meta Tags
+          description: Whether to replace the page meta tags, e.g., title and description, with the ones from the collection.
+          default: false
+      type: object
+      required:
+      - title
+      title: PLPMetadata
     ProductListingType:
       type: string
       enum:
@@ -53,117 +72,27 @@ components:
       - collection
       - scollection
       title: ProductListingType
-    SortModel-Input:
+    ValidationError:
       properties:
-        field:
-          type: string
-          title: Field
-          description: The field to sort by.
-        order:
-          allOf:
-          - $ref: '#/components/schemas/SortingOrder'
-          description: The order to sort by.
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/SortMeta'
-          - type: 'null'
-          description: 'Metadata about the sort that can be used for rendering. '
-      additionalProperties: false
-      type: object
-      required:
-      - field
-      - order
-      title: SortModel
-    SortMeta:
-      properties:
-        title:
-          type: string
-          title: Title
-        values:
+        loc:
           items:
-            $ref: '#/components/schemas/SortingOrder'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Values
-          description: Selectable values
-        names:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Names
-          description: Names for orders (this is what you should display in the UI, not values)
-      additionalProperties: false
-      type: object
-      required:
-      - title
-      title: SortMeta
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ECategoryType:
-      type: string
-      enum:
-      - TAG
-      - CATEGORY
-      - TENANT_CATEGORY
-      - TENANT_SECONDARY_CATEGORY
-      - CAMPAIGN
-      - BRAND
-      title: ECategoryType
-    HierarchicalValuesFilterMeta:
-      properties:
-        group_title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Group Title
-          description: Title of the group, where a group consists of all the filters that share an ID.
-        group_expanded:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Group Expanded
-          description: Whether the filter group should be expanded by default or not.
+          title: Location
+        msg:
+          type: string
+          title: Message
         type:
-          const: checkbox-hierarchical
-          title: Type
-        values:
-          items:
-            items:
-              type: string
-            type: array
-          type: array
-          title: Values
-          description: Selectable hierarchical values
-        counts:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Counts
-          description: Counts for values
-        names:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Names
-          description: Names for hierarchical values, this is what you should display in the UI (not values)
-      additionalProperties: false
+          type: string
+          title: Error Type
       type: object
       required:
+      - loc
+      - msg
       - type
-      - values
-      title: HierarchicalValuesFilterMeta
+      title: ValidationError
     ProductListingResponseV2:
       properties:
         displays:
@@ -230,13 +159,17 @@ components:
       - n_hits
       - product_listing_request_id
       title: ProductListingResponseV2
-    SortingOrder:
+    ECategoryType:
       type: string
       enum:
-      - asc
-      - desc
-      title: SortingOrder
-    RangeFilterMeta:
+      - TAG
+      - CATEGORY
+      - TENANT_CATEGORY
+      - TENANT_SECONDARY_CATEGORY
+      - CAMPAIGN
+      - BRAND
+      title: ECategoryType
+    HierarchicalValuesFilterMeta:
       properties:
         group_title:
           anyOf:
@@ -251,35 +184,71 @@ components:
           title: Group Expanded
           description: Whether the filter group should be expanded by default or not.
         type:
-          const: range
+          const: checkbox-hierarchical
           title: Type
-        min:
-          type: number
-          title: Min
-          description: The minimum value that can be selected in the range.
-        max:
-          type: number
-          title: Max
-          description: The maximum value that can be selected in the range.
-        unit:
+        values:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          title: Values
+          description: Selectable hierarchical values
+        counts:
           anyOf:
-          - type: string
+          - items:
+              type: integer
+            type: array
           - type: 'null'
-          title: Unit
-          description: The unit of the range values.
-        currency:
+          title: Counts
+          description: Counts for values
+        names:
           anyOf:
-          - type: string
+          - items:
+              type: string
+            type: array
           - type: 'null'
-          title: Currency
-          description: The currency of the range values.
+          title: Names
+          description: Names for hierarchical values, this is what you should display in the UI (not values)
       additionalProperties: false
       type: object
       required:
       - type
-      - min
-      - max
-      title: RangeFilterMeta
+      - values
+      title: HierarchicalValuesFilterMeta
+    SortMeta:
+      properties:
+        title:
+          type: string
+          title: Title
+        values:
+          items:
+            $ref: '#/components/schemas/SortingOrder'
+          type: array
+          title: Values
+          description: Selectable values
+        names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Names
+          description: Names for orders (this is what you should display in the UI, not values)
+      additionalProperties: false
+      type: object
+      required:
+      - title
+      title: SortMeta
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     SortModel-Output:
       properties:
         field:
@@ -301,46 +270,51 @@ components:
       - field
       - order
       title: SortModel
-    ValidationError:
+    SortingOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortingOrder
+    BaseCategoryDisplay:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        category_id:
           type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PLPMetadata:
-      properties:
+          title: Category Id
+          description: Unique identifier of the category.
         title:
           type: string
           title: Title
-        description:
+          description: The title of the category
+        page_url:
           anyOf:
           - type: string
           - type: 'null'
-          title: Description
-        replace_meta_tags:
-          type: boolean
-          title: Replace Meta Tags
-          description: Whether to replace the page meta tags, e.g., title and description, with the ones from the collection.
-          default: false
+          title: Page Url
+          description: The full URL to the category page
+        query_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query Id
+          description: Optionally a unique query ID for the category
+        uri:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Uri
+          description: Optionally a unique URI for the category, for example men/shoes
+        category_type:
+          allOf:
+          - $ref: '#/components/schemas/ECategoryType'
+          description: The type of category, for example CAMPAIGN, TAG, or CATEGORY
+          default: CATEGORY
+      additionalProperties: false
       type: object
       required:
+      - category_id
       - title
-      title: PLPMetadata
+      title: BaseCategoryDisplay
     SearchFilter:
       properties:
         field:
@@ -464,45 +438,6 @@ components:
       - field
       - op
       title: SearchFilter
-    BaseCategoryDisplay:
-      properties:
-        category_id:
-          type: string
-          title: Category Id
-          description: Unique identifier of the category.
-        title:
-          type: string
-          title: Title
-          description: The title of the category
-        page_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Page Url
-          description: The full URL to the category page
-        query_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Query Id
-          description: Optionally a unique query ID for the category
-        uri:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Uri
-          description: Optionally a unique URI for the category, for example men/shoes
-        category_type:
-          allOf:
-          - $ref: '#/components/schemas/ECategoryType'
-          description: The type of category, for example CAMPAIGN, TAG, or CATEGORY
-          default: CATEGORY
-      additionalProperties: false
-      type: object
-      required:
-      - category_id
-      - title
-      title: BaseCategoryDisplay
     ValuesFilterMeta:
       properties:
         group_title:
@@ -673,6 +608,71 @@ components:
       - tenant
       - query_id
       title: ProductListingRequestV2
+    SortModel-Input:
+      properties:
+        field:
+          type: string
+          title: Field
+          description: The field to sort by.
+        order:
+          allOf:
+          - $ref: '#/components/schemas/SortingOrder'
+          description: The order to sort by.
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/SortMeta'
+          - type: 'null'
+          description: 'Metadata about the sort that can be used for rendering. '
+      additionalProperties: false
+      type: object
+      required:
+      - field
+      - order
+      title: SortModel
+    RangeFilterMeta:
+      properties:
+        group_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Title
+          description: Title of the group, where a group consists of all the filters that share an ID.
+        group_expanded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Group Expanded
+          description: Whether the filter group should be expanded by default or not.
+        type:
+          const: range
+          title: Type
+        min:
+          type: number
+          title: Min
+          description: The minimum value that can be selected in the range.
+        max:
+          type: number
+          title: Max
+          description: The maximum value that can be selected in the range.
+        unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unit
+          description: The unit of the range values.
+        currency:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Currency
+          description: The currency of the range values.
+      additionalProperties: false
+      type: object
+      required:
+      - type
+      - min
+      - max
+      title: RangeFilterMeta
   securitySchemes:
     APIKeyQuery:
       type: apiKey

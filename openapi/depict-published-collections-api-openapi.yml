@@ -118,6 +118,65 @@ paths:
       - Published Collections
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PublishedCollectionsSortOrder:
+      type: string
+      enum:
+      - published_at
+      - popular
+      title: PublishedCollectionsSortOrder
+    LikedCollectionRequest:
+      properties:
+        collection_id:
+          type: string
+          title: Collection Id
+        merchant_id:
+          type: string
+          title: Merchant Id
+        likes:
+          type: integer
+          title: Likes
+      type: object
+      required:
+      - collection_id
+      - merchant_id
+      - likes
+      title: LikedCollectionRequest
+    CreatePublishedCollectionRequest:
+      properties:
+        template_suffix:
+          type: string
+          title: Template Suffix
+        used_features:
+          items:
+            $ref: '#/components/schemas/LiteFeatures'
+          type: array
+          title: Used Features
+      type: object
+      required:
+      - template_suffix
+      - used_features
+      title: CreatePublishedCollectionRequest
     HTTPValidationError:
       properties:
         detail:
@@ -127,12 +186,13 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    PublishedCollectionsSortOrder:
+    LiteFeatures:
       type: string
       enum:
-      - published_at
-      - popular
-      title: PublishedCollectionsSortOrder
+      - content_block
+      - product_duplicate
+      - image_setting
+      title: LiteFeatures
     LitePublishedCollectionDto:
       properties:
         merchant_id:
@@ -181,66 +241,6 @@ components:
       - merchant_display_name
       - shopify_base_url
       title: LitePublishedCollectionDto
-    LikedCollectionRequest:
-      properties:
-        collection_id:
-          type: string
-          title: Collection Id
-        merchant_id:
-          type: string
-          title: Merchant Id
-        likes:
-          type: integer
-          title: Likes
-      type: object
-      required:
-      - collection_id
-      - merchant_id
-      - likes
-      title: LikedCollectionRequest
-    CreatePublishedCollectionRequest:
-      properties:
-        template_suffix:
-          type: string
-          title: Template Suffix
-        used_features:
-          items:
-            $ref: '#/components/schemas/LiteFeatures'
-          type: array
-          title: Used Features
-      type: object
-      required:
-      - template_suffix
-      - used_features
-      title: CreatePublishedCollectionRequest
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    LiteFeatures:
-      type: string
-      enum:
-      - content_block
-      - product_duplicate
-      - image_setting
-      title: LiteFeatures
   securitySchemes:
     Auth0:
       type: oauth2

@@ -46,6 +46,10 @@ image: https://depict.ai/favicon.ico
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-18'
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-25
+x-docs-hosting: vercel
 tags:
 - Company
 - E-Commerce
@@ -218,7 +222,7 @@ apis:
   - type: Documentation
     url: https://docs.depict.ai/api-guide/introduction
 - aid: depict:depict-merchant-api
-  name: Depict merchant API
+  name: Depict Merchant API
   description: The merchant API from Depict — 6 operation(s) for merchant.
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
@@ -232,7 +236,7 @@ apis:
   - type: Documentation
     url: https://docs.depict.ai/api-guide/introduction
 - aid: depict:depict-merchant-create-api
-  name: Depict merchant-create API
+  name: Depict Merchant Create API
   description: The merchant-create API from Depict — 1 operation(s) for merchant-create.
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
@@ -256,7 +260,7 @@ apis:
   - type: Documentation
     url: https://docs.depict.ai/api-guide/introduction
 - aid: depict:depict-multi-store-api
-  name: Depict multi-store API
+  name: Depict Multi Store API
   description: The multi-store API from Depict — 7 operation(s) for multi-store.
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
@@ -451,7 +455,7 @@ apis:
   - type: Documentation
     url: https://docs.depict.ai/api-guide/introduction
 - aid: depict:depict-tracking-api
-  name: Depict tracking API
+  name: Depict Tracking API
   description: The tracking API from Depict — 2 operation(s) for tracking.
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai
@@ -465,7 +469,7 @@ apis:
   - type: Documentation
     url: https://docs.depict.ai/api-guide/introduction
 - aid: depict:depict-translations-api
-  name: Depict translations API
+  name: Depict Translations API
   description: The translations API from Depict — 1 operation(s) for translations.
   humanURL: https://docs.depict.ai/api-reference/headless/overview
   baseURL: https://api.depict.ai

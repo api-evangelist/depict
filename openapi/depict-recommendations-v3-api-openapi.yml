@@ -45,36 +45,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     RecommendRequestV3:
       properties:
         merchant:
@@ -122,6 +92,44 @@ components:
       - locale
       - type
       title: RecommendRequestV3
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RecommendResponseV3:
+      properties:
+        displays:
+          items:
+            $ref: '#/components/schemas/APIDisplay'
+          type: array
+          title: Displays
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      additionalProperties: false
+      type: object
+      required:
+      - displays
+      title: RecommendResponseV3
     APIDisplay:
       properties:
         variant_index:
@@ -149,23 +157,15 @@ components:
       - variant_skus
       - variant_product_ids
       title: APIDisplay
-    RecommendResponseV3:
+    HTTPValidationError:
       properties:
-        displays:
+        detail:
           items:
-            $ref: '#/components/schemas/APIDisplay'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Displays
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      additionalProperties: false
+          title: Detail
       type: object
-      required:
-      - displays
-      title: RecommendResponseV3
+      title: HTTPValidationError
   securitySchemes:
     APIKeyQuery:
       type: apiKey

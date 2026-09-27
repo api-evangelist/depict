@@ -71,54 +71,27 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    MerchantProductStatus:
+    ValidationError:
       properties:
-        recommendations_state:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Recommendations State
-          default: inactive
-        search_state:
+          title: Message
+        type:
           type: string
-          title: Search State
-          default: inactive
-        plp_state:
-          type: string
-          title: Plp State
-          default: inactive
-      type: object
-      title: MerchantProductStatus
-    app__usecase__list_merchants__MarketGroup:
-      properties:
-        id:
-          type: string
-          title: Id
-        display_name:
-          type: string
-          title: Display Name
+          title: Error Type
       type: object
       required:
-      - id
-      - display_name
-      title: MarketGroup
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ListMerchantsResult:
-      properties:
-        merchants:
-          items:
-            $ref: '#/components/schemas/app__usecase__list_merchants__Merchant'
-          type: array
-          title: Merchants
-          default: []
-      type: object
-      title: ListMerchantsResult
+      - loc
+      - msg
+      - type
+      title: ValidationError
     app__usecase__list_merchants__Merchant:
       properties:
         id:
@@ -156,27 +129,25 @@ components:
       - default_market_id
       - default_locale_id
       title: Merchant
-    ValidationError:
+    HTTPValidationError:
       properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Detail
       type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      title: HTTPValidationError
+    ListMerchantsResult:
+      properties:
+        merchants:
+          items:
+            $ref: '#/components/schemas/app__usecase__list_merchants__Merchant'
+          type: array
+          title: Merchants
+          default: []
+      type: object
+      title: ListMerchantsResult
     GetMerchantResult:
       properties:
         id:
@@ -226,6 +197,35 @@ components:
       - markets
       - locale_ids
       title: GetMerchantResult
+    MerchantProductStatus:
+      properties:
+        recommendations_state:
+          type: string
+          title: Recommendations State
+          default: inactive
+        search_state:
+          type: string
+          title: Search State
+          default: inactive
+        plp_state:
+          type: string
+          title: Plp State
+          default: inactive
+      type: object
+      title: MerchantProductStatus
+    app__usecase__list_merchants__MarketGroup:
+      properties:
+        id:
+          type: string
+          title: Id
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - id
+      - display_name
+      title: MarketGroup
   securitySchemes:
     Auth0:
       type: oauth2

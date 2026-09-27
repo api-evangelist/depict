@@ -114,40 +114,51 @@ paths:
       - Onboarding
 components:
   schemas:
-    HTTPValidationError:
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
-      title: HTTPValidationError
-    ShopifyThemeWithDepictInfo:
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ThemeOnboardingResult:
       properties:
         theme_id:
           type: integer
           title: Theme Id
-        name:
+        timestamp:
           type: string
-          title: Name
-        role:
-          type: string
-          title: Role
-        depict_added:
+          format: date-time
+          title: Timestamp
+        has_changes:
           type: boolean
-          title: Depict Added
-        has_depict_collection_template:
-          type: boolean
-          title: Has Depict Collection Template
+          title: Has Changes
+        resources:
+          items:
+            $ref: '#/components/schemas/OriginalThemeOnboardingResource'
+          type: array
+          title: Resources
       type: object
       required:
       - theme_id
-      - name
-      - role
-      - depict_added
-      - has_depict_collection_template
-      title: ShopifyThemeWithDepictInfo
+      - timestamp
+      - has_changes
+      - resources
+      title: ThemeOnboardingResult
     OriginalThemeOnboardingResource:
       properties:
         path:
@@ -188,27 +199,40 @@ components:
       - changed
       - error
       title: OriginalThemeOnboardingResource
-    ValidationError:
+    HTTPValidationError:
       properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ShopifyThemeWithDepictInfo:
+      properties:
+        theme_id:
+          type: integer
+          title: Theme Id
+        name:
           type: string
-          title: Message
-        type:
+          title: Name
+        role:
           type: string
-          title: Error Type
+          title: Role
+        depict_added:
+          type: boolean
+          title: Depict Added
+        has_depict_collection_template:
+          type: boolean
+          title: Has Depict Collection Template
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - theme_id
+      - name
+      - role
+      - depict_added
+      - has_depict_collection_template
+      title: ShopifyThemeWithDepictInfo
     ThemeOnboardingResource:
       properties:
         path:
@@ -223,30 +247,6 @@ components:
       - path
       - content
       title: ThemeOnboardingResource
-    ThemeOnboardingResult:
-      properties:
-        theme_id:
-          type: integer
-          title: Theme Id
-        timestamp:
-          type: string
-          format: date-time
-          title: Timestamp
-        has_changes:
-          type: boolean
-          title: Has Changes
-        resources:
-          items:
-            $ref: '#/components/schemas/OriginalThemeOnboardingResource'
-          type: array
-          title: Resources
-      type: object
-      required:
-      - theme_id
-      - timestamp
-      - has_changes
-      - resources
-      title: ThemeOnboardingResult
   securitySchemes:
     Auth0:
       type: oauth2

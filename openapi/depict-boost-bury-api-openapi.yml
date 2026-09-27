@@ -105,15 +105,38 @@ paths:
       - Boost Bury
 components:
   schemas:
-    HTTPValidationError:
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
-      title: HTTPValidationError
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ProductBadgeType:
+      type: string
+      enum:
+      - on_sale
+      - out_of_stock
+      - new_in
+      - bestseller
+      - slow_mover
+      - few_variants_available
+      - trending
+      title: ProductBadgeType
     TagBoostBuryRule:
       properties:
         strength:
@@ -136,6 +159,35 @@ components:
       - strength
       - tags
       title: TagBoostBuryRule
+    UpdateRulesRequest:
+      properties:
+        rules:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/BadgeBoostBuryRule'
+            - $ref: '#/components/schemas/CollectionBoostBuryRule'
+            - $ref: '#/components/schemas/TagBoostBuryRule'
+            discriminator:
+              propertyName: type
+              mapping:
+                badge: '#/components/schemas/BadgeBoostBuryRule'
+                collection: '#/components/schemas/CollectionBoostBuryRule'
+                tag: '#/components/schemas/TagBoostBuryRule'
+          type: array
+          title: Rules
+      type: object
+      required:
+      - rules
+      title: UpdateRulesRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CollectionBoostBuryRule:
       properties:
         strength:
@@ -175,58 +227,6 @@ components:
       - strength
       - badge
       title: BadgeBoostBuryRule
-    ProductBadgeType:
-      type: string
-      enum:
-      - on_sale
-      - out_of_stock
-      - new_in
-      - bestseller
-      - slow_mover
-      - few_variants_available
-      - trending
-      title: ProductBadgeType
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    UpdateRulesRequest:
-      properties:
-        rules:
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/BadgeBoostBuryRule'
-            - $ref: '#/components/schemas/CollectionBoostBuryRule'
-            - $ref: '#/components/schemas/TagBoostBuryRule'
-            discriminator:
-              propertyName: type
-              mapping:
-                badge: '#/components/schemas/BadgeBoostBuryRule'
-                collection: '#/components/schemas/CollectionBoostBuryRule'
-                tag: '#/components/schemas/TagBoostBuryRule'
-          type: array
-          title: Rules
-      type: object
-      required:
-      - rules
-      title: UpdateRulesRequest
     BoostBuryRuleWithId:
       properties:
         id:

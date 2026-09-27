@@ -1447,33 +1447,6 @@ paths:
     - url: ''
 components:
   schemas:
-    GetCollectionProductClicksResponse:
-      properties:
-        products:
-          items:
-            $ref: '#/components/schemas/GetCollectionProductClicksRow'
-          type: array
-          title: Products
-      type: object
-      required:
-      - products
-      title: GetCollectionProductClicksResponse
-    GetCollectionPreviewUrlSuccessResponse:
-      properties:
-        status:
-          type: string
-          enum:
-          - success
-          const: success
-          title: Status
-        render_url:
-          type: string
-          title: Render Url
-      type: object
-      required:
-      - status
-      - render_url
-      title: GetCollectionPreviewUrlSuccessResponse
     TagBoostBuryRule:
       properties:
         strength:
@@ -1496,8 +1469,91 @@ components:
       - strength
       - tags
       title: TagBoostBuryRule
-    LiteCollectionVersionTableUpdateInput:
+    LiteDashboardCollectionData:
       properties:
+        clicks:
+          type: integer
+          title: Clicks
+        views:
+          type: integer
+          title: Views
+        percentage_of_max_clicks:
+          type: number
+          title: Percentage Of Max Clicks
+        percentage_of_total_clicks:
+          type: number
+          title: Percentage Of Total Clicks
+        clickthrough_rate:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Clickthrough Rate
+      type: object
+      required:
+      - clicks
+      - views
+      - percentage_of_max_clicks
+      - percentage_of_total_clicks
+      - clickthrough_rate
+      title: LiteDashboardCollectionData
+    NewInProductBadge:
+      properties:
+        type:
+          type: string
+          enum:
+          - new_in
+          const: new_in
+          title: Type
+        published_at:
+          type: string
+          format: date-time
+          title: Published At
+      type: object
+      required:
+      - type
+      - published_at
+      title: NewInProductBadge
+    VariantOption:
+      properties:
+        name:
+          type: string
+          title: Name
+        value:
+          type: string
+          title: Value
+      type: object
+      required:
+      - name
+      - value
+      title: VariantOption
+    LiteCollectionSortOrder:
+      type: string
+      enum:
+      - ALPHA_ASC
+      - ALPHA_DESC
+      - BEST_SELLING
+      - TRENDING
+      - CREATED
+      - CREATED_DESC
+      - PRICE_ASC
+      - PRICE_DESC
+      - STOCK_DESC
+      - CLICKS_DESC
+      - MANUAL
+      title: LiteCollectionSortOrder
+    LiteCollectionVersionDto:
+      properties:
+        collection_id:
+          type: string
+          title: Collection Id
+        version:
+          type: string
+          title: Version
+        version_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Version Name
         sort_order:
           $ref: '#/components/schemas/LiteCollectionSortOrder'
         pinned_main_product_ids:
@@ -1525,137 +1581,26 @@ components:
         unpin_oos:
           type: boolean
           title: Unpin Oos
-        version_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Version Name
-        version:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Version
+        main:
+          type: boolean
+          title: Main
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
       type: object
       required:
+      - collection_id
+      - version
+      - version_name
       - sort_order
       - pinned_main_product_ids
       - collection_boost_rules
       - use_collection_specific_boost_bury
       - unpin_oos
-      - version_name
-      - version
-      title: LiteCollectionVersionTableUpdateInput
-    GetDataSortedPaginatedCollectionsRequest:
-      properties:
-        offset:
-          type: integer
-          title: Offset
-          default: 0
-        page_size:
-          type: integer
-          title: Page Size
-          default: 50
-        query:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Query
-        order_by:
-          allOf:
-          - $ref: '#/components/schemas/CollectionDataOrderBy'
-          default: top_views
-        from_date:
-          type: string
-          format: date
-          title: From Date
-        to_date:
-          type: string
-          format: date
-          title: To Date
-        reverse:
-          type: boolean
-          title: Reverse
-          default: false
-        filter_by:
-          anyOf:
-          - $ref: '#/components/schemas/CollectionFilterBy'
-          - type: 'null'
-      type: object
-      required:
-      - from_date
-      - to_date
-      title: GetDataSortedPaginatedCollectionsRequest
-    GetCollectionPreviewUrlRequest:
-      properties:
-        template_suffix:
-          type: string
-          title: Template Suffix
-        products_cache_key:
-          items:
-            type: string
-          type: array
-          title: Products Cache Key
-        width:
-          type: integer
-          maximum: 4000
-          minimum: 100
-          title: Width
-          default: 1000
-        password:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Password
-      type: object
-      required:
-      - template_suffix
-      - products_cache_key
-      title: GetCollectionPreviewUrlRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    LiteCollectionSortOrder:
-      type: string
-      enum:
-      - ALPHA_ASC
-      - ALPHA_DESC
-      - BEST_SELLING
-      - TRENDING
-      - CREATED
-      - CREATED_DESC
-      - PRICE_ASC
-      - PRICE_DESC
-      - STOCK_DESC
-      - CLICKS_DESC
-      - MANUAL
-      title: LiteCollectionSortOrder
-    BestsellerProductBadge:
-      properties:
-        value:
-          type: number
-          title: Value
-        n_days:
-          type: integer
-          title: N Days
-        type:
-          type: string
-          enum:
-          - bestseller
-          const: bestseller
-          title: Type
-      type: object
-      required:
-      - value
-      - n_days
-      - type
-      title: BestsellerProductBadge
+      - main
+      - updated_at
+      title: LiteCollectionVersionDto
     LiteCollectionUpdateInput:
       properties:
         sort_order:
@@ -1704,6 +1649,123 @@ components:
       - use_collection_specific_boost_bury
       - unpin_oos
       title: LiteCollectionUpdateInput
+    OutOfStockProductBadge:
+      properties:
+        type:
+          type: string
+          enum:
+          - out_of_stock
+          const: out_of_stock
+          title: Type
+      type: object
+      required:
+      - type
+      title: OutOfStockProductBadge
+    CollectionDataOrderBy:
+      type: string
+      enum:
+      - top_views
+      - top_ctr
+      - top_clicks
+      - updated_at
+      - name_a_z
+      - number_of_products
+      title: CollectionDataOrderBy
+    GetCollectionPreviewUrlSuccessResponse:
+      properties:
+        status:
+          type: string
+          enum:
+          - success
+          const: success
+          title: Status
+        render_url:
+          type: string
+          title: Render Url
+      type: object
+      required:
+      - status
+      - render_url
+      title: GetCollectionPreviewUrlSuccessResponse
+    GetPaginatedDataCollectionsResponse:
+      properties:
+        offset:
+          type: integer
+          title: Offset
+        has_next:
+          type: boolean
+          title: Has Next
+        collections:
+          items:
+            $ref: '#/components/schemas/LiteDashboardCollectionDto'
+          type: array
+          title: Collections
+      type: object
+      required:
+      - offset
+      - has_next
+      - collections
+      title: GetPaginatedDataCollectionsResponse
+    GetDataSortedPaginatedCollectionsRequest:
+      properties:
+        offset:
+          type: integer
+          title: Offset
+          default: 0
+        page_size:
+          type: integer
+          title: Page Size
+          default: 50
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+        order_by:
+          allOf:
+          - $ref: '#/components/schemas/CollectionDataOrderBy'
+          default: top_views
+        from_date:
+          type: string
+          format: date
+          title: From Date
+        to_date:
+          type: string
+          format: date
+          title: To Date
+        reverse:
+          type: boolean
+          title: Reverse
+          default: false
+        filter_by:
+          anyOf:
+          - $ref: '#/components/schemas/CollectionFilterBy'
+          - type: 'null'
+      type: object
+      required:
+      - from_date
+      - to_date
+      title: GetDataSortedPaginatedCollectionsRequest
+    CollectionBoostBuryRule:
+      properties:
+        strength:
+          type: integer
+          title: Strength
+        type:
+          type: string
+          enum:
+          - collection
+          const: collection
+          title: Type
+          default: collection
+        collection_id:
+          type: string
+          title: Collection Id
+      type: object
+      required:
+      - strength
+      - collection_id
+      title: CollectionBoostBuryRule
     TrendingProductBadge:
       properties:
         value:
@@ -1724,45 +1786,81 @@ components:
       - n_days
       - type
       title: TrendingProductBadge
-    FewVariantsAvailableProductBadge:
+    BestsellerProductBadge:
       properties:
+        value:
+          type: number
+          title: Value
+        n_days:
+          type: integer
+          title: N Days
         type:
           type: string
           enum:
-          - few_variants_available
-          const: few_variants_available
+          - bestseller
+          const: bestseller
           title: Type
-        variant_options_available:
-          items:
-            additionalProperties:
-              type: string
-            type: object
-          type: array
-          title: Variant Options Available
-        n_variants_total:
-          type: integer
-          title: N Variants Total
       type: object
       required:
+      - value
+      - n_days
       - type
-      - variant_options_available
-      - n_variants_total
-      title: FewVariantsAvailableProductBadge
-    RevertCollectionRequest:
+      title: BestsellerProductBadge
+    ShopifyImage:
       properties:
-        sort_order:
-          $ref: '#/components/schemas/CollectionSortOrder'
-        pinned_main_product_ids:
-          items:
-            type: string
-          type: array
-          title: Pinned Main Product Ids
+        id:
+          type: string
+          title: Id
+        url:
+          type: string
+          title: Url
+        width:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Width
+        height:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Height
+        alt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alt
+      additionalProperties: false
       type: object
       required:
-      - sort_order
-      - pinned_main_product_ids
-      title: RevertCollectionRequest
-    LiteDashboardCollectionDto:
+      - id
+      - url
+      title: ShopifyImage
+    GetCollectionProductClicksRow:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        clicks:
+          type: integer
+          title: Clicks
+        percent_of_max_clicks:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Percent Of Max Clicks
+        average_position:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Average Position
+      type: object
+      required:
+      - main_product_id
+      - clicks
+      - percent_of_max_clicks
+      - average_position
+      title: GetCollectionProductClicksRow
+    LiteCollectionListDto:
       properties:
         collection_id:
           type: string
@@ -1830,8 +1928,6 @@ components:
             type: array
           - type: 'null'
           title: Product Images
-        selected_period_data:
-          $ref: '#/components/schemas/LiteDashboardCollectionData'
       type: object
       required:
       - collection_id
@@ -1849,82 +1945,7 @@ components:
       - main_version
       - n_products
       - n_pinned_main_product_ids
-      - selected_period_data
-      title: LiteDashboardCollectionDto
-    GetCollectionProductClicksRow:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        clicks:
-          type: integer
-          title: Clicks
-        percent_of_max_clicks:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Percent Of Max Clicks
-        average_position:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Average Position
-      type: object
-      required:
-      - main_product_id
-      - clicks
-      - percent_of_max_clicks
-      - average_position
-      title: GetCollectionProductClicksRow
-    LiteDashboardCollectionData:
-      properties:
-        clicks:
-          type: integer
-          title: Clicks
-        views:
-          type: integer
-          title: Views
-        percentage_of_max_clicks:
-          type: number
-          title: Percentage Of Max Clicks
-        percentage_of_total_clicks:
-          type: number
-          title: Percentage Of Total Clicks
-        clickthrough_rate:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Clickthrough Rate
-      type: object
-      required:
-      - clicks
-      - views
-      - percentage_of_max_clicks
-      - percentage_of_total_clicks
-      - clickthrough_rate
-      title: LiteDashboardCollectionData
-    AwardStatusConfig:
-      properties:
-        awards_dismissed:
-          items:
-            $ref: '#/components/schemas/Award'
-          type: array
-          title: Awards Dismissed
-        achieved_timestamps:
-          items:
-            prefixItems:
-            - $ref: '#/components/schemas/Award'
-            - type: integer
-            type: array
-            maxItems: 2
-            minItems: 2
-          type: array
-          title: Achieved Timestamps
-      type: object
-      required:
-      - awards_dismissed
-      - achieved_timestamps
-      title: AwardStatusConfig
+      title: LiteCollectionListDto
     LiteCollectionDto:
       properties:
         collection_id:
@@ -2022,264 +2043,7 @@ components:
       - collection_boost_rules
       - version
       title: LiteCollectionDto
-    ShopifyImage:
-      properties:
-        id:
-          type: string
-          title: Id
-        url:
-          type: string
-          title: Url
-        width:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Width
-        height:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Height
-        alt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Alt
-      additionalProperties: false
-      type: object
-      required:
-      - id
-      - url
-      title: ShopifyImage
-    Award:
-      properties:
-        type:
-          type: string
-          title: Type
-        for_num_done:
-          type: integer
-          title: For Num Done
-      type: object
-      required:
-      - type
-      - for_num_done
-      title: Award
-    CollectionDataOrderBy:
-      type: string
-      enum:
-      - top_views
-      - top_ctr
-      - top_clicks
-      - updated_at
-      - name_a_z
-      - number_of_products
-      title: CollectionDataOrderBy
-    CollectionFilterBy:
-      type: string
-      enum:
-      - live
-      - draft
-      title: CollectionFilterBy
-    SlowMoverProductBadge:
-      properties:
-        value:
-          type: number
-          title: Value
-        n_days:
-          type: integer
-          title: N Days
-        type:
-          type: string
-          enum:
-          - slow_mover
-          const: slow_mover
-          title: Type
-      type: object
-      required:
-      - value
-      - n_days
-      - type
-      title: SlowMoverProductBadge
-    CollectionBoostBuryRule:
-      properties:
-        strength:
-          type: integer
-          title: Strength
-        type:
-          type: string
-          enum:
-          - collection
-          const: collection
-          title: Type
-          default: collection
-        collection_id:
-          type: string
-          title: Collection Id
-      type: object
-      required:
-      - strength
-      - collection_id
-      title: CollectionBoostBuryRule
-    ProductBadgeType:
-      type: string
-      enum:
-      - on_sale
-      - out_of_stock
-      - new_in
-      - bestseller
-      - slow_mover
-      - few_variants_available
-      - trending
-      title: ProductBadgeType
-    LiteCollectionPublishVersionInput:
-      properties:
-        version:
-          type: string
-          format: uuid
-          title: Version
-        content_blocks:
-          items:
-            type: string
-          type: array
-          title: Content Blocks
-        product_duplicates:
-          items:
-            type: string
-          type: array
-          title: Product Duplicates
-        image_settings:
-          items:
-            type: string
-          type: array
-          title: Image Settings
-      type: object
-      required:
-      - version
-      - content_blocks
-      - product_duplicates
-      - image_settings
-      title: LiteCollectionPublishVersionInput
-    OutOfStockProductBadge:
-      properties:
-        type:
-          type: string
-          enum:
-          - out_of_stock
-          const: out_of_stock
-          title: Type
-      type: object
-      required:
-      - type
-      title: OutOfStockProductBadge
-    LiteCollectionVersionDto:
-      properties:
-        collection_id:
-          type: string
-          title: Collection Id
-        version:
-          type: string
-          title: Version
-        version_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Version Name
-        sort_order:
-          $ref: '#/components/schemas/LiteCollectionSortOrder'
-        pinned_main_product_ids:
-          items:
-            type: string
-          type: array
-          title: Pinned Main Product Ids
-        collection_boost_rules:
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/BadgeBoostBuryRule'
-            - $ref: '#/components/schemas/CollectionBoostBuryRule'
-            - $ref: '#/components/schemas/TagBoostBuryRule'
-            discriminator:
-              propertyName: type
-              mapping:
-                badge: '#/components/schemas/BadgeBoostBuryRule'
-                collection: '#/components/schemas/CollectionBoostBuryRule'
-                tag: '#/components/schemas/TagBoostBuryRule'
-          type: array
-          title: Collection Boost Rules
-        use_collection_specific_boost_bury:
-          type: boolean
-          title: Use Collection Specific Boost Bury
-        unpin_oos:
-          type: boolean
-          title: Unpin Oos
-        main:
-          type: boolean
-          title: Main
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
-      type: object
-      required:
-      - collection_id
-      - version
-      - version_name
-      - sort_order
-      - pinned_main_product_ids
-      - collection_boost_rules
-      - use_collection_specific_boost_bury
-      - unpin_oos
-      - main
-      - updated_at
-      title: LiteCollectionVersionDto
-    VariantOption:
-      properties:
-        name:
-          type: string
-          title: Name
-        value:
-          type: string
-          title: Value
-      type: object
-      required:
-      - name
-      - value
-      title: VariantOption
-    GetPaginatedDataCollectionsResponse:
-      properties:
-        offset:
-          type: integer
-          title: Offset
-        has_next:
-          type: boolean
-          title: Has Next
-        collections:
-          items:
-            $ref: '#/components/schemas/LiteDashboardCollectionDto'
-          type: array
-          title: Collections
-      type: object
-      required:
-      - offset
-      - has_next
-      - collections
-      title: GetPaginatedDataCollectionsResponse
-    OnSaleProductBadge:
-      properties:
-        type:
-          type: string
-          enum:
-          - on_sale
-          const: on_sale
-          title: Type
-        sale_percentage:
-          type: integer
-          title: Sale Percentage
-      type: object
-      required:
-      - type
-      - sale_percentage
-      title: OnSaleProductBadge
-    LiteCollectionListDto:
+    LiteDashboardCollectionDto:
       properties:
         collection_id:
           type: string
@@ -2347,6 +2111,8 @@ components:
             type: array
           - type: 'null'
           title: Product Images
+        selected_period_data:
+          $ref: '#/components/schemas/LiteDashboardCollectionData'
       type: object
       required:
       - collection_id
@@ -2364,7 +2130,32 @@ components:
       - main_version
       - n_products
       - n_pinned_main_product_ids
-      title: LiteCollectionListDto
+      - selected_period_data
+      title: LiteDashboardCollectionDto
+    FewVariantsAvailableProductBadge:
+      properties:
+        type:
+          type: string
+          enum:
+          - few_variants_available
+          const: few_variants_available
+          title: Type
+        variant_options_available:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          type: array
+          title: Variant Options Available
+        n_variants_total:
+          type: integer
+          title: N Variants Total
+      type: object
+      required:
+      - type
+      - variant_options_available
+      - n_variants_total
+      title: FewVariantsAvailableProductBadge
     GetCollectionPreviewUrlWrongPasswordErrorResponse:
       properties:
         status:
@@ -2377,6 +2168,260 @@ components:
       required:
       - status
       title: GetCollectionPreviewUrlWrongPasswordErrorResponse
+    LiteVariant:
+      properties:
+        id:
+          type: string
+          title: Id
+        image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Url
+        selected_options:
+          items:
+            $ref: '#/components/schemas/VariantOption'
+          type: array
+          title: Selected Options
+      type: object
+      required:
+      - id
+      - image_url
+      - selected_options
+      title: LiteVariant
+    RevertCollectionRequest:
+      properties:
+        sort_order:
+          $ref: '#/components/schemas/CollectionSortOrder'
+        pinned_main_product_ids:
+          items:
+            type: string
+          type: array
+          title: Pinned Main Product Ids
+      type: object
+      required:
+      - sort_order
+      - pinned_main_product_ids
+      title: RevertCollectionRequest
+    LiteCollectionVersionTableUpdateInput:
+      properties:
+        sort_order:
+          $ref: '#/components/schemas/LiteCollectionSortOrder'
+        pinned_main_product_ids:
+          items:
+            type: string
+          type: array
+          title: Pinned Main Product Ids
+        collection_boost_rules:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/BadgeBoostBuryRule'
+            - $ref: '#/components/schemas/CollectionBoostBuryRule'
+            - $ref: '#/components/schemas/TagBoostBuryRule'
+            discriminator:
+              propertyName: type
+              mapping:
+                badge: '#/components/schemas/BadgeBoostBuryRule'
+                collection: '#/components/schemas/CollectionBoostBuryRule'
+                tag: '#/components/schemas/TagBoostBuryRule'
+          type: array
+          title: Collection Boost Rules
+        use_collection_specific_boost_bury:
+          type: boolean
+          title: Use Collection Specific Boost Bury
+        unpin_oos:
+          type: boolean
+          title: Unpin Oos
+        version_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Version Name
+        version:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Version
+      type: object
+      required:
+      - sort_order
+      - pinned_main_product_ids
+      - collection_boost_rules
+      - use_collection_specific_boost_bury
+      - unpin_oos
+      - version_name
+      - version
+      title: LiteCollectionVersionTableUpdateInput
+    AwardStatusConfig:
+      properties:
+        awards_dismissed:
+          items:
+            $ref: '#/components/schemas/Award'
+          type: array
+          title: Awards Dismissed
+        achieved_timestamps:
+          items:
+            prefixItems:
+            - $ref: '#/components/schemas/Award'
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          type: array
+          title: Achieved Timestamps
+      type: object
+      required:
+      - awards_dismissed
+      - achieved_timestamps
+      title: AwardStatusConfig
+    GetCollectionPreviewUrlRequest:
+      properties:
+        template_suffix:
+          type: string
+          title: Template Suffix
+        products_cache_key:
+          items:
+            type: string
+          type: array
+          title: Products Cache Key
+        width:
+          type: integer
+          maximum: 4000
+          minimum: 100
+          title: Width
+          default: 1000
+        password:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Password
+      type: object
+      required:
+      - template_suffix
+      - products_cache_key
+      title: GetCollectionPreviewUrlRequest
+    ProductStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - ARCHIVED
+      - DRAFT
+      title: ProductStatus
+    OnSaleProductBadge:
+      properties:
+        type:
+          type: string
+          enum:
+          - on_sale
+          const: on_sale
+          title: Type
+        sale_percentage:
+          type: integer
+          title: Sale Percentage
+      type: object
+      required:
+      - type
+      - sale_percentage
+      title: OnSaleProductBadge
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ProductBadgeType:
+      type: string
+      enum:
+      - on_sale
+      - out_of_stock
+      - new_in
+      - bestseller
+      - slow_mover
+      - few_variants_available
+      - trending
+      title: ProductBadgeType
+    LiteCollectionPublishVersionInput:
+      properties:
+        version:
+          type: string
+          format: uuid
+          title: Version
+        content_blocks:
+          items:
+            type: string
+          type: array
+          title: Content Blocks
+        product_duplicates:
+          items:
+            type: string
+          type: array
+          title: Product Duplicates
+        image_settings:
+          items:
+            type: string
+          type: array
+          title: Image Settings
+      type: object
+      required:
+      - version
+      - content_blocks
+      - product_duplicates
+      - image_settings
+      title: LiteCollectionPublishVersionInput
+    GetCollectionProductClicksResponse:
+      properties:
+        products:
+          items:
+            $ref: '#/components/schemas/GetCollectionProductClicksRow'
+          type: array
+          title: Products
+      type: object
+      required:
+      - products
+      title: GetCollectionProductClicksResponse
+    CollectionFilterBy:
+      type: string
+      enum:
+      - live
+      - draft
+      title: CollectionFilterBy
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CollectionSortOrder:
+      type: string
+      enum:
+      - ALPHA_ASC
+      - ALPHA_DESC
+      - BEST_SELLING
+      - CREATED
+      - CREATED_DESC
+      - MANUAL
+      - PRICE_ASC
+      - PRICE_DESC
+      title: CollectionSortOrder
     LiteCollectionProductDto:
       properties:
         main_product_id:
@@ -2516,243 +2561,46 @@ components:
       - strength
       - badge
       title: BadgeBoostBuryRule
-    NewInProductBadge:
+    SlowMoverProductBadge:
       properties:
+        value:
+          type: number
+          title: Value
+        n_days:
+          type: integer
+          title: N Days
         type:
           type: string
           enum:
-          - new_in
-          const: new_in
+          - slow_mover
+          const: slow_mover
           title: Type
-        published_at:
-          type: string
-          format: date-time
-          title: Published At
       type: object
       required:
+      - value
+      - n_days
       - type
-      - published_at
-      title: NewInProductBadge
-    ProductStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - ARCHIVED
-      - DRAFT
-      title: ProductStatus
-    ValidationError:
+      title: SlowMoverProductBadge
+    Award:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
         type:
           type: string
-          title: Error Type
+          title: Type
+        for_num_done:
+          type: integer
+          title: For Num Done
       type: object
       required:
-      - loc
-      - msg
       - type
-      title: ValidationError
-    LiteVariant:
+      - for_num_done
+      title: Award
+    CollectionAutoLift:
       properties:
-        id:
-          type: string
-          title: Id
-        image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Image Url
-        selected_options:
-          items:
-            $ref: '#/components/schemas/VariantOption'
-          type: array
-          title: Selected Options
-      type: object
-      required:
-      - id
-      - image_url
-      - selected_options
-      title: LiteVariant
-    CollectionSortOrder:
-      type: string
-      enum:
-      - ALPHA_ASC
-      - ALPHA_DESC
-      - BEST_SELLING
-      - CREATED
-      - CREATED_DESC
-      - MANUAL
-      - PRICE_ASC
-      - PRICE_DESC
-      title: CollectionSortOrder
-    AnalyticsProductRef:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Image Url
-        sku:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sku
-        revenue:
+        score:
           anyOf:
           - type: number
           - type: 'null'
-          title: Revenue
-        units_sold:
-          type: integer
-          title: Units Sold
-          default: 0
-        ctr:
-          type: number
-          title: Ctr
-          default: 0
-        rank:
-          type: integer
-          title: Rank
-        position:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Position
-      type: object
-      required:
-      - main_product_id
-      - rank
-      title: AnalyticsProductRef
-      description: 'A single product row for the analytics drawer''s product lists.
-
-
-        ``ctr`` is a percentage (0-100), computed as ``clicks / views * 100`` to
-
-        match the rest of the collection-metrics module. ``revenue`` is ``None`` when
-
-        the product''s revenue is unknown (multi-currency without FX); ``sku`` is
-
-        always ``None`` for now because a per-main-product SKU is not available at
-
-        this aggregation layer (products group multiple variants). ``rank`` is
-
-        1-based within the list it belongs to. ``position`` is the product''s 1-based
-
-        index in the collection''s sort order (pinned first, then auto); it is
-
-        ``None`` when the product is not part of that ordered scope.'
-    ShopifyVideo:
-      properties:
-        video_urls:
-          items:
-            type: string
-          type: array
-          title: Video Urls
-        preview_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Preview Image Url
-      additionalProperties: false
-      type: object
-      required:
-      - video_urls
-      - preview_image_url
-      title: ShopifyVideo
-    CollectionAnalyticsDetail:
-      properties:
-        collection_id:
-          type: string
-          format: uuid
-          title: Collection Id
-        title:
-          type: string
-          title: Title
-        period:
-          $ref: '#/components/schemas/CollectionMetricsPeriod'
-        summary:
-          $ref: '#/components/schemas/CollectionMetricsSummary'
-        scroll_depth:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Scroll Depth
-        inventory:
-          $ref: '#/components/schemas/AnalyticsInventoryBreakdown'
-        top_products:
-          items:
-            $ref: '#/components/schemas/AnalyticsProductRef'
-          type: array
-          title: Top Products
-          default: []
-        needs_attention:
-          items:
-            $ref: '#/components/schemas/AnalyticsAttentionProduct'
-          type: array
-          title: Needs Attention
-          default: []
-        pinned_vs_auto:
-          items:
-            $ref: '#/components/schemas/AnalyticsPinnedVsAutoItem'
-          type: array
-          title: Pinned Vs Auto
-          default: []
-        sell_through_by_tier:
-          items:
-            $ref: '#/components/schemas/AnalyticsTierStr'
-          type: array
-          title: Sell Through By Tier
-          default: []
-        position_performance:
-          items:
-            $ref: '#/components/schemas/AnalyticsPositionBand'
-          type: array
-          title: Position Performance
-          default: []
-        total_products:
-          type: integer
-          title: Total Products
-          default: 0
-      type: object
-      required:
-      - collection_id
-      - title
-      - period
-      - summary
-      - inventory
-      title: CollectionAnalyticsDetail
-      description: 'Rich payload for the Collection Analytics drawer. ``scroll_depth`` is
-
-        always ``None`` for now -- there is no scroll tracking, documented as a data
-
-        gap. ``summary`` reuses the same aggregate as the ``/metrics`` endpoint.'
-    AnalyticsPinnedVsAutoItem:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
+          title: Score
         pinned_ctr:
           type: number
           title: Pinned Ctr
@@ -2762,52 +2610,45 @@ components:
           title: Auto Ctr
           default: 0
         delta_pts:
-          type: number
-          title: Delta Pts
-          default: 0
-        verdict:
-          type: string
-          enum:
-          - better_auto
-          - better_pinned
-          - no_data
-          title: Verdict
-      type: object
-      required:
-      - main_product_id
-      - verdict
-      title: AnalyticsPinnedVsAutoItem
-      description: 'Per-pinned-product comparison against the collection''s auto-cohort CTR.
-
-
-        ``pinned_ctr`` is the product''s own CTR; ``auto_ctr`` is the aggregate CTR of
-
-        all non-pinned products (a documented approximation of the counterfactual
-
-        "if this had been auto-sorted"). ``delta_pts`` is ``auto_ctr - pinned_ctr``.
-
-        ``verdict`` is ``better_auto`` when auto beats pinned by >0.5pts,
-
-        ``better_pinned`` when pinned beats auto by >0.5pts, else ``no_data`` (neutral
-
-        band or the product got no views). CTRs are percentages (0-100).'
-    NewInMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - new_in
-          const: new_in
-          title: Type
-          default: new_in
-        created_at:
           anyOf:
-          - type: string
-            format: date-time
+          - type: number
           - type: 'null'
-          title: Created At
+          title: Delta Pts
       type: object
-      title: NewInMetadata
+      title: CollectionAutoLift
+      description: 'Derived "Auto Lift" score: how the click-through rate of auto-sorted
+
+        (non-pinned) products compares to the merchant''s manually pinned products.
+
+
+        ``score`` is normalised to 0-100 where ``50`` means auto and pinned perform
+
+        equally, ``100`` means auto CTR is >= 2x pinned CTR, and ``0`` means auto
+
+        products get no clicks. Computed as ``clamp(50 * auto_ctr / pinned_ctr, 0,
+
+        100)``. It is ``None`` when the collection has no pinned products or no
+
+        auto (non-pinned) products, so there is nothing to compare. ``pinned_ctr``
+
+        and ``auto_ctr`` are percentages (0-100); ``delta_pts`` is
+
+        ``auto_ctr - pinned_ctr`` in percentage points.'
+    CollectionMetricValue:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+          default: 0
+        delta_pct:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Delta Pct
+      type: object
+      title: CollectionMetricValue
     CollectionDetail:
       properties:
         collection_id:
@@ -2908,6 +2749,46 @@ components:
       - permissions
       - market_context
       title: CollectionDetail
+    BestsellerMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - bestseller
+          const: bestseller
+          title: Type
+          default: bestseller
+        meta_data:
+          type: number
+          title: Meta Data
+        n_days:
+          type: integer
+          title: N Days
+      type: object
+      required:
+      - meta_data
+      - n_days
+      title: BestsellerMetadata
+    TrendingMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - trending
+          const: trending
+          title: Type
+          default: trending
+        meta_data:
+          type: number
+          title: Meta Data
+        n_days:
+          type: integer
+          title: N Days
+      type: object
+      required:
+      - meta_data
+      - n_days
+      title: TrendingMetadata
     CollectionPermissions:
       properties:
         can_edit_metadata:
@@ -2945,43 +2826,262 @@ components:
       - can_edit_content
       - can_delete
       title: CollectionPermissions
-    StarProductMetadata:
+    AnalyticsAttentionProduct:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Url
+        sku:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sku
+        revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenue
+        units_sold:
+          type: integer
+          title: Units Sold
+          default: 0
+        ctr:
+          type: number
+          title: Ctr
+          default: 0
+        rank:
+          type: integer
+          title: Rank
+        position:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Position
+        reason:
+          type: string
+          enum:
+          - low_ctr
+          - no_sales
+          - low_revenue
+          title: Reason
+      type: object
+      required:
+      - main_product_id
+      - rank
+      - reason
+      title: AnalyticsAttentionProduct
+      description: 'A worst-performing product plus why it was flagged. ``no_sales`` means it
+
+        had stock but sold nothing; ``low_ctr`` means its CTR is in the bottom
+
+        quartile of the collection; ``low_revenue`` is the fallback for otherwise
+
+        weak revenue.'
+    CollectionListSortBy:
+      type: string
+      enum:
+      - updated_at_desc
+      - updated_at_asc
+      - title_asc
+      - title_desc
+      - product_count_desc
+      - product_count_asc
+      title: CollectionListSortBy
+    ShopifyVideo:
+      properties:
+        video_urls:
+          items:
+            type: string
+          type: array
+          title: Video Urls
+        preview_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preview Image Url
+      additionalProperties: false
+      type: object
+      required:
+      - video_urls
+      - preview_image_url
+      title: ShopifyVideo
+    CollectionMarketContext:
+      properties:
+        market_group_id:
+          type: string
+          title: Market Group Id
+        market_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Market Id
+        resolved_market:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Resolved Market
+      type: object
+      required:
+      - market_group_id
+      title: CollectionMarketContext
+    AnalyticsProductRef:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Url
+        sku:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sku
+        revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenue
+        units_sold:
+          type: integer
+          title: Units Sold
+          default: 0
+        ctr:
+          type: number
+          title: Ctr
+          default: 0
+        rank:
+          type: integer
+          title: Rank
+        position:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Position
+      type: object
+      required:
+      - main_product_id
+      - rank
+      title: AnalyticsProductRef
+      description: 'A single product row for the analytics drawer''s product lists.
+
+
+        ``ctr`` is a percentage (0-100), computed as ``clicks / views * 100`` to
+
+        match the rest of the collection-metrics module. ``revenue`` is ``None`` when
+
+        the product''s revenue is unknown (multi-currency without FX); ``sku`` is
+
+        always ``None`` for now because a per-main-product SKU is not available at
+
+        this aggregation layer (products group multiple variants). ``rank`` is
+
+        1-based within the list it belongs to. ``position`` is the product''s 1-based
+
+        index in the collection''s sort order (pinned first, then auto); it is
+
+        ``None`` when the product is not part of that ordered scope.'
+    ChunkType:
+      type: string
+      enum:
+      - similar
+      - complementary
+      title: ChunkType
+    CollectionAnalyticsDetail:
+      properties:
+        collection_id:
+          type: string
+          format: uuid
+          title: Collection Id
+        title:
+          type: string
+          title: Title
+        period:
+          $ref: '#/components/schemas/CollectionMetricsPeriod'
+        summary:
+          $ref: '#/components/schemas/CollectionMetricsSummary'
+        scroll_depth:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Scroll Depth
+        inventory:
+          $ref: '#/components/schemas/AnalyticsInventoryBreakdown'
+        top_products:
+          items:
+            $ref: '#/components/schemas/AnalyticsProductRef'
+          type: array
+          title: Top Products
+          default: []
+        needs_attention:
+          items:
+            $ref: '#/components/schemas/AnalyticsAttentionProduct'
+          type: array
+          title: Needs Attention
+          default: []
+        pinned_vs_auto:
+          items:
+            $ref: '#/components/schemas/AnalyticsPinnedVsAutoItem'
+          type: array
+          title: Pinned Vs Auto
+          default: []
+        sell_through_by_tier:
+          items:
+            $ref: '#/components/schemas/AnalyticsTierStr'
+          type: array
+          title: Sell Through By Tier
+          default: []
+        position_performance:
+          items:
+            $ref: '#/components/schemas/AnalyticsPositionBand'
+          type: array
+          title: Position Performance
+          default: []
+        total_products:
+          type: integer
+          title: Total Products
+          default: 0
+      type: object
+      required:
+      - collection_id
+      - title
+      - period
+      - summary
+      - inventory
+      title: CollectionAnalyticsDetail
+      description: 'Rich payload for the Collection Analytics drawer. ``scroll_depth`` is
+
+        always ``None`` for now -- there is no scroll tracking, documented as a data
+
+        gap. ``summary`` reuses the same aggregate as the ``/metrics`` endpoint.'
+    OutOfStockMetadata:
       properties:
         type:
           type: string
           enum:
-          - star_product
-          const: star_product
+          - out_of_stock
+          const: out_of_stock
           title: Type
-          default: star_product
-        meta_data:
-          type: number
-          title: Meta Data
-        n_days:
-          type: integer
-          title: N Days
+          default: out_of_stock
       type: object
-      required:
-      - meta_data
-      - n_days
-      title: StarProductMetadata
-    SortOptionItem:
-      properties:
-        id:
-          type: string
-          title: Id
-        label:
-          type: string
-          title: Label
-        selected:
-          type: boolean
-          title: Selected
-      type: object
-      required:
-      - id
-      - label
-      - selected
-      title: SortOptionItem
+      title: OutOfStockMetadata
     CollectionFavouritesResponse:
       properties:
         collections:
@@ -2993,43 +3093,282 @@ components:
       required:
       - collections
       title: CollectionFavouritesResponse
-    CollectionType:
-      type: string
-      enum:
-      - long_tail_collection
-      - campaign
-      - category
-      - smart_pick
-      - style
-      - brand
-      - look
-      title: CollectionType
-    LimitedAvailabilityMetadata:
+    CollectionRateMetric:
+      properties:
+        value:
+          type: number
+          title: Value
+          default: 0
+        delta_pts:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Delta Pts
+      type: object
+      title: CollectionRateMetric
+    CollectionSummary:
+      properties:
+        collection_id:
+          type: string
+          format: uuid
+          title: Collection Id
+        parent_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Parent Id
+        collection_type:
+          $ref: '#/components/schemas/CollectionType'
+        externally_owned:
+          type: boolean
+          title: Externally Owned
+        title:
+          type: string
+          title: Title
+        uri:
+          type: string
+          title: Uri
+        updated_at:
+          type: string
+          title: Updated At
+        n_main_products:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: N Main Products
+        manual_product_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Manual Product Count
+        image_urls:
+          items:
+            type: string
+          type: array
+          title: Image Urls
+          default: []
+        cover_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cover Image Url
+        chunk_type:
+          anyOf:
+          - $ref: '#/components/schemas/ChunkType'
+          - type: 'null'
+        metrics:
+          anyOf:
+          - $ref: '#/components/schemas/CollectionMetricsSummary'
+          - type: 'null'
+      type: object
+      required:
+      - collection_id
+      - collection_type
+      - externally_owned
+      - title
+      - uri
+      - updated_at
+      title: CollectionSummary
+    CollectionTopProduct:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Url
+        revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenue
+      type: object
+      required:
+      - main_product_id
+      title: CollectionTopProduct
+      description: 'The highest-revenue product in a collection, for the overview table''s
+
+        "Top Product" column. ``image_url`` is the product''s first image (or None).'
+    CollectionProductsResponse:
+      properties:
+        products:
+          items:
+            $ref: '#/components/schemas/CollectionProduct'
+          type: array
+          title: Products
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+        has_more:
+          type: boolean
+          title: Has More
+          default: false
+        sort_options:
+          items:
+            $ref: '#/components/schemas/SortOptionItem'
+          type: array
+          title: Sort Options
+          default: []
+        stats:
+          anyOf:
+          - $ref: '#/components/schemas/ProductListingStats'
+          - type: 'null'
+      type: object
+      required:
+      - products
+      title: CollectionProductsResponse
+    ImageContent:
       properties:
         type:
           type: string
           enum:
-          - limited_availability
-          const: limited_availability
+          - image
+          const: image
           title: Type
-          default: limited_availability
-        hidden_market_count:
-          type: integer
-          title: Hidden Market Count
-        total_market_count:
-          type: integer
-          title: Total Market Count
+          default: image
+        url:
+          type: string
+          title: Url
+        link:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Link
       type: object
       required:
-      - hidden_market_count
-      - total_market_count
-      title: LimitedAvailabilityMetadata
-    ChunkType:
+      - url
+      - link
+      title: ImageContent
+    CollectionRankingType:
       type: string
       enum:
+      - top
       - similar
       - complementary
-      title: ChunkType
+      title: CollectionRankingType
+    ProductListingStats:
+      properties:
+        all_products:
+          type: integer
+          title: All Products
+        all_out_of_stock:
+          type: integer
+          title: All Out Of Stock
+        all_low_stock:
+          type: integer
+          title: All Low Stock
+        total_products:
+          type: integer
+          title: Total Products
+        out_of_stock:
+          type: integer
+          title: Out Of Stock
+        low_stock:
+          type: integer
+          title: Low Stock
+        on_sale:
+          type: integer
+          title: On Sale
+        new_in:
+          type: integer
+          title: New In
+        inactive:
+          type: integer
+          title: Inactive
+        bestseller:
+          type: integer
+          title: Bestseller
+        trending:
+          type: integer
+          title: Trending
+        slow_mover:
+          type: integer
+          title: Slow Mover
+        star_product:
+          type: integer
+          title: Star Product
+      type: object
+      required:
+      - all_products
+      - all_out_of_stock
+      - all_low_stock
+      - total_products
+      - out_of_stock
+      - low_stock
+      - on_sale
+      - new_in
+      - inactive
+      - bestseller
+      - trending
+      - slow_mover
+      - star_product
+      title: ProductListingStats
+    CollectionCurationOverrides:
+      properties:
+        market_groups:
+          items:
+            type: string
+          type: array
+          title: Market Groups
+          default: []
+        markets:
+          items:
+            type: string
+          type: array
+          title: Markets
+          default: []
+      type: object
+      title: CollectionCurationOverrides
+    SlowMoverMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - slow_mover
+          const: slow_mover
+          title: Type
+          default: slow_mover
+        meta_data:
+          type: number
+          title: Meta Data
+        n_days:
+          type: integer
+          title: N Days
+      type: object
+      required:
+      - meta_data
+      - n_days
+      title: SlowMoverMetadata
+    CollectionListResponse:
+      properties:
+        collections:
+          items:
+            $ref: '#/components/schemas/CollectionSummary'
+          type: array
+          title: Collections
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+        has_more:
+          type: boolean
+          title: Has More
+          default: false
+      type: object
+      required:
+      - collections
+      title: CollectionListResponse
     CollectionProduct:
       properties:
         main_product_id:
@@ -3128,107 +3467,6 @@ components:
       - main_product_id
       - collection_state
       title: CollectionProduct
-    AnalyticsAttentionProduct:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Image Url
-        sku:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sku
-        revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenue
-        units_sold:
-          type: integer
-          title: Units Sold
-          default: 0
-        ctr:
-          type: number
-          title: Ctr
-          default: 0
-        rank:
-          type: integer
-          title: Rank
-        position:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Position
-        reason:
-          type: string
-          enum:
-          - low_ctr
-          - no_sales
-          - low_revenue
-          title: Reason
-      type: object
-      required:
-      - main_product_id
-      - rank
-      - reason
-      title: AnalyticsAttentionProduct
-      description: 'A worst-performing product plus why it was flagged. ``no_sales`` means it
-
-        had stock but sold nothing; ``low_ctr`` means its CTR is in the bottom
-
-        quartile of the collection; ``low_revenue`` is the fallback for otherwise
-
-        weak revenue.'
-    SlowMoverMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - slow_mover
-          const: slow_mover
-          title: Type
-          default: slow_mover
-        meta_data:
-          type: number
-          title: Meta Data
-        n_days:
-          type: integer
-          title: N Days
-      type: object
-      required:
-      - meta_data
-      - n_days
-      title: SlowMoverMetadata
-    TrendingMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - trending
-          const: trending
-          title: Type
-          default: trending
-        meta_data:
-          type: number
-          title: Meta Data
-        n_days:
-          type: integer
-          title: N Days
-      type: object
-      required:
-      - meta_data
-      - n_days
-      title: TrendingMetadata
     VideoContent:
       properties:
         type:
@@ -3251,167 +3489,36 @@ components:
       - url
       - link
       title: VideoContent
-    AnalyticsPositionBand:
+    PortalSearchFilter:
       properties:
-        band:
+        field:
+          type: string
+          title: Field
+        op:
           type: string
           enum:
-          - hero
-          - mid
-          - tail
-          - bottom
-          title: Band
-        label:
-          type: string
-          title: Label
-        avg_ctr:
-          type: number
-          title: Avg Ctr
-          default: 0
-        clicks:
-          type: integer
-          title: Clicks
-          default: 0
-        product_count:
-          type: integer
-          title: Product Count
-          default: 0
-      type: object
-      required:
-      - band
-      - label
-      title: AnalyticsPositionBand
-      description: 'Aggregate click-through performance for a contiguous band of positions in
-
-        the collection''s sort order (pinned first, then auto).
-
-
-        Bands are fixed by 1-based position: ``hero`` = positions 1-3, ``mid`` = 4-8,
-
-        ``tail`` = 9-12, ``bottom`` = 13+. ``avg_ctr`` is a percentage (0-100),
-
-        ``clicks / views * 100`` aggregated over the in-band products that have
-
-        metrics. ``clicks`` is the total clicks in the band. ``product_count`` is the
-
-        number of products present in the ordered scope within the band (regardless
-
-        of whether they have metrics). All four bands are always returned, even when
-
-        empty.'
-    CollectionListSortBy:
-      type: string
-      enum:
-      - updated_at_desc
-      - updated_at_asc
-      - title_asc
-      - title_desc
-      - product_count_desc
-      - product_count_asc
-      title: CollectionListSortBy
-    CollectionRevenueMetric:
-      properties:
-        value:
+          - eq
+          - neq
+          - in
+          - nin
+          - leq
+          - geq
+          - inrange
+          title: Op
+        data:
+          title: Data
+        meta:
+          title: Meta
+        id:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Value
-          default: 0
-        currency:
-          type: string
-          title: Currency
-          default: ''
-        delta_pct:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Delta Pct
-      type: object
-      title: CollectionRevenueMetric
-    LowStockMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - low_stock
-          const: low_stock
-          title: Type
-          default: low_stock
-        sizes_in_stock:
-          type: integer
-          title: Sizes In Stock
-        sizes_total:
-          type: integer
-          title: Sizes Total
+          title: Id
       type: object
       required:
-      - sizes_in_stock
-      - sizes_total
-      title: LowStockMetadata
-    ProductListingStats:
-      properties:
-        all_products:
-          type: integer
-          title: All Products
-        all_out_of_stock:
-          type: integer
-          title: All Out Of Stock
-        all_low_stock:
-          type: integer
-          title: All Low Stock
-        total_products:
-          type: integer
-          title: Total Products
-        out_of_stock:
-          type: integer
-          title: Out Of Stock
-        low_stock:
-          type: integer
-          title: Low Stock
-        on_sale:
-          type: integer
-          title: On Sale
-        new_in:
-          type: integer
-          title: New In
-        inactive:
-          type: integer
-          title: Inactive
-        bestseller:
-          type: integer
-          title: Bestseller
-        trending:
-          type: integer
-          title: Trending
-        slow_mover:
-          type: integer
-          title: Slow Mover
-        star_product:
-          type: integer
-          title: Star Product
-      type: object
-      required:
-      - all_products
-      - all_out_of_stock
-      - all_low_stock
-      - total_products
-      - out_of_stock
-      - low_stock
-      - on_sale
-      - new_in
-      - inactive
-      - bestseller
-      - trending
-      - slow_mover
-      - star_product
-      title: ProductListingStats
-    ContentPosition:
-      type: string
-      enum:
-      - left
-      - right
-      - center
-      title: ContentPosition
+      - field
+      - op
+      title: PortalSearchFilter
     AnalyticsTierStr:
       properties:
         tier:
@@ -3432,64 +3539,7 @@ components:
       description: 'Sell-through for one of three contiguous tiers of the sorted collection
 
         (tier 1 = top of sort). ``str_value`` is a percentage (0-100).'
-    InactiveMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - inactive
-          const: inactive
-          title: Type
-          default: inactive
-      type: object
-      title: InactiveMetadata
-    CollectionListResponse:
-      properties:
-        collections:
-          items:
-            $ref: '#/components/schemas/CollectionSummary'
-          type: array
-          title: Collections
-        next_cursor:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Cursor
-        has_more:
-          type: boolean
-          title: Has More
-          default: false
-      type: object
-      required:
-      - collections
-      title: CollectionListResponse
-    CollectionMetricsPeriod:
-      properties:
-        start:
-          type: string
-          format: date
-          title: Start
-        end:
-          type: string
-          format: date
-          title: End
-      type: object
-      required:
-      - start
-      - end
-      title: CollectionMetricsPeriod
-    OutOfStockMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - out_of_stock
-          const: out_of_stock
-          title: Type
-          default: out_of_stock
-      type: object
-      title: OutOfStockMetadata
-    CollectionMetricValue:
+    CollectionRevenueMetric:
       properties:
         value:
           anyOf:
@@ -3497,278 +3547,140 @@ components:
           - type: 'null'
           title: Value
           default: 0
+        currency:
+          type: string
+          title: Currency
+          default: ''
         delta_pct:
           anyOf:
           - type: number
           - type: 'null'
           title: Delta Pct
       type: object
-      title: CollectionMetricValue
-    ProductMetrics:
+      title: CollectionRevenueMetric
+    SortOptionItem:
       properties:
-        clicks:
-          type: integer
-          title: Clicks
-          default: 0
-        prev_clicks:
-          type: integer
-          title: Prev Clicks
-          default: 0
-        views:
-          type: integer
-          title: Views
-          default: 0
-        prev_views:
-          type: integer
-          title: Prev Views
-          default: 0
-        sold:
-          type: integer
-          title: Sold
-          default: 0
-        prev_sold:
-          type: integer
-          title: Prev Sold
-          default: 0
-        revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenue
-          default: 0
-        prev_revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Prev Revenue
-          default: 0
-        revenue_currency:
+        id:
           type: string
-          title: Revenue Currency
-          default: ''
-        inventory:
-          type: integer
-          title: Inventory
-          default: 0
-        click_through_rate:
-          type: number
-          title: Click Through Rate
-          default: 0
-        prev_click_through_rate:
-          type: number
-          title: Prev Click Through Rate
-          default: 0
-        sell_through_rate:
-          type: number
-          title: Sell Through Rate
-          default: 0
-        prev_sell_through_rate:
-          type: number
-          title: Prev Sell Through Rate
-          default: 0
-        add_to_carts:
-          type: integer
-          title: Add To Carts
-          default: 0
-        prev_add_to_carts:
-          type: integer
-          title: Prev Add To Carts
-          default: 0
+          title: Id
+        label:
+          type: string
+          title: Label
+        selected:
+          type: boolean
+          title: Selected
       type: object
-      title: ProductMetrics
-    ImageContent:
+      required:
+      - id
+      - label
+      - selected
+      title: SortOptionItem
+    CollectionMetricsSummary:
+      properties:
+        period:
+          $ref: '#/components/schemas/CollectionMetricsPeriod'
+        total_revenue:
+          $ref: '#/components/schemas/CollectionRevenueMetric'
+        total_views:
+          $ref: '#/components/schemas/CollectionMetricValue'
+        total_clicks:
+          $ref: '#/components/schemas/CollectionMetricValue'
+        avg_ctr:
+          $ref: '#/components/schemas/CollectionRateMetric'
+        units_sold:
+          $ref: '#/components/schemas/CollectionMetricValue'
+        avg_str:
+          $ref: '#/components/schemas/CollectionRateMetric'
+        add_to_carts:
+          allOf:
+          - $ref: '#/components/schemas/CollectionMetricValue'
+          default:
+            value: 0
+        dead_stock:
+          allOf:
+          - $ref: '#/components/schemas/CollectionMetricValue'
+          default:
+            value: 0
+        avg_stock_coverage_days:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg Stock Coverage Days
+        rpm:
+          allOf:
+          - $ref: '#/components/schemas/CollectionRevenueMetric'
+          default:
+            value: 0
+            currency: ''
+        velocity:
+          allOf:
+          - $ref: '#/components/schemas/CollectionMetricValue'
+          default:
+            value: 0
+        auto_lift:
+          allOf:
+          - $ref: '#/components/schemas/CollectionAutoLift'
+          default:
+            pinned_ctr: 0
+            auto_ctr: 0
+        top_product:
+          anyOf:
+          - $ref: '#/components/schemas/CollectionTopProduct'
+          - type: 'null'
+      type: object
+      required:
+      - period
+      - total_revenue
+      - total_views
+      - total_clicks
+      - avg_ctr
+      - units_sold
+      - avg_str
+      title: CollectionMetricsSummary
+    LowStockMetadata:
       properties:
         type:
           type: string
           enum:
-          - image
-          const: image
+          - low_stock
+          const: low_stock
           title: Type
-          default: image
-        url:
-          type: string
-          title: Url
-        link:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Link
+          default: low_stock
+        sizes_in_stock:
+          type: integer
+          title: Sizes In Stock
+        sizes_total:
+          type: integer
+          title: Sizes Total
       type: object
       required:
-      - url
-      - link
-      title: ImageContent
-    CollectionRankingType:
+      - sizes_in_stock
+      - sizes_total
+      title: LowStockMetadata
+    CollectionProductMode:
       type: string
       enum:
-      - top
-      - similar
-      - complementary
-      title: CollectionRankingType
-    CollectionCurationOverrides:
-      properties:
-        market_groups:
-          items:
-            type: string
-          type: array
-          title: Market Groups
-          default: []
-        markets:
-          items:
-            type: string
-          type: array
-          title: Markets
-          default: []
-      type: object
-      title: CollectionCurationOverrides
-    CollectionCurationResponse:
-      properties:
-        pinned_products:
-          items:
-            $ref: '#/components/schemas/CollectionProduct'
-          type: array
-          title: Pinned Products
-        hidden_products:
-          items:
-            $ref: '#/components/schemas/CollectionProduct'
-          type: array
-          title: Hidden Products
-        overrides:
-          $ref: '#/components/schemas/CollectionCurationOverrides'
-      type: object
-      required:
-      - pinned_products
-      - hidden_products
-      - overrides
-      title: CollectionCurationResponse
-    HiddenVisibilityLocation:
-      properties:
-        market_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Market Id
-        market_group_id:
-          type: string
-          title: Market Group Id
-        source:
-          type: string
-          title: Source
-        scope:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Scope
-      type: object
-      required:
-      - market_group_id
-      - source
-      title: HiddenVisibilityLocation
-    CollectionAutoLift:
-      properties:
-        score:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Score
-        pinned_ctr:
-          type: number
-          title: Pinned Ctr
-          default: 0
-        auto_ctr:
-          type: number
-          title: Auto Ctr
-          default: 0
-        delta_pts:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Delta Pts
-      type: object
-      title: CollectionAutoLift
-      description: 'Derived "Auto Lift" score: how the click-through rate of auto-sorted
-
-        (non-pinned) products compares to the merchant''s manually pinned products.
-
-
-        ``score`` is normalised to 0-100 where ``50`` means auto and pinned perform
-
-        equally, ``100`` means auto CTR is >= 2x pinned CTR, and ``0`` means auto
-
-        products get no clicks. Computed as ``clamp(50 * auto_ctr / pinned_ctr, 0,
-
-        100)``. It is ``None`` when the collection has no pinned products or no
-
-        auto (non-pinned) products, so there is nothing to compare. ``pinned_ctr``
-
-        and ``auto_ctr`` are percentages (0-100); ``delta_pts`` is
-
-        ``auto_ctr - pinned_ctr`` in percentage points.'
-    OnSaleMetadata:
+      - auto
+      - search
+      - preview
+      title: CollectionProductMode
+    NewInMetadata:
       properties:
         type:
           type: string
           enum:
-          - on_sale
-          const: on_sale
+          - new_in
+          const: new_in
           title: Type
-          default: on_sale
-        min_percentage:
-          type: integer
-          title: Min Percentage
-        max_percentage:
-          type: integer
-          title: Max Percentage
-      type: object
-      required:
-      - min_percentage
-      - max_percentage
-      title: OnSaleMetadata
-    ContentBlock:
-      properties:
-        span_columns:
-          type: integer
-          title: Span Columns
-        span_rows:
-          type: integer
-          title: Span Rows
-        position:
-          $ref: '#/components/schemas/ContentPosition'
-        row:
-          type: integer
-          title: Row
-        content:
-          anyOf:
-          - $ref: '#/components/schemas/ImageContent'
-          - $ref: '#/components/schemas/VideoContent'
-          title: Content
-      type: object
-      required:
-      - span_columns
-      - span_rows
-      - position
-      - row
-      - content
-      title: ContentBlock
-    CollectionMarketContext:
-      properties:
-        market_group_id:
-          type: string
-          title: Market Group Id
-        market_id:
+          default: new_in
+        created_at:
           anyOf:
           - type: string
+            format: date-time
           - type: 'null'
-          title: Market Id
-        resolved_market:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Resolved Market
+          title: Created At
       type: object
-      required:
-      - market_group_id
-      title: CollectionMarketContext
+      title: NewInMetadata
     CollectionProductsRequest:
       properties:
         locale_id:
@@ -3855,159 +3767,6 @@ components:
       - collection_type
       - appear_in_quicklinks
       title: CollectionChild
-    CollectionMetricsSummary:
-      properties:
-        period:
-          $ref: '#/components/schemas/CollectionMetricsPeriod'
-        total_revenue:
-          $ref: '#/components/schemas/CollectionRevenueMetric'
-        total_views:
-          $ref: '#/components/schemas/CollectionMetricValue'
-        total_clicks:
-          $ref: '#/components/schemas/CollectionMetricValue'
-        avg_ctr:
-          $ref: '#/components/schemas/CollectionRateMetric'
-        units_sold:
-          $ref: '#/components/schemas/CollectionMetricValue'
-        avg_str:
-          $ref: '#/components/schemas/CollectionRateMetric'
-        add_to_carts:
-          allOf:
-          - $ref: '#/components/schemas/CollectionMetricValue'
-          default:
-            value: 0
-        dead_stock:
-          allOf:
-          - $ref: '#/components/schemas/CollectionMetricValue'
-          default:
-            value: 0
-        avg_stock_coverage_days:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Avg Stock Coverage Days
-        rpm:
-          allOf:
-          - $ref: '#/components/schemas/CollectionRevenueMetric'
-          default:
-            value: 0
-            currency: ''
-        velocity:
-          allOf:
-          - $ref: '#/components/schemas/CollectionMetricValue'
-          default:
-            value: 0
-        auto_lift:
-          allOf:
-          - $ref: '#/components/schemas/CollectionAutoLift'
-          default:
-            pinned_ctr: 0
-            auto_ctr: 0
-        top_product:
-          anyOf:
-          - $ref: '#/components/schemas/CollectionTopProduct'
-          - type: 'null'
-      type: object
-      required:
-      - period
-      - total_revenue
-      - total_views
-      - total_clicks
-      - avg_ctr
-      - units_sold
-      - avg_str
-      title: CollectionMetricsSummary
-    CollectionSummary:
-      properties:
-        collection_id:
-          type: string
-          format: uuid
-          title: Collection Id
-        parent_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Parent Id
-        collection_type:
-          $ref: '#/components/schemas/CollectionType'
-        externally_owned:
-          type: boolean
-          title: Externally Owned
-        title:
-          type: string
-          title: Title
-        uri:
-          type: string
-          title: Uri
-        updated_at:
-          type: string
-          title: Updated At
-        n_main_products:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: N Main Products
-        manual_product_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Manual Product Count
-        image_urls:
-          items:
-            type: string
-          type: array
-          title: Image Urls
-          default: []
-        cover_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Cover Image Url
-        chunk_type:
-          anyOf:
-          - $ref: '#/components/schemas/ChunkType'
-          - type: 'null'
-        metrics:
-          anyOf:
-          - $ref: '#/components/schemas/CollectionMetricsSummary'
-          - type: 'null'
-      type: object
-      required:
-      - collection_id
-      - collection_type
-      - externally_owned
-      - title
-      - uri
-      - updated_at
-      title: CollectionSummary
-    CollectionTopProduct:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Image Url
-        revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenue
-      type: object
-      required:
-      - main_product_id
-      title: CollectionTopProduct
-      description: 'The highest-revenue product in a collection, for the overview table''s
-
-        "Top Product" column. ``image_url`` is the product''s first image (or None).'
     AnalyticsInventoryBreakdown:
       properties:
         hidden:
@@ -4077,6 +3836,164 @@ components:
         ``variants_total`` are the raw sums). ``None`` when the merchant has no
 
         variant-level inventory data.'
+    CollectionMetricsPeriod:
+      properties:
+        start:
+          type: string
+          format: date
+          title: Start
+        end:
+          type: string
+          format: date
+          title: End
+      type: object
+      required:
+      - start
+      - end
+      title: CollectionMetricsPeriod
+    CollectionType:
+      type: string
+      enum:
+      - long_tail_collection
+      - campaign
+      - category
+      - smart_pick
+      - style
+      - brand
+      - look
+      title: CollectionType
+    ContentBlock:
+      properties:
+        span_columns:
+          type: integer
+          title: Span Columns
+        span_rows:
+          type: integer
+          title: Span Rows
+        position:
+          $ref: '#/components/schemas/ContentPosition'
+        row:
+          type: integer
+          title: Row
+        content:
+          anyOf:
+          - $ref: '#/components/schemas/ImageContent'
+          - $ref: '#/components/schemas/VideoContent'
+          title: Content
+      type: object
+      required:
+      - span_columns
+      - span_rows
+      - position
+      - row
+      - content
+      title: ContentBlock
+    HiddenVisibilityLocation:
+      properties:
+        market_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Market Id
+        market_group_id:
+          type: string
+          title: Market Group Id
+        source:
+          type: string
+          title: Source
+        scope:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scope
+      type: object
+      required:
+      - market_group_id
+      - source
+      title: HiddenVisibilityLocation
+    InactiveMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - inactive
+          const: inactive
+          title: Type
+          default: inactive
+      type: object
+      title: InactiveMetadata
+    ProductMetrics:
+      properties:
+        clicks:
+          type: integer
+          title: Clicks
+          default: 0
+        prev_clicks:
+          type: integer
+          title: Prev Clicks
+          default: 0
+        views:
+          type: integer
+          title: Views
+          default: 0
+        prev_views:
+          type: integer
+          title: Prev Views
+          default: 0
+        sold:
+          type: integer
+          title: Sold
+          default: 0
+        prev_sold:
+          type: integer
+          title: Prev Sold
+          default: 0
+        revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenue
+          default: 0
+        prev_revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Prev Revenue
+          default: 0
+        revenue_currency:
+          type: string
+          title: Revenue Currency
+          default: ''
+        inventory:
+          type: integer
+          title: Inventory
+          default: 0
+        click_through_rate:
+          type: number
+          title: Click Through Rate
+          default: 0
+        prev_click_through_rate:
+          type: number
+          title: Prev Click Through Rate
+          default: 0
+        sell_through_rate:
+          type: number
+          title: Sell Through Rate
+          default: 0
+        prev_sell_through_rate:
+          type: number
+          title: Prev Sell Through Rate
+          default: 0
+        add_to_carts:
+          type: integer
+          title: Add To Carts
+          default: 0
+        prev_add_to_carts:
+          type: integer
+          title: Prev Add To Carts
+          default: 0
+      type: object
+      title: ProductMetrics
     CollectionSaveRequest:
       properties:
         market_group_id:
@@ -4191,88 +4108,118 @@ components:
           title: Added Filter Rules
       type: object
       title: CollectionSaveRequest
-    PortalSearchFilter:
+    AnalyticsPinnedVsAutoItem:
       properties:
-        field:
+        main_product_id:
           type: string
-          title: Field
-        op:
-          type: string
-          enum:
-          - eq
-          - neq
-          - in
-          - nin
-          - leq
-          - geq
-          - inrange
-          title: Op
-        data:
-          title: Data
-        meta:
-          title: Meta
-        id:
+          title: Main Product Id
+        title:
           anyOf:
           - type: string
           - type: 'null'
-          title: Id
-      type: object
-      required:
-      - field
-      - op
-      title: PortalSearchFilter
-    CollectionProductsResponse:
-      properties:
-        products:
-          items:
-            $ref: '#/components/schemas/CollectionProduct'
-          type: array
-          title: Products
-        next_cursor:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Cursor
-        has_more:
-          type: boolean
-          title: Has More
-          default: false
-        sort_options:
-          items:
-            $ref: '#/components/schemas/SortOptionItem'
-          type: array
-          title: Sort Options
-          default: []
-        stats:
-          anyOf:
-          - $ref: '#/components/schemas/ProductListingStats'
-          - type: 'null'
-      type: object
-      required:
-      - products
-      title: CollectionProductsResponse
-    CollectionRateMetric:
-      properties:
-        value:
+          title: Title
+        pinned_ctr:
           type: number
-          title: Value
+          title: Pinned Ctr
+          default: 0
+        auto_ctr:
+          type: number
+          title: Auto Ctr
           default: 0
         delta_pts:
-          anyOf:
-          - type: number
-          - type: 'null'
+          type: number
           title: Delta Pts
+          default: 0
+        verdict:
+          type: string
+          enum:
+          - better_auto
+          - better_pinned
+          - no_data
+          title: Verdict
       type: object
-      title: CollectionRateMetric
-    BestsellerMetadata:
+      required:
+      - main_product_id
+      - verdict
+      title: AnalyticsPinnedVsAutoItem
+      description: 'Per-pinned-product comparison against the collection''s auto-cohort CTR.
+
+
+        ``pinned_ctr`` is the product''s own CTR; ``auto_ctr`` is the aggregate CTR of
+
+        all non-pinned products (a documented approximation of the counterfactual
+
+        "if this had been auto-sorted"). ``delta_pts`` is ``auto_ctr - pinned_ctr``.
+
+        ``verdict`` is ``better_auto`` when auto beats pinned by >0.5pts,
+
+        ``better_pinned`` when pinned beats auto by >0.5pts, else ``no_data`` (neutral
+
+        band or the product got no views). CTRs are percentages (0-100).'
+    AnalyticsPositionBand:
+      properties:
+        band:
+          type: string
+          enum:
+          - hero
+          - mid
+          - tail
+          - bottom
+          title: Band
+        label:
+          type: string
+          title: Label
+        avg_ctr:
+          type: number
+          title: Avg Ctr
+          default: 0
+        clicks:
+          type: integer
+          title: Clicks
+          default: 0
+        product_count:
+          type: integer
+          title: Product Count
+          default: 0
+      type: object
+      required:
+      - band
+      - label
+      title: AnalyticsPositionBand
+      description: 'Aggregate click-through performance for a contiguous band of positions in
+
+        the collection''s sort order (pinned first, then auto).
+
+
+        Bands are fixed by 1-based position: ``hero`` = positions 1-3, ``mid`` = 4-8,
+
+        ``tail`` = 9-12, ``bottom`` = 13+. ``avg_ctr`` is a percentage (0-100),
+
+        ``clicks / views * 100`` aggregated over the in-band products that have
+
+        metrics. ``clicks`` is the total clicks in the band. ``product_count`` is the
+
+        number of products present in the ordered scope within the band (regardless
+
+        of whether they have metrics). All four bands are always returned, even when
+
+        empty.'
+    ContentPosition:
+      type: string
+      enum:
+      - left
+      - right
+      - center
+      title: ContentPosition
+    StarProductMetadata:
       properties:
         type:
           type: string
           enum:
-          - bestseller
-          const: bestseller
+          - star_product
+          const: star_product
           title: Type
-          default: bestseller
+          default: star_product
         meta_data:
           type: number
           title: Meta Data
@@ -4283,14 +4230,67 @@ components:
       required:
       - meta_data
       - n_days
-      title: BestsellerMetadata
-    CollectionProductMode:
-      type: string
-      enum:
-      - auto
-      - search
-      - preview
-      title: CollectionProductMode
+      title: StarProductMetadata
+    OnSaleMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - on_sale
+          const: on_sale
+          title: Type
+          default: on_sale
+        min_percentage:
+          type: integer
+          title: Min Percentage
+        max_percentage:
+          type: integer
+          title: Max Percentage
+      type: object
+      required:
+      - min_percentage
+      - max_percentage
+      title: OnSaleMetadata
+    CollectionCurationResponse:
+      properties:
+        pinned_products:
+          items:
+            $ref: '#/components/schemas/CollectionProduct'
+          type: array
+          title: Pinned Products
+        hidden_products:
+          items:
+            $ref: '#/components/schemas/CollectionProduct'
+          type: array
+          title: Hidden Products
+        overrides:
+          $ref: '#/components/schemas/CollectionCurationOverrides'
+      type: object
+      required:
+      - pinned_products
+      - hidden_products
+      - overrides
+      title: CollectionCurationResponse
+    LimitedAvailabilityMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - limited_availability
+          const: limited_availability
+          title: Type
+          default: limited_availability
+        hidden_market_count:
+          type: integer
+          title: Hidden Market Count
+        total_market_count:
+          type: integer
+          title: Total Market Count
+      type: object
+      required:
+      - hidden_market_count
+      - total_market_count
+      title: LimitedAvailabilityMetadata
   securitySchemes:
     Auth0:
       type: oauth2

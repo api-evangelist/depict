@@ -101,34 +101,25 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
+    UpdateCollectionProductImagesRequest:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        main_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Main Image Url
+        hover_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hover Image Url
+        video:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Video
       type: object
-      title: HTTPValidationError
-    UpdateCollectionProductImagesResult:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        collection_id:
-          type: string
-          title: Collection Id
-        product_ids:
-          items:
-            type: string
-          type: array
-          title: Product Ids
-      type: object
-      required:
-      - main_product_id
-      - collection_id
-      - product_ids
-      title: UpdateCollectionProductImagesResult
+      title: UpdateCollectionProductImagesRequest
     ValidationError:
       properties:
         loc:
@@ -165,25 +156,6 @@ components:
       - main_product_id
       - product_ids
       title: UpdateProductMediaResult
-    UpdateCollectionProductImagesRequest:
-      properties:
-        main_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Main Image Url
-        hover_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hover Image Url
-        video:
-          anyOf:
-          - type: object
-          - type: 'null'
-          title: Video
-      type: object
-      title: UpdateCollectionProductImagesRequest
     UpdateProductMediaRequest:
       properties:
         main_image_url:
@@ -198,6 +170,34 @@ components:
           title: Hover Image Url
       type: object
       title: UpdateProductMediaRequest
+    UpdateCollectionProductImagesResult:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        collection_id:
+          type: string
+          title: Collection Id
+        product_ids:
+          items:
+            type: string
+          type: array
+          title: Product Ids
+      type: object
+      required:
+      - main_product_id
+      - collection_id
+      - product_ids
+      title: UpdateCollectionProductImagesResult
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     Auth0:
       type: oauth2

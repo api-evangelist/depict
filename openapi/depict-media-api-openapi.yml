@@ -131,135 +131,6 @@ paths:
       - Media
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    GetMediaInfoNodeMediaImageFileErrors:
-      properties:
-        code:
-          $ref: '#/components/schemas/FileErrorCode'
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Details
-        message:
-          type: string
-          title: Message
-      type: object
-      required:
-      - code
-      - details
-      - message
-      title: GetMediaInfoNodeMediaImageFileErrors
-    FileStatus:
-      type: string
-      enum:
-      - UPLOADED
-      - PROCESSING
-      - READY
-      - FAILED
-      title: FileStatus
-    GetMediaInfoNodeVideoFileErrors:
-      properties:
-        code:
-          $ref: '#/components/schemas/FileErrorCode'
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Details
-        message:
-          type: string
-          title: Message
-      type: object
-      required:
-      - code
-      - details
-      - message
-      title: GetMediaInfoNodeVideoFileErrors
-    MediaType:
-      type: string
-      enum:
-      - image
-      - video
-      title: MediaType
-    FileErrorCode:
-      type: string
-      enum:
-      - UNKNOWN
-      - INVALID_SIGNED_URL
-      - IMAGE_DOWNLOAD_FAILURE
-      - IMAGE_PROCESSING_FAILURE
-      - MEDIA_TIMEOUT_ERROR
-      - EXTERNAL_VIDEO_NOT_FOUND
-      - EXTERNAL_VIDEO_UNLISTED
-      - EXTERNAL_VIDEO_INVALID_ASPECT_RATIO
-      - EXTERNAL_VIDEO_EMBED_DISABLED
-      - EXTERNAL_VIDEO_EMBED_NOT_FOUND_OR_TRANSCODING
-      - GENERIC_FILE_DOWNLOAD_FAILURE
-      - GENERIC_FILE_INVALID_SIZE
-      - VIDEO_METADATA_READ_ERROR
-      - VIDEO_INVALID_FILETYPE_ERROR
-      - VIDEO_MIN_WIDTH_ERROR
-      - VIDEO_MAX_WIDTH_ERROR
-      - VIDEO_MIN_HEIGHT_ERROR
-      - VIDEO_MAX_HEIGHT_ERROR
-      - VIDEO_MIN_DURATION_ERROR
-      - VIDEO_MAX_DURATION_ERROR
-      - VIDEO_VALIDATION_ERROR
-      - MODEL3D_VALIDATION_ERROR
-      - MODEL3D_THUMBNAIL_GENERATION_ERROR
-      - MODEL3D_THUMBNAIL_REGENERATION_ERROR
-      - MODEL3D_GLB_TO_USDZ_CONVERSION_ERROR
-      - MODEL3D_GLB_OUTPUT_CREATION_ERROR
-      - MODEL3D_PROCESSING_FAILURE
-      - UNSUPPORTED_IMAGE_FILE_TYPE
-      - INVALID_IMAGE_FILE_SIZE
-      - INVALID_IMAGE_ASPECT_RATIO
-      - INVALID_IMAGE_RESOLUTION
-      - FILE_STORAGE_LIMIT_EXCEEDED
-      - DUPLICATE_FILENAME_ERROR
-      title: FileErrorCode
-    GetMediaInfoNodeVideoSources:
-      properties:
-        format:
-          type: string
-          title: Format
-        height:
-          type: integer
-          title: Height
-        width:
-          type: integer
-          title: Width
-        mimeType:
-          type: string
-          title: Mimetype
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - format
-      - height
-      - width
-      - mimeType
-      - url
-      title: GetMediaInfoNodeVideoSources
-    MediaContentType:
-      type: string
-      enum:
-      - VIDEO
-      - EXTERNAL_VIDEO
-      - MODEL_3D
-      - IMAGE
-      title: MediaContentType
     GetMediaInfoNodeMediaImageImage:
       properties:
         altText:
@@ -292,16 +163,6 @@ components:
       - url
       - width
       title: GetMediaInfoNodeMediaImageImage
-    Body_upload_media__merchant_id__upload_post:
-      properties:
-        file:
-          type: string
-          format: binary
-          title: File
-      type: object
-      required:
-      - file
-      title: Body_upload_media__merchant_id__upload_post
     ValidationError:
       properties:
         loc:
@@ -323,45 +184,49 @@ components:
       - msg
       - type
       title: ValidationError
-    GetMediaInfoNodeMediaImage:
+    GetMediaInfoNodeVideoSources:
       properties:
-        __typename:
+        format:
           type: string
-          enum:
-          - MediaImage
-          const: MediaImage
-          title: '  Typename'
-        id:
+          title: Format
+        height:
+          type: integer
+          title: Height
+        width:
+          type: integer
+          title: Width
+        mimeType:
           type: string
-          title: Id
-        fileStatus:
-          $ref: '#/components/schemas/FileStatus'
-        fileErrors:
-          items:
-            $ref: '#/components/schemas/GetMediaInfoNodeMediaImageFileErrors'
-          type: array
-          title: Fileerrors
-        mediaContentType:
-          $ref: '#/components/schemas/MediaContentType'
-        alt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Alt
-        image:
-          anyOf:
-          - $ref: '#/components/schemas/GetMediaInfoNodeMediaImageImage'
-          - type: 'null'
+          title: Mimetype
+        url:
+          type: string
+          title: Url
       type: object
       required:
-      - __typename
-      - id
-      - fileStatus
-      - fileErrors
-      - mediaContentType
-      - alt
-      - image
-      title: GetMediaInfoNodeMediaImage
+      - format
+      - height
+      - width
+      - mimeType
+      - url
+      title: GetMediaInfoNodeVideoSources
+    Body_upload_media__merchant_id__upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+      type: object
+      required:
+      - file
+      title: Body_upload_media__merchant_id__upload_post
+    FileStatus:
+      type: string
+      enum:
+      - UPLOADED
+      - PROCESSING
+      - READY
+      - FAILED
+      title: FileStatus
     GetMediaInfoNodeVideo:
       properties:
         __typename:
@@ -406,6 +271,141 @@ components:
       - mediaContentType
       - sources
       title: GetMediaInfoNodeVideo
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    MediaType:
+      type: string
+      enum:
+      - image
+      - video
+      title: MediaType
+    GetMediaInfoNodeMediaImage:
+      properties:
+        __typename:
+          type: string
+          enum:
+          - MediaImage
+          const: MediaImage
+          title: '  Typename'
+        id:
+          type: string
+          title: Id
+        fileStatus:
+          $ref: '#/components/schemas/FileStatus'
+        fileErrors:
+          items:
+            $ref: '#/components/schemas/GetMediaInfoNodeMediaImageFileErrors'
+          type: array
+          title: Fileerrors
+        mediaContentType:
+          $ref: '#/components/schemas/MediaContentType'
+        alt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alt
+        image:
+          anyOf:
+          - $ref: '#/components/schemas/GetMediaInfoNodeMediaImageImage'
+          - type: 'null'
+      type: object
+      required:
+      - __typename
+      - id
+      - fileStatus
+      - fileErrors
+      - mediaContentType
+      - alt
+      - image
+      title: GetMediaInfoNodeMediaImage
+    FileErrorCode:
+      type: string
+      enum:
+      - UNKNOWN
+      - INVALID_SIGNED_URL
+      - IMAGE_DOWNLOAD_FAILURE
+      - IMAGE_PROCESSING_FAILURE
+      - MEDIA_TIMEOUT_ERROR
+      - EXTERNAL_VIDEO_NOT_FOUND
+      - EXTERNAL_VIDEO_UNLISTED
+      - EXTERNAL_VIDEO_INVALID_ASPECT_RATIO
+      - EXTERNAL_VIDEO_EMBED_DISABLED
+      - EXTERNAL_VIDEO_EMBED_NOT_FOUND_OR_TRANSCODING
+      - GENERIC_FILE_DOWNLOAD_FAILURE
+      - GENERIC_FILE_INVALID_SIZE
+      - VIDEO_METADATA_READ_ERROR
+      - VIDEO_INVALID_FILETYPE_ERROR
+      - VIDEO_MIN_WIDTH_ERROR
+      - VIDEO_MAX_WIDTH_ERROR
+      - VIDEO_MIN_HEIGHT_ERROR
+      - VIDEO_MAX_HEIGHT_ERROR
+      - VIDEO_MIN_DURATION_ERROR
+      - VIDEO_MAX_DURATION_ERROR
+      - VIDEO_VALIDATION_ERROR
+      - MODEL3D_VALIDATION_ERROR
+      - MODEL3D_THUMBNAIL_GENERATION_ERROR
+      - MODEL3D_THUMBNAIL_REGENERATION_ERROR
+      - MODEL3D_GLB_TO_USDZ_CONVERSION_ERROR
+      - MODEL3D_GLB_OUTPUT_CREATION_ERROR
+      - MODEL3D_PROCESSING_FAILURE
+      - UNSUPPORTED_IMAGE_FILE_TYPE
+      - INVALID_IMAGE_FILE_SIZE
+      - INVALID_IMAGE_ASPECT_RATIO
+      - INVALID_IMAGE_RESOLUTION
+      - FILE_STORAGE_LIMIT_EXCEEDED
+      - DUPLICATE_FILENAME_ERROR
+      title: FileErrorCode
+    GetMediaInfoNodeVideoFileErrors:
+      properties:
+        code:
+          $ref: '#/components/schemas/FileErrorCode'
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Details
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - code
+      - details
+      - message
+      title: GetMediaInfoNodeVideoFileErrors
+    GetMediaInfoNodeMediaImageFileErrors:
+      properties:
+        code:
+          $ref: '#/components/schemas/FileErrorCode'
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Details
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - code
+      - details
+      - message
+      title: GetMediaInfoNodeMediaImageFileErrors
+    MediaContentType:
+      type: string
+      enum:
+      - VIDEO
+      - EXTERNAL_VIDEO
+      - MODEL_3D
+      - IMAGE
+      title: MediaContentType
   securitySchemes:
     Auth0:
       type: oauth2

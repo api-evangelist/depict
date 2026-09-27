@@ -96,15 +96,19 @@ paths:
       - Shopify
 components:
   schemas:
-    HTTPValidationError:
+    ShopifyStorefrontApiCredentials:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        storefront_api_key:
+          type: string
+          title: Storefront Api Key
+        store_domain:
+          type: string
+          title: Store Domain
       type: object
-      title: HTTPValidationError
+      required:
+      - storefront_api_key
+      - store_domain
+      title: ShopifyStorefrontApiCredentials
     ValidationError:
       properties:
         loc:
@@ -126,19 +130,15 @@ components:
       - msg
       - type
       title: ValidationError
-    ShopifyStorefrontApiCredentials:
+    HTTPValidationError:
       properties:
-        storefront_api_key:
-          type: string
-          title: Storefront Api Key
-        store_domain:
-          type: string
-          title: Store Domain
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - storefront_api_key
-      - store_domain
-      title: ShopifyStorefrontApiCredentials
+      title: HTTPValidationError
   securitySchemes:
     Auth0:
       type: oauth2

@@ -256,50 +256,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    LiteMultiStoreMerchantCollection:
+    DisconnectCollectionRequest:
       properties:
-        merchant_id:
-          type: string
-          title: Merchant Id
-        collection_id:
-          type: string
-          title: Collection Id
-      type: object
-      required:
-      - merchant_id
-      - collection_id
-      title: LiteMultiStoreMerchantCollection
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    LiteMultiStoreCollectionMappings:
-      properties:
-        group_collection_id:
-          type: string
-          title: Group Collection Id
-        collections:
-          items:
-            $ref: '#/components/schemas/LiteMultiStoreCollectionMapping'
-          type: array
-          title: Collections
-      type: object
-      required:
-      - group_collection_id
-      - collections
-      title: LiteMultiStoreCollectionMappings
-    ConnectCollectionRequest:
-      properties:
-        group_collection_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Group Collection Id
         collections:
           items:
             $ref: '#/components/schemas/LiteMultiStoreMerchantCollection'
@@ -307,9 +265,8 @@ components:
           title: Collections
       type: object
       required:
-      - group_collection_id
       - collections
-      title: ConnectCollectionRequest
+      title: DisconnectCollectionRequest
     ValidationError:
       properties:
         loc:
@@ -331,8 +288,26 @@ components:
       - msg
       - type
       title: ValidationError
-    DisconnectCollectionRequest:
+    LiteMultiStoreMerchantCollection:
       properties:
+        merchant_id:
+          type: string
+          title: Merchant Id
+        collection_id:
+          type: string
+          title: Collection Id
+      type: object
+      required:
+      - merchant_id
+      - collection_id
+      title: LiteMultiStoreMerchantCollection
+    ConnectCollectionRequest:
+      properties:
+        group_collection_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Collection Id
         collections:
           items:
             $ref: '#/components/schemas/LiteMultiStoreMerchantCollection'
@@ -340,8 +315,9 @@ components:
           title: Collections
       type: object
       required:
+      - group_collection_id
       - collections
-      title: DisconnectCollectionRequest
+      title: ConnectCollectionRequest
     LiteMultiStoreCollection:
       properties:
         merchant_id:
@@ -369,38 +345,36 @@ components:
       - handle
       - image_urls
       title: LiteMultiStoreCollection
-    LiteMultiStoreCollectionResponse:
+    HTTPValidationError:
       properties:
-        connections:
+        detail:
           items:
-            $ref: '#/components/schemas/LiteMultiStoreCollectionMappings'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Connections
-        collections:
-          items:
-            $ref: '#/components/schemas/LiteMultiStoreCollection'
-          type: array
-          title: Collections
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LiteMultiStoreCollectionMapping:
+      properties:
+        merchant_id:
+          type: string
+          title: Merchant Id
+        collection_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Collection Id
+        suggested_collection_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Suggested Collection Id
       type: object
       required:
-      - connections
-      - collections
-      title: LiteMultiStoreCollectionResponse
-    CollectionMappingUpdateRequest:
-      properties:
-        connect:
-          anyOf:
-          - $ref: '#/components/schemas/ConnectCollectionRequest'
-          - type: 'null'
-        disconnect:
-          anyOf:
-          - $ref: '#/components/schemas/DisconnectCollectionRequest'
-          - type: 'null'
-      type: object
-      required:
-      - connect
-      - disconnect
-      title: CollectionMappingUpdateRequest
+      - merchant_id
+      - collection_id
+      - suggested_collection_id
+      title: LiteMultiStoreCollectionMapping
     LiteMultiStoreGroupMerchant:
       properties:
         id:
@@ -427,6 +401,38 @@ components:
       - shopify_domain
       - group_id
       title: LiteMultiStoreGroupMerchant
+    CollectionMappingUpdateRequest:
+      properties:
+        connect:
+          anyOf:
+          - $ref: '#/components/schemas/ConnectCollectionRequest'
+          - type: 'null'
+        disconnect:
+          anyOf:
+          - $ref: '#/components/schemas/DisconnectCollectionRequest'
+          - type: 'null'
+      type: object
+      required:
+      - connect
+      - disconnect
+      title: CollectionMappingUpdateRequest
+    LiteMultiStoreCollectionResponse:
+      properties:
+        connections:
+          items:
+            $ref: '#/components/schemas/LiteMultiStoreCollectionMappings'
+          type: array
+          title: Connections
+        collections:
+          items:
+            $ref: '#/components/schemas/LiteMultiStoreCollection'
+          type: array
+          title: Collections
+      type: object
+      required:
+      - connections
+      - collections
+      title: LiteMultiStoreCollectionResponse
     LiteMultiStoreMerchantCollectionReplication:
       properties:
         merchant_id:
@@ -445,27 +451,21 @@ components:
       - replication_merchant_id
       - collection
       title: LiteMultiStoreMerchantCollectionReplication
-    LiteMultiStoreCollectionMapping:
+    LiteMultiStoreCollectionMappings:
       properties:
-        merchant_id:
+        group_collection_id:
           type: string
-          title: Merchant Id
-        collection_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Collection Id
-        suggested_collection_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Suggested Collection Id
+          title: Group Collection Id
+        collections:
+          items:
+            $ref: '#/components/schemas/LiteMultiStoreCollectionMapping'
+          type: array
+          title: Collections
       type: object
       required:
-      - merchant_id
-      - collection_id
-      - suggested_collection_id
-      title: LiteMultiStoreCollectionMapping
+      - group_collection_id
+      - collections
+      title: LiteMultiStoreCollectionMappings
   securitySchemes:
     Auth0:
       type: oauth2
