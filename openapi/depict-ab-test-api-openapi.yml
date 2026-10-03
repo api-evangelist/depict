@@ -95,27 +95,17 @@ paths:
       - Ab Test
 components:
   schemas:
-    ValidationError:
+    GenerateConclusionRequest:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+        metaobject:
+          $ref: '#/components/schemas/ProAbTest'
+        data:
+          $ref: '#/components/schemas/AbTestMetrics'
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - metaobject
+      - data
+      title: GenerateConclusionRequest
     ProAbTest:
       properties:
         id:
@@ -151,26 +141,6 @@ components:
       - experiment_name
       - notify_email
       title: ProAbTest
-    GenerateConclusionRequest:
-      properties:
-        metaobject:
-          $ref: '#/components/schemas/ProAbTest'
-        data:
-          $ref: '#/components/schemas/AbTestMetrics'
-      type: object
-      required:
-      - metaobject
-      - data
-      title: GenerateConclusionRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     AbTimeseriesMetric:
       properties:
         day:
@@ -192,6 +162,15 @@ components:
       - metric_a
       - metric_b
       title: AbTimeseriesMetric
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     AbTestMetrics:
       properties:
         page_views:
@@ -257,6 +236,27 @@ components:
       - purchases_thru_rate
       - p_value_purchases_thru_rate
       title: AbTestMetrics
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     Auth0:
       type: oauth2

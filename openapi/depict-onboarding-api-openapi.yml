@@ -114,27 +114,6 @@ paths:
       - Onboarding
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     ThemeOnboardingResult:
       properties:
         theme_id:
@@ -199,6 +178,20 @@ components:
       - changed
       - error
       title: OriginalThemeOnboardingResource
+    ThemeOnboardingResource:
+      properties:
+        path:
+          type: string
+          format: path
+          title: Path
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - path
+      - content
+      title: ThemeOnboardingResource
     HTTPValidationError:
       properties:
         detail:
@@ -233,20 +226,27 @@ components:
       - depict_added
       - has_depict_collection_template
       title: ShopifyThemeWithDepictInfo
-    ThemeOnboardingResource:
+    ValidationError:
       properties:
-        path:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          format: path
-          title: Path
-        content:
+          title: Message
+        type:
           type: string
-          title: Content
+          title: Error Type
       type: object
       required:
-      - path
-      - content
-      title: ThemeOnboardingResource
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     Auth0:
       type: oauth2

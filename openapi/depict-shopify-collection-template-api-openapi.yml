@@ -158,27 +158,19 @@ paths:
       - Shopify Collection Template
 components:
   schemas:
-    ValidationError:
+    CollectionTemplate:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        template_suffix:
           type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Template Suffix
+        is_depict_template:
+          type: boolean
+          title: Is Depict Template
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - template_suffix
+      - is_depict_template
+      title: CollectionTemplate
     GetCollectionTemplatesResponse:
       properties:
         theme_onboarding_status:
@@ -197,6 +189,28 @@ components:
       - user_approved
       - templates
       title: GetCollectionTemplatesResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LiteColumnSettings:
+      properties:
+        desktop_columns:
+          type: integer
+          title: Desktop Columns
+        mobile_columns:
+          type: integer
+          title: Mobile Columns
+      type: object
+      required:
+      - desktop_columns
+      - mobile_columns
+      title: LiteColumnSettings
     CollectionTemplateWithActiveAndWrittenStatus:
       properties:
         template_suffix:
@@ -218,6 +232,27 @@ components:
       - active
       - written
       title: CollectionTemplateWithActiveAndWrittenStatus
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ThemeOnboardingStatus:
       type: string
       enum:
@@ -226,41 +261,6 @@ components:
       - failure
       - pending
       title: ThemeOnboardingStatus
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    CollectionTemplate:
-      properties:
-        template_suffix:
-          type: string
-          title: Template Suffix
-        is_depict_template:
-          type: boolean
-          title: Is Depict Template
-      type: object
-      required:
-      - template_suffix
-      - is_depict_template
-      title: CollectionTemplate
-    LiteColumnSettings:
-      properties:
-        desktop_columns:
-          type: integer
-          title: Desktop Columns
-        mobile_columns:
-          type: integer
-          title: Mobile Columns
-      type: object
-      required:
-      - desktop_columns
-      - mobile_columns
-      title: LiteColumnSettings
   securitySchemes:
     Auth0:
       type: oauth2

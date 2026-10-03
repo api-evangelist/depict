@@ -45,6 +45,23 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    RecommendResponseV3:
+      properties:
+        displays:
+          items:
+            $ref: '#/components/schemas/APIDisplay'
+          type: array
+          title: Displays
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      additionalProperties: false
+      type: object
+      required:
+      - displays
+      title: RecommendResponseV3
     RecommendRequestV3:
       properties:
         merchant:
@@ -92,6 +109,15 @@ components:
       - locale
       - type
       title: RecommendRequestV3
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -113,23 +139,6 @@ components:
       - msg
       - type
       title: ValidationError
-    RecommendResponseV3:
-      properties:
-        displays:
-          items:
-            $ref: '#/components/schemas/APIDisplay'
-          type: array
-          title: Displays
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      additionalProperties: false
-      type: object
-      required:
-      - displays
-      title: RecommendResponseV3
     APIDisplay:
       properties:
         variant_index:
@@ -157,15 +166,6 @@ components:
       - variant_skus
       - variant_product_ids
       title: APIDisplay
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     APIKeyQuery:
       type: apiKey

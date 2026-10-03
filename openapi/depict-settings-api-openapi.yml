@@ -555,6 +555,54 @@ paths:
     - url: ''
 components:
   schemas:
+    AppPricingInterval:
+      type: string
+      enum:
+      - ANNUAL
+      - EVERY_30_DAYS
+      title: AppPricingInterval
+    DynamicStatusConfig:
+      properties:
+        new_in_days:
+          type: integer
+          title: New In Days
+        bestseller_n_products:
+          type: integer
+          title: Bestseller N Products
+        slowmover_n_products:
+          type: integer
+          title: Slowmover N Products
+        low_in_stock_percentage:
+          type: integer
+          title: Low In Stock Percentage
+        order_data_days:
+          type: integer
+          title: Order Data Days
+        trending_n_products:
+          type: integer
+          title: Trending N Products
+          default: 30
+      type: object
+      required:
+      - new_in_days
+      - bestseller_n_products
+      - slowmover_n_products
+      - low_in_stock_percentage
+      - order_data_days
+      title: DynamicStatusConfig
+    SubscriptionDiscount:
+      properties:
+        percentage:
+          type: number
+          title: Percentage
+        duration_intervals:
+          type: integer
+          title: Duration Intervals
+      type: object
+      required:
+      - percentage
+      - duration_intervals
+      title: SubscriptionDiscount
     ShopifyAppSubscriptionCreatePayload:
       properties:
         confirmation_url:
@@ -564,6 +612,23 @@ components:
       required:
       - confirmation_url
       title: ShopifyAppSubscriptionCreatePayload
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SubscriptionName:
+      type: string
+      enum:
+      - Basic
+      - Essential
+      - Pro
+      - Custom
+      title: SubscriptionName
     ValidationError:
       properties:
         loc:
@@ -585,89 +650,6 @@ components:
       - msg
       - type
       title: ValidationError
-    AppPricingInterval:
-      type: string
-      enum:
-      - ANNUAL
-      - EVERY_30_DAYS
-      title: AppPricingInterval
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    SubscriptionDiscount:
-      properties:
-        percentage:
-          type: number
-          title: Percentage
-        duration_intervals:
-          type: integer
-          title: Duration Intervals
-      type: object
-      required:
-      - percentage
-      - duration_intervals
-      title: SubscriptionDiscount
-    ActiveSubscriptionDTO:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          $ref: '#/components/schemas/SubscriptionName'
-        price:
-          type: string
-          title: Price
-        interval:
-          $ref: '#/components/schemas/AppPricingInterval'
-        billing_on:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Billing On
-        trial_ends_on:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Trial Ends On
-        test:
-          type: boolean
-          title: Test
-        status:
-          type: string
-          enum:
-          - pending
-          - accepted
-          - active
-          - declined
-          - expired
-          - frozen
-          - cancelled
-          title: Status
-      type: object
-      required:
-      - id
-      - name
-      - price
-      - interval
-      - billing_on
-      - trial_ends_on
-      - test
-      - status
-      title: ActiveSubscriptionDTO
-    SubscriptionName:
-      type: string
-      enum:
-      - Basic
-      - Essential
-      - Pro
-      - Custom
-      title: SubscriptionName
     SubscriptionStatus:
       properties:
         num_active_collections:
@@ -736,61 +718,53 @@ components:
       - store_error
       - subscription
       title: SubscriptionStatus
-    DynamicStatusConfig:
+    ActiveSubscriptionDTO:
       properties:
-        new_in_days:
+        id:
           type: integer
-          title: New In Days
-        bestseller_n_products:
-          type: integer
-          title: Bestseller N Products
-        slowmover_n_products:
-          type: integer
-          title: Slowmover N Products
-        low_in_stock_percentage:
-          type: integer
-          title: Low In Stock Percentage
-        order_data_days:
-          type: integer
-          title: Order Data Days
-        trending_n_products:
-          type: integer
-          title: Trending N Products
-          default: 30
-      type: object
-      required:
-      - new_in_days
-      - bestseller_n_products
-      - slowmover_n_products
-      - low_in_stock_percentage
-      - order_data_days
-      title: DynamicStatusConfig
-    UpdateExcludeProductsResult:
-      properties:
-        exclude_main_product_ids:
-          items:
-            type: string
-          type: array
-          title: Exclude Main Product Ids
-      type: object
-      required:
-      - exclude_main_product_ids
-      title: UpdateExcludeProductsResult
-    UpdateAutoHideSettingsResult:
-      properties:
-        auto_hide_oos:
+          title: Id
+        name:
+          $ref: '#/components/schemas/SubscriptionName'
+        price:
+          type: string
+          title: Price
+        interval:
+          $ref: '#/components/schemas/AppPricingInterval'
+        billing_on:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Billing On
+        trial_ends_on:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trial Ends On
+        test:
           type: boolean
-          title: Auto Hide Oos
-        exclude_main_product_ids:
-          items:
-            type: string
-          type: array
-          title: Exclude Main Product Ids
+          title: Test
+        status:
+          type: string
+          enum:
+          - pending
+          - accepted
+          - active
+          - declined
+          - expired
+          - frozen
+          - cancelled
+          title: Status
       type: object
       required:
-      - auto_hide_oos
-      - exclude_main_product_ids
-      title: UpdateAutoHideSettingsResult
+      - id
+      - name
+      - price
+      - interval
+      - billing_on
+      - trial_ends_on
+      - test
+      - status
+      title: ActiveSubscriptionDTO
     UpdateAutoHideSettingsRequest:
       properties:
         auto_hide_oos:
@@ -800,21 +774,6 @@ components:
       required:
       - auto_hide_oos
       title: UpdateAutoHideSettingsRequest
-    UpdateExcludeProductsRequest:
-      properties:
-        main_product_ids:
-          items:
-            type: string
-          type: array
-          title: Main Product Ids
-        exclude:
-          type: boolean
-          title: Exclude
-      type: object
-      required:
-      - main_product_ids
-      - exclude
-      title: UpdateExcludeProductsRequest
     GetAutoHideSettingsResult:
       properties:
         auto_hide_oos:
@@ -830,6 +789,47 @@ components:
       - auto_hide_oos
       - exclude_main_product_ids
       title: GetAutoHideSettingsResult
+    UpdateExcludeProductsRequest:
+      properties:
+        main_product_ids:
+          items:
+            type: string
+          type: array
+          title: Main Product Ids
+        exclude:
+          type: boolean
+          title: Exclude
+      type: object
+      required:
+      - main_product_ids
+      - exclude
+      title: UpdateExcludeProductsRequest
+    UpdateAutoHideSettingsResult:
+      properties:
+        auto_hide_oos:
+          type: boolean
+          title: Auto Hide Oos
+        exclude_main_product_ids:
+          items:
+            type: string
+          type: array
+          title: Exclude Main Product Ids
+      type: object
+      required:
+      - auto_hide_oos
+      - exclude_main_product_ids
+      title: UpdateAutoHideSettingsResult
+    UpdateExcludeProductsResult:
+      properties:
+        exclude_main_product_ids:
+          items:
+            type: string
+          type: array
+          title: Exclude Main Product Ids
+      type: object
+      required:
+      - exclude_main_product_ids
+      title: UpdateExcludeProductsResult
   securitySchemes:
     Auth0:
       type: oauth2

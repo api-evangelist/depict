@@ -70,26 +70,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TrackingRequest:
-      properties:
-        type:
-          type: string
-          title: Type
-        payload:
-          additionalProperties:
-            anyOf:
-            - type: string
-            - items:
-                type: string
-              type: array
-            - type: 'null'
-          type: object
-          title: Payload
-      type: object
-      required:
-      - type
-      - payload
-      title: TrackingRequest
     ValidationError:
       properties:
         loc:
@@ -120,6 +100,26 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    TrackingRequest:
+      properties:
+        type:
+          type: string
+          title: Type
+        payload:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - items:
+                type: string
+              type: array
+            - type: 'null'
+          type: object
+          title: Payload
+      type: object
+      required:
+      - type
+      - payload
+      title: TrackingRequest
   securitySchemes:
     Auth0:
       type: oauth2
