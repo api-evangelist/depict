@@ -181,6 +181,19 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ColumnSettings:
+      properties:
+        mobile_columns:
+          type: integer
+          title: Mobile Columns
+        desktop_columns:
+          type: integer
+          title: Desktop Columns
+      type: object
+      required:
+      - mobile_columns
+      - desktop_columns
+      title: ColumnSettings
     LiteMerchant:
       properties:
         id:
@@ -253,28 +266,6 @@ components:
       - multi_store_activation_code
       - variant_group_by_name
       title: LiteMerchant
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ColumnSettings:
-      properties:
-        mobile_columns:
-          type: integer
-          title: Mobile Columns
-        desktop_columns:
-          type: integer
-          title: Desktop Columns
-      type: object
-      required:
-      - mobile_columns
-      - desktop_columns
-      title: ColumnSettings
     IngestionStatusDTO:
       properties:
         has_run_at_least_one_ingestion:
@@ -288,6 +279,15 @@ components:
       - has_run_at_least_one_ingestion
       - completion_percentage
       title: IngestionStatusDTO
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:

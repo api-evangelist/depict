@@ -106,6 +106,27 @@ components:
       - metaobject
       - data
       title: GenerateConclusionRequest
+    AbTimeseriesMetric:
+      properties:
+        day:
+          type: string
+          title: Day
+        metric_a:
+          anyOf:
+          - type: integer
+          - type: number
+          title: Metric A
+        metric_b:
+          anyOf:
+          - type: integer
+          - type: number
+          title: Metric B
+      type: object
+      required:
+      - day
+      - metric_a
+      - metric_b
+      title: AbTimeseriesMetric
     ProAbTest:
       properties:
         id:
@@ -141,27 +162,6 @@ components:
       - experiment_name
       - notify_email
       title: ProAbTest
-    AbTimeseriesMetric:
-      properties:
-        day:
-          type: string
-          title: Day
-        metric_a:
-          anyOf:
-          - type: integer
-          - type: number
-          title: Metric A
-        metric_b:
-          anyOf:
-          - type: integer
-          - type: number
-          title: Metric B
-      type: object
-      required:
-      - day
-      - metric_a
-      - metric_b
-      title: AbTimeseriesMetric
     HTTPValidationError:
       properties:
         detail:
@@ -171,6 +171,27 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     AbTestMetrics:
       properties:
         page_views:
@@ -236,27 +257,6 @@ components:
       - purchases_thru_rate
       - p_value_purchases_thru_rate
       title: AbTestMetrics
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     Auth0:
       type: oauth2

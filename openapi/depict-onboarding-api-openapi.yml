@@ -138,6 +138,54 @@ components:
       - has_changes
       - resources
       title: ThemeOnboardingResult
+    ShopifyThemeWithDepictInfo:
+      properties:
+        theme_id:
+          type: integer
+          title: Theme Id
+        name:
+          type: string
+          title: Name
+        role:
+          type: string
+          title: Role
+        depict_added:
+          type: boolean
+          title: Depict Added
+        has_depict_collection_template:
+          type: boolean
+          title: Has Depict Collection Template
+      type: object
+      required:
+      - theme_id
+      - name
+      - role
+      - depict_added
+      - has_depict_collection_template
+      title: ShopifyThemeWithDepictInfo
+    ThemeOnboardingResource:
+      properties:
+        path:
+          type: string
+          format: path
+          title: Path
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - path
+      - content
+      title: ThemeOnboardingResource
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     OriginalThemeOnboardingResource:
       properties:
         path:
@@ -178,54 +226,6 @@ components:
       - changed
       - error
       title: OriginalThemeOnboardingResource
-    ThemeOnboardingResource:
-      properties:
-        path:
-          type: string
-          format: path
-          title: Path
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - path
-      - content
-      title: ThemeOnboardingResource
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ShopifyThemeWithDepictInfo:
-      properties:
-        theme_id:
-          type: integer
-          title: Theme Id
-        name:
-          type: string
-          title: Name
-        role:
-          type: string
-          title: Role
-        depict_added:
-          type: boolean
-          title: Depict Added
-        has_depict_collection_template:
-          type: boolean
-          title: Has Depict Collection Template
-      type: object
-      required:
-      - theme_id
-      - name
-      - role
-      - depict_added
-      - has_depict_collection_template
-      title: ShopifyThemeWithDepictInfo
     ValidationError:
       properties:
         loc:

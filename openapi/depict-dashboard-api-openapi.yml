@@ -117,21 +117,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    GetDashboardStatsRequest:
-      properties:
-        from_date:
-          type: string
-          format: date
-          title: From Date
-        to_date:
-          type: string
-          format: date
-          title: To Date
-      type: object
-      required:
-      - from_date
-      - to_date
-      title: GetDashboardStatsRequest
     GetDashboardStatsResponse:
       properties:
         orders:
@@ -157,6 +142,21 @@ components:
       - revenue_estimate
       - revenue_by_currency
       title: GetDashboardStatsResponse
+    GetDashboardStatsRequest:
+      properties:
+        from_date:
+          type: string
+          format: date
+          title: From Date
+        to_date:
+          type: string
+          format: date
+          title: To Date
+      type: object
+      required:
+      - from_date
+      - to_date
+      title: GetDashboardStatsRequest
   securitySchemes:
     Auth0:
       type: oauth2

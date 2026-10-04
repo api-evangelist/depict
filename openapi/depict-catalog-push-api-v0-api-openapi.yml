@@ -303,25 +303,26 @@ paths:
       - HTTPBearer: []
 components:
   schemas:
-    realtime__routes__catalog_routes__APICategory__APILocaleAttributes:
+    AttributeConfig:
       properties:
-        locale_id:
-          type: string
-          title: Locale Id
-        title:
-          type: string
-          title: Title
-        uri:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Uri
+        attribute_type:
+          $ref: '#/components/schemas/AttributeType'
+        dimension:
+          $ref: '#/components/schemas/Dimension'
+        required:
+          type: boolean
+          title: Required
+          default: true
       additionalProperties: false
       type: object
       required:
-      - locale_id
-      - title
-      title: APILocaleAttributes
+      - attribute_type
+      - dimension
+      title: AttributeConfig
+      description: The configuration of an attribute, available before ingestion
+    APIProduct-Output:
+      type: object
+      title: APIProduct
     Dimension:
       type: string
       enum:
@@ -331,74 +332,6 @@ components:
       - store
       - pricelist
       title: Dimension
-    SetProductAttributeConfigRequest:
-      properties:
-        merchant:
-          type: string
-          title: Merchant
-        attributes:
-          additionalProperties:
-            $ref: '#/components/schemas/AttributeConfig'
-          type: object
-          title: Attributes
-        locales:
-          items:
-            type: string
-          type: array
-          title: Locales
-        pricelists:
-          items:
-            type: string
-          type: array
-          title: Pricelists
-        inventories:
-          items:
-            type: string
-          type: array
-          title: Inventories
-      additionalProperties: false
-      type: object
-      required:
-      - merchant
-      - attributes
-      - locales
-      - pricelists
-      - inventories
-      title: SetProductAttributeConfigRequest
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    APIProduct-Output:
-      type: object
-      title: APIProduct
-    APICategory-Output:
-      type: object
-      title: APICategory
-    Gender:
-      type: string
-      enum:
-      - unisex
-      - men
-      - women
-      title: Gender
     APIPricelistAttributes:
       properties:
         pricelist_id:
@@ -455,76 +388,144 @@ components:
       - original_price
       - currency
       title: APIPricelistAttributes
-    UpsertProductsRequest:
+    UpsertCategoriesRequest:
       properties:
         merchant:
           type: string
           title: Merchant
-        products:
+        categories:
           items:
-            $ref: '#/components/schemas/APIProduct-Input'
+            $ref: '#/components/schemas/APICategory-Input'
           type: array
-          title: Products
+          title: Categories
       additionalProperties: false
       type: object
       required:
       - merchant
-      - products
-      title: UpsertProductsRequest
-    APIInventoryAttributes:
+      - categories
+      title: UpsertCategoriesRequest
+    Gender:
+      type: string
+      enum:
+      - unisex
+      - men
+      - women
+      title: Gender
+    AttributeType:
+      type: string
+      enum:
+      - bool
+      - int
+      - float
+      - str
+      - datetime
+      - gender
+      - age
+      - color_hex
+      - dict[str,]
+      - list[bool]
+      - list[int]
+      - list[float]
+      - list[str]
+      - list[dict[str,]]
+      - any
+      - uuid
+      - list[uuid]
+      title: AttributeType
+    realtime__routes__catalog_routes__APICategory__APILocaleAttributes:
       properties:
-        inventory_id:
+        locale_id:
           type: string
-          title: Inventory Id
-        in_stock:
-          type: boolean
-          title: In Stock
-        quantity:
+          title: Locale Id
+        title:
+          type: string
+          title: Title
+        uri:
           anyOf:
-          - type: integer
+          - type: string
           - type: 'null'
-          title: Quantity
-        custom_attributes:
-          additionalProperties:
-            anyOf:
-            - type: integer
-            - type: number
-            - type: string
-            - type: boolean
-            - items:
-                anyOf:
-                - type: integer
-                - type: number
-                - type: string
-                - type: boolean
-                - type: 'null'
-              type: array
-            - additionalProperties:
-                anyOf:
-                - type: integer
-                - type: number
-                - type: string
-                - type: boolean
-                - type: 'null'
-              type: object
-            - type: 'null'
-          type: object
-          title: Custom Attributes
-          default: {}
+          title: Uri
       additionalProperties: false
       type: object
       required:
-      - inventory_id
-      - in_stock
-      title: APIInventoryAttributes
-    Age:
-      type: string
-      enum:
-      - baby
-      - kid
-      - teen
-      - adult
-      title: Age
+      - locale_id
+      - title
+      title: APILocaleAttributes
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AttributeMetadata:
+      properties:
+        attribute_type:
+          $ref: '#/components/schemas/AttributeType'
+        dimension:
+          $ref: '#/components/schemas/Dimension'
+        required:
+          type: boolean
+          title: Required
+          default: true
+        dimension_keys:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Dimension Keys
+      additionalProperties: false
+      type: object
+      required:
+      - attribute_type
+      - dimension
+      - dimension_keys
+      title: AttributeMetadata
+      description: Full information about an attribute, generated during ingestion
+    APICategory-Input:
+      properties:
+        category_id:
+          type: string
+          title: Category Id
+        parent_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parent Id
+        locale_attributes:
+          items:
+            $ref: '#/components/schemas/realtime__routes__catalog_routes__APICategory__APILocaleAttributes'
+          type: array
+          title: Locale Attributes
+        store_attributes:
+          title: Store Attributes
+        display_breadcrumb:
+          type: boolean
+          title: Display Breadcrumb
+          default: true
+        appear_in_quicklinks:
+          type: boolean
+          title: Appear In Quicklinks
+          default: false
+        show_in_filter:
+          type: boolean
+          title: Show In Filter
+          default: true
+        show_in_search_suggestions:
+          type: boolean
+          title: Show In Search Suggestions
+          default: true
+      additionalProperties: false
+      type: object
+      required:
+      - category_id
+      - locale_attributes
+      title: APICategory
+    APICategory-Output:
+      type: object
+      title: APICategory
     realtime__routes__catalog_routes__APIProduct__APILocaleAttributes:
       properties:
         locale_id:
@@ -587,27 +588,14 @@ components:
       - title
       - color_name
       title: APILocaleAttributes
-    AttributeType:
+    Age:
       type: string
       enum:
-      - bool
-      - int
-      - float
-      - str
-      - datetime
-      - gender
-      - age
-      - color_hex
-      - dict[str,]
-      - list[bool]
-      - list[int]
-      - list[float]
-      - list[str]
-      - list[dict[str,]]
-      - any
-      - uuid
-      - list[uuid]
-      title: AttributeType
+      - baby
+      - kid
+      - teen
+      - adult
+      title: Age
     SetCatalogAttributeConfigRequest:
       properties:
         merchant:
@@ -630,32 +618,89 @@ components:
       - attributes
       - locales
       title: SetCatalogAttributeConfigRequest
-    AttributeConfig:
+    APIInventoryAttributes:
       properties:
-        attribute_type:
-          $ref: '#/components/schemas/AttributeType'
-        dimension:
-          $ref: '#/components/schemas/Dimension'
-        required:
+        inventory_id:
+          type: string
+          title: Inventory Id
+        in_stock:
           type: boolean
-          title: Required
-          default: true
+          title: In Stock
+        quantity:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Quantity
+        custom_attributes:
+          additionalProperties:
+            anyOf:
+            - type: integer
+            - type: number
+            - type: string
+            - type: boolean
+            - items:
+                anyOf:
+                - type: integer
+                - type: number
+                - type: string
+                - type: boolean
+                - type: 'null'
+              type: array
+            - additionalProperties:
+                anyOf:
+                - type: integer
+                - type: number
+                - type: string
+                - type: boolean
+                - type: 'null'
+              type: object
+            - type: 'null'
+          type: object
+          title: Custom Attributes
+          default: {}
       additionalProperties: false
       type: object
       required:
-      - attribute_type
-      - dimension
-      title: AttributeConfig
-      description: The configuration of an attribute, available before ingestion
-    HTTPValidationError:
+      - inventory_id
+      - in_stock
+      title: APIInventoryAttributes
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
-      title: HTTPValidationError
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    UpsertProductsRequest:
+      properties:
+        merchant:
+          type: string
+          title: Merchant
+        products:
+          items:
+            $ref: '#/components/schemas/APIProduct-Input'
+          type: array
+          title: Products
+      additionalProperties: false
+      type: object
+      required:
+      - merchant
+      - products
+      title: UpsertProductsRequest
     APIProduct-Input:
       properties:
         product_id:
@@ -774,85 +819,40 @@ components:
       - inventory_attributes
       - pricelist_attributes
       title: APIProduct
-    UpsertCategoriesRequest:
+    SetProductAttributeConfigRequest:
       properties:
         merchant:
           type: string
           title: Merchant
-        categories:
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/AttributeConfig'
+          type: object
+          title: Attributes
+        locales:
           items:
-            $ref: '#/components/schemas/APICategory-Input'
+            type: string
           type: array
-          title: Categories
+          title: Locales
+        pricelists:
+          items:
+            type: string
+          type: array
+          title: Pricelists
+        inventories:
+          items:
+            type: string
+          type: array
+          title: Inventories
       additionalProperties: false
       type: object
       required:
       - merchant
-      - categories
-      title: UpsertCategoriesRequest
-    AttributeMetadata:
-      properties:
-        attribute_type:
-          $ref: '#/components/schemas/AttributeType'
-        dimension:
-          $ref: '#/components/schemas/Dimension'
-        required:
-          type: boolean
-          title: Required
-          default: true
-        dimension_keys:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-          title: Dimension Keys
-      additionalProperties: false
-      type: object
-      required:
-      - attribute_type
-      - dimension
-      - dimension_keys
-      title: AttributeMetadata
-      description: Full information about an attribute, generated during ingestion
-    APICategory-Input:
-      properties:
-        category_id:
-          type: string
-          title: Category Id
-        parent_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Parent Id
-        locale_attributes:
-          items:
-            $ref: '#/components/schemas/realtime__routes__catalog_routes__APICategory__APILocaleAttributes'
-          type: array
-          title: Locale Attributes
-        store_attributes:
-          title: Store Attributes
-        display_breadcrumb:
-          type: boolean
-          title: Display Breadcrumb
-          default: true
-        appear_in_quicklinks:
-          type: boolean
-          title: Appear In Quicklinks
-          default: false
-        show_in_filter:
-          type: boolean
-          title: Show In Filter
-          default: true
-        show_in_search_suggestions:
-          type: boolean
-          title: Show In Search Suggestions
-          default: true
-      additionalProperties: false
-      type: object
-      required:
-      - category_id
-      - locale_attributes
-      title: APICategory
+      - attributes
+      - locales
+      - pricelists
+      - inventories
+      title: SetProductAttributeConfigRequest
   securitySchemes:
     APIKeyQuery:
       type: apiKey

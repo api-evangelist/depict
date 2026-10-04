@@ -101,25 +101,20 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    UpdateCollectionProductImagesResult:
+    UpdateProductMediaRequest:
       properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        collection_id:
-          type: string
-          title: Collection Id
-        product_ids:
-          items:
-            type: string
-          type: array
-          title: Product Ids
+        main_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Main Image Url
+        hover_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hover Image Url
       type: object
-      required:
-      - main_product_id
-      - collection_id
-      - product_ids
-      title: UpdateCollectionProductImagesResult
+      title: UpdateProductMediaRequest
     UpdateCollectionProductImagesRequest:
       properties:
         main_image_url:
@@ -139,6 +134,25 @@ components:
           title: Video
       type: object
       title: UpdateCollectionProductImagesRequest
+    UpdateCollectionProductImagesResult:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        collection_id:
+          type: string
+          title: Collection Id
+        product_ids:
+          items:
+            type: string
+          type: array
+          title: Product Ids
+      type: object
+      required:
+      - main_product_id
+      - collection_id
+      - product_ids
+      title: UpdateCollectionProductImagesResult
     HTTPValidationError:
       properties:
         detail:
@@ -184,20 +198,6 @@ components:
       - msg
       - type
       title: ValidationError
-    UpdateProductMediaRequest:
-      properties:
-        main_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Main Image Url
-        hover_image_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hover Image Url
-      type: object
-      title: UpdateProductMediaRequest
   securitySchemes:
     Auth0:
       type: oauth2

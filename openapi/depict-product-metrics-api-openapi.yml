@@ -204,6 +204,43 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ProductOverviewChartResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ChartDataPoint'
+          type: array
+          title: Data
+          default: []
+        currency:
+          type: string
+          title: Currency
+          default: ''
+      type: object
+      title: ProductOverviewChartResponse
+    ProductWeeklyStatsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/WeeklyDailyDataPoint'
+          type: array
+          title: Data
+          default: []
+        currency:
+          type: string
+          title: Currency
+          default: ''
+      type: object
+      title: ProductWeeklyStatsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CollectionPosition:
       properties:
         collection_id:
@@ -225,6 +262,83 @@ components:
       required:
       - collection_id
       title: CollectionPosition
+    ProductToplistResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CollectionPosition'
+          type: array
+          title: Data
+          default: []
+      type: object
+      title: ProductToplistResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    WeeklyDailyDataPoint:
+      properties:
+        date:
+          type: string
+          title: Date
+        add_to_carts:
+          type: integer
+          title: Add To Carts
+          default: 0
+        orders:
+          type: integer
+          title: Orders
+          default: 0
+        revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenue
+          default: 0
+      type: object
+      required:
+      - date
+      title: WeeklyDailyDataPoint
+    ChartDataPoint:
+      properties:
+        week:
+          type: string
+          title: Week
+        views:
+          type: integer
+          title: Views
+          default: 0
+        clicks:
+          type: integer
+          title: Clicks
+          default: 0
+        revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenue
+          default: 0
+      type: object
+      required:
+      - week
+      title: ChartDataPoint
     ProductBasicMetricsResponse:
       properties:
         currency:
@@ -305,120 +419,6 @@ components:
           default: 0
       type: object
       title: ProductBasicMetricsResponse
-    ProductToplistResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CollectionPosition'
-          type: array
-          title: Data
-          default: []
-      type: object
-      title: ProductToplistResponse
-    ProductWeeklyStatsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/WeeklyDailyDataPoint'
-          type: array
-          title: Data
-          default: []
-        currency:
-          type: string
-          title: Currency
-          default: ''
-      type: object
-      title: ProductWeeklyStatsResponse
-    ProductOverviewChartResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ChartDataPoint'
-          type: array
-          title: Data
-          default: []
-        currency:
-          type: string
-          title: Currency
-          default: ''
-      type: object
-      title: ProductOverviewChartResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ChartDataPoint:
-      properties:
-        week:
-          type: string
-          title: Week
-        views:
-          type: integer
-          title: Views
-          default: 0
-        clicks:
-          type: integer
-          title: Clicks
-          default: 0
-        revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenue
-          default: 0
-      type: object
-      required:
-      - week
-      title: ChartDataPoint
-    WeeklyDailyDataPoint:
-      properties:
-        date:
-          type: string
-          title: Date
-        add_to_carts:
-          type: integer
-          title: Add To Carts
-          default: 0
-        orders:
-          type: integer
-          title: Orders
-          default: 0
-        revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenue
-          default: 0
-      type: object
-      required:
-      - date
-      title: WeeklyDailyDataPoint
   securitySchemes:
     Auth0:
       type: oauth2

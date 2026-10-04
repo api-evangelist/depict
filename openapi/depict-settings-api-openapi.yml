@@ -555,72 +555,6 @@ paths:
     - url: ''
 components:
   schemas:
-    AppPricingInterval:
-      type: string
-      enum:
-      - ANNUAL
-      - EVERY_30_DAYS
-      title: AppPricingInterval
-    DynamicStatusConfig:
-      properties:
-        new_in_days:
-          type: integer
-          title: New In Days
-        bestseller_n_products:
-          type: integer
-          title: Bestseller N Products
-        slowmover_n_products:
-          type: integer
-          title: Slowmover N Products
-        low_in_stock_percentage:
-          type: integer
-          title: Low In Stock Percentage
-        order_data_days:
-          type: integer
-          title: Order Data Days
-        trending_n_products:
-          type: integer
-          title: Trending N Products
-          default: 30
-      type: object
-      required:
-      - new_in_days
-      - bestseller_n_products
-      - slowmover_n_products
-      - low_in_stock_percentage
-      - order_data_days
-      title: DynamicStatusConfig
-    SubscriptionDiscount:
-      properties:
-        percentage:
-          type: number
-          title: Percentage
-        duration_intervals:
-          type: integer
-          title: Duration Intervals
-      type: object
-      required:
-      - percentage
-      - duration_intervals
-      title: SubscriptionDiscount
-    ShopifyAppSubscriptionCreatePayload:
-      properties:
-        confirmation_url:
-          type: string
-          title: Confirmation Url
-      type: object
-      required:
-      - confirmation_url
-      title: ShopifyAppSubscriptionCreatePayload
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     SubscriptionName:
       type: string
       enum:
@@ -629,27 +563,6 @@ components:
       - Pro
       - Custom
       title: SubscriptionName
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     SubscriptionStatus:
       properties:
         num_active_collections:
@@ -718,6 +631,12 @@ components:
       - store_error
       - subscription
       title: SubscriptionStatus
+    AppPricingInterval:
+      type: string
+      enum:
+      - ANNUAL
+      - EVERY_30_DAYS
+      title: AppPricingInterval
     ActiveSubscriptionDTO:
       properties:
         id:
@@ -765,15 +684,98 @@ components:
       - test
       - status
       title: ActiveSubscriptionDTO
-    UpdateAutoHideSettingsRequest:
+    SubscriptionDiscount:
       properties:
-        auto_hide_oos:
-          type: boolean
-          title: Auto Hide Oos
+        percentage:
+          type: number
+          title: Percentage
+        duration_intervals:
+          type: integer
+          title: Duration Intervals
       type: object
       required:
-      - auto_hide_oos
-      title: UpdateAutoHideSettingsRequest
+      - percentage
+      - duration_intervals
+      title: SubscriptionDiscount
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ShopifyAppSubscriptionCreatePayload:
+      properties:
+        confirmation_url:
+          type: string
+          title: Confirmation Url
+      type: object
+      required:
+      - confirmation_url
+      title: ShopifyAppSubscriptionCreatePayload
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    DynamicStatusConfig:
+      properties:
+        new_in_days:
+          type: integer
+          title: New In Days
+        bestseller_n_products:
+          type: integer
+          title: Bestseller N Products
+        slowmover_n_products:
+          type: integer
+          title: Slowmover N Products
+        low_in_stock_percentage:
+          type: integer
+          title: Low In Stock Percentage
+        order_data_days:
+          type: integer
+          title: Order Data Days
+        trending_n_products:
+          type: integer
+          title: Trending N Products
+          default: 30
+      type: object
+      required:
+      - new_in_days
+      - bestseller_n_products
+      - slowmover_n_products
+      - low_in_stock_percentage
+      - order_data_days
+      title: DynamicStatusConfig
+    UpdateExcludeProductsResult:
+      properties:
+        exclude_main_product_ids:
+          items:
+            type: string
+          type: array
+          title: Exclude Main Product Ids
+      type: object
+      required:
+      - exclude_main_product_ids
+      title: UpdateExcludeProductsResult
     GetAutoHideSettingsResult:
       properties:
         auto_hide_oos:
@@ -819,17 +821,15 @@ components:
       - auto_hide_oos
       - exclude_main_product_ids
       title: UpdateAutoHideSettingsResult
-    UpdateExcludeProductsResult:
+    UpdateAutoHideSettingsRequest:
       properties:
-        exclude_main_product_ids:
-          items:
-            type: string
-          type: array
-          title: Exclude Main Product Ids
+        auto_hide_oos:
+          type: boolean
+          title: Auto Hide Oos
       type: object
       required:
-      - exclude_main_product_ids
-      title: UpdateExcludeProductsResult
+      - auto_hide_oos
+      title: UpdateAutoHideSettingsRequest
   securitySchemes:
     Auth0:
       type: oauth2

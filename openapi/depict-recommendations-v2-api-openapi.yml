@@ -281,7 +281,7 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    RecommendRequest:
+    CategoryRecommendRequest:
       properties:
         tenant:
           type: string
@@ -341,53 +341,17 @@ components:
           - type: 'null'
           title: Metadata
           description: Metadata that can be used to modify the behaviour of the recommendation system
-        product_id:
+        category_id:
           type: string
-          title: Product Id
+          title: Category Id
       additionalProperties: false
       type: object
       required:
       - tenant
       - market
       - type
-      - product_id
-      title: RecommendRequest
-    RecommendResponse:
-      properties:
-        displays:
-          items:
-            type: object
-          type: array
-          title: Displays
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-        variant:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Variant
-        experiment_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Experiment Id
-      additionalProperties: false
-      type: object
-      required:
-      - displays
-      title: RecommendResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - category_id
+      title: CategoryRecommendRequest
     RecommendForManyRequest:
       properties:
         tenant:
@@ -461,7 +425,7 @@ components:
       - type
       - product_ids
       title: RecommendForManyRequest
-    CategoryRecommendRequest:
+    RecommendRequest:
       properties:
         tenant:
           type: string
@@ -521,17 +485,53 @@ components:
           - type: 'null'
           title: Metadata
           description: Metadata that can be used to modify the behaviour of the recommendation system
-        category_id:
+        product_id:
           type: string
-          title: Category Id
+          title: Product Id
       additionalProperties: false
       type: object
       required:
       - tenant
       - market
       - type
-      - category_id
-      title: CategoryRecommendRequest
+      - product_id
+      title: RecommendRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    RecommendResponse:
+      properties:
+        displays:
+          items:
+            type: object
+          type: array
+          title: Displays
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        variant:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Variant
+        experiment_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Experiment Id
+      additionalProperties: false
+      type: object
+      required:
+      - displays
+      title: RecommendResponse
     GeneralRecommendRequest:
       properties:
         tenant:

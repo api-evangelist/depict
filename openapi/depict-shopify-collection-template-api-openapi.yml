@@ -158,19 +158,6 @@ paths:
       - Shopify Collection Template
 components:
   schemas:
-    CollectionTemplate:
-      properties:
-        template_suffix:
-          type: string
-          title: Template Suffix
-        is_depict_template:
-          type: boolean
-          title: Is Depict Template
-      type: object
-      required:
-      - template_suffix
-      - is_depict_template
-      title: CollectionTemplate
     GetCollectionTemplatesResponse:
       properties:
         theme_onboarding_status:
@@ -189,15 +176,14 @@ components:
       - user_approved
       - templates
       title: GetCollectionTemplatesResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+    ThemeOnboardingStatus:
+      type: string
+      enum:
+      - success
+      - warning
+      - failure
+      - pending
+      title: ThemeOnboardingStatus
     LiteColumnSettings:
       properties:
         desktop_columns:
@@ -211,7 +197,16 @@ components:
       - desktop_columns
       - mobile_columns
       title: LiteColumnSettings
-    CollectionTemplateWithActiveAndWrittenStatus:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CollectionTemplate:
       properties:
         template_suffix:
           type: string
@@ -219,19 +214,11 @@ components:
         is_depict_template:
           type: boolean
           title: Is Depict Template
-        active:
-          type: boolean
-          title: Active
-        written:
-          type: boolean
-          title: Written
       type: object
       required:
       - template_suffix
       - is_depict_template
-      - active
-      - written
-      title: CollectionTemplateWithActiveAndWrittenStatus
+      title: CollectionTemplate
     ValidationError:
       properties:
         loc:
@@ -253,14 +240,27 @@ components:
       - msg
       - type
       title: ValidationError
-    ThemeOnboardingStatus:
-      type: string
-      enum:
-      - success
-      - warning
-      - failure
-      - pending
-      title: ThemeOnboardingStatus
+    CollectionTemplateWithActiveAndWrittenStatus:
+      properties:
+        template_suffix:
+          type: string
+          title: Template Suffix
+        is_depict_template:
+          type: boolean
+          title: Is Depict Template
+        active:
+          type: boolean
+          title: Active
+        written:
+          type: boolean
+          title: Written
+      type: object
+      required:
+      - template_suffix
+      - is_depict_template
+      - active
+      - written
+      title: CollectionTemplateWithActiveAndWrittenStatus
   securitySchemes:
     Auth0:
       type: oauth2

@@ -34,30 +34,6 @@ paths:
       - Vitals
 components:
   schemas:
-    Metric:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          enum:
-          - TTFB
-          - FCP
-          - LCP
-          - FID
-          - CLS
-          - INP
-          title: Name
-        value:
-          type: number
-          title: Value
-      type: object
-      required:
-      - id
-      - name
-      - value
-      title: Metric
     ValidationError:
       properties:
         loc:
@@ -88,6 +64,30 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    Metric:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          enum:
+          - TTFB
+          - FCP
+          - LCP
+          - FID
+          - CLS
+          - INP
+          title: Name
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - id
+      - name
+      - value
+      title: Metric
     Vitals:
       properties:
         appId:

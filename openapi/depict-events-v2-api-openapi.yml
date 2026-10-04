@@ -290,55 +290,6 @@ paths:
       - APIKeyCookie: []
 components:
   schemas:
-    ProductUnavailableEvent:
-      properties:
-        user_id:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: User Id
-          description: User Id. Persistent between devices, typically on a logged in user.
-        session_id:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: Session Id
-          description: Session Id. Unique to a browser/app and stored locally, e.g. cookie or localStorage.
-        dsid:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: Dsid
-          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id.
-        event_type:
-          const: product_unavailable
-          title: Event Type
-          description: 'The type identifier for this event: product_unavailable.'
-        product_id:
-          type: string
-          minLength: 1
-          title: Product Id
-          description: Main product identifier
-        unavailability_type:
-          allOf:
-          - $ref: '#/components/schemas/EUnavailabilityType'
-          description: Reason the product isn't available for purchase
-      additionalProperties: false
-      type: object
-      required:
-      - event_type
-      - product_id
-      - unavailability_type
-      title: ProductUnavailableEvent
-    EUnavailabilityType:
-      type: string
-      enum:
-      - out_of_stock
-      - missing
-      title: EUnavailabilityType
     TrackV2Request:
       properties:
         tenant:
@@ -366,45 +317,73 @@ components:
       - market
       - events
       title: TrackV2Request
-    UserTransactionMappingEvent:
+    EEventType:
+      type: string
+      enum:
+      - page_view
+      - click
+      - add_to_cart
+      - purchase
+      - element_visible
+      - ws_click
+      - recommendations_inserted
+      title: EEventType
+    ValidationError:
       properties:
-        user_id:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: User Id
-          description: User Id. Persistent between devices, typically on a logged in user.
-        session_id:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: Session Id
-          description: Session Id. Unique to a browser/app and stored locally, e.g. cookie or localStorage.
-        dsid:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: Dsid
-          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id.
-        transaction_id:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PurchasedProduct:
+      properties:
+        sku:
           type: string
           minLength: 1
-          title: Transaction Id
-          description: Unique identifier for the transaction.
-        event_type:
+          title: Sku
+          description: Stock keeping unit, a distinct item for sale. If you are using Google Analytics, it should be the same id used for products there.
+        price:
           anyOf:
-          - const: transaction_mapping
-          - type: 'null'
-          title: Event Type
-          description: 'The type identifier for this event: transaction_mapping.'
+          - type: number
+            minimum: 0
+          - type: string
+          title: Price
+          description: Price per unit. If there are discounts because of quantity, the unit price should be adjusted accordingly.
+        quantity:
+          type: integer
+          minimum: 1
+          title: Quantity
+          description: The number of times the product was purchased.
       additionalProperties: false
       type: object
       required:
-      - transaction_id
-      title: UserTransactionMappingEvent
+      - sku
+      - price
+      - quantity
+      title: PurchasedProduct
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     PurchaseEvent:
       properties:
         user_id:
@@ -458,41 +437,94 @@ components:
       - currency
       - products
       title: PurchaseEvent
-    PurchasedProduct:
+    EUnavailabilityType:
+      type: string
+      enum:
+      - out_of_stock
+      - missing
+      title: EUnavailabilityType
+    UserTransactionMappingEvent:
       properties:
-        sku:
+        user_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: User Id
+          description: User Id. Persistent between devices, typically on a logged in user.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session Id. Unique to a browser/app and stored locally, e.g. cookie or localStorage.
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id.
+        transaction_id:
           type: string
           minLength: 1
-          title: Sku
-          description: Stock keeping unit, a distinct item for sale. If you are using Google Analytics, it should be the same id used for products there.
-        price:
+          title: Transaction Id
+          description: Unique identifier for the transaction.
+        event_type:
           anyOf:
-          - type: number
-            minimum: 0
-          - type: string
-          title: Price
-          description: Price per unit. If there are discounts because of quantity, the unit price should be adjusted accordingly.
-        quantity:
-          type: integer
-          minimum: 1
-          title: Quantity
-          description: The number of times the product was purchased.
+          - const: transaction_mapping
+          - type: 'null'
+          title: Event Type
+          description: 'The type identifier for this event: transaction_mapping.'
       additionalProperties: false
       type: object
       required:
-      - sku
-      - price
-      - quantity
-      title: PurchasedProduct
-    HTTPValidationError:
+      - transaction_id
+      title: UserTransactionMappingEvent
+    ProductUnavailableEvent:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        user_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: User Id
+          description: User Id. Persistent between devices, typically on a logged in user.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session Id. Unique to a browser/app and stored locally, e.g. cookie or localStorage.
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id.
+        event_type:
+          const: product_unavailable
+          title: Event Type
+          description: 'The type identifier for this event: product_unavailable.'
+        product_id:
+          type: string
+          minLength: 1
+          title: Product Id
+          description: Main product identifier
+        unavailability_type:
+          allOf:
+          - $ref: '#/components/schemas/EUnavailabilityType'
+          description: Reason the product isn't available for purchase
+      additionalProperties: false
       type: object
-      title: HTTPValidationError
+      required:
+      - event_type
+      - product_id
+      - unavailability_type
+      title: ProductUnavailableEvent
     Event:
       properties:
         tenant:
@@ -639,38 +671,6 @@ components:
       - market
       - type
       title: Event
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    EEventType:
-      type: string
-      enum:
-      - page_view
-      - click
-      - add_to_cart
-      - purchase
-      - element_visible
-      - ws_click
-      - recommendations_inserted
-      title: EEventType
   securitySchemes:
     APIKeyQuery:
       type: apiKey

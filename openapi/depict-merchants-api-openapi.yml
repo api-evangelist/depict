@@ -71,19 +71,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    app__usecase__list_merchants__MarketGroup:
-      properties:
-        id:
-          type: string
-          title: Id
-        display_name:
-          type: string
-          title: Display Name
-      type: object
-      required:
-      - id
-      - display_name
-      title: MarketGroup
     GetMerchantResult:
       properties:
         id:
@@ -180,15 +167,6 @@ components:
       - default_market_id
       - default_locale_id
       title: Merchant
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     MerchantProductStatus:
       properties:
         recommendations_state:
@@ -205,6 +183,28 @@ components:
           default: inactive
       type: object
       title: MerchantProductStatus
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    app__usecase__list_merchants__MarketGroup:
+      properties:
+        id:
+          type: string
+          title: Id
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - id
+      - display_name
+      title: MarketGroup
     ValidationError:
       properties:
         loc:

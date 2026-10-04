@@ -131,71 +131,63 @@ paths:
       - Media
 components:
   schemas:
-    GetMediaInfoNodeMediaImageImage:
+    Body_upload_media__merchant_id__upload_post:
       properties:
-        altText:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Alttext
-        height:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Height
-        id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Id
-        url:
-          title: Url
-        width:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Width
+        file:
+          type: string
+          format: binary
+          title: File
       type: object
       required:
-      - altText
-      - height
+      - file
+      title: Body_upload_media__merchant_id__upload_post
+    GetMediaInfoNodeMediaImage:
+      properties:
+        __typename:
+          type: string
+          enum:
+          - MediaImage
+          const: MediaImage
+          title: '  Typename'
+        id:
+          type: string
+          title: Id
+        fileStatus:
+          $ref: '#/components/schemas/FileStatus'
+        fileErrors:
+          items:
+            $ref: '#/components/schemas/GetMediaInfoNodeMediaImageFileErrors'
+          type: array
+          title: Fileerrors
+        mediaContentType:
+          $ref: '#/components/schemas/MediaContentType'
+        alt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alt
+        image:
+          anyOf:
+          - $ref: '#/components/schemas/GetMediaInfoNodeMediaImageImage'
+          - type: 'null'
+      type: object
+      required:
+      - __typename
       - id
-      - url
-      - width
-      title: GetMediaInfoNodeMediaImageImage
-    MediaContentType:
+      - fileStatus
+      - fileErrors
+      - mediaContentType
+      - alt
+      - image
+      title: GetMediaInfoNodeMediaImage
+    FileStatus:
       type: string
       enum:
-      - VIDEO
-      - EXTERNAL_VIDEO
-      - MODEL_3D
-      - IMAGE
-      title: MediaContentType
-    GetMediaInfoNodeVideoSources:
-      properties:
-        format:
-          type: string
-          title: Format
-        height:
-          type: integer
-          title: Height
-        width:
-          type: integer
-          title: Width
-        mimeType:
-          type: string
-          title: Mimetype
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - format
-      - height
-      - width
-      - mimeType
-      - url
-      title: GetMediaInfoNodeVideoSources
+      - UPLOADED
+      - PROCESSING
+      - READY
+      - FAILED
+      title: FileStatus
     GetMediaInfoNodeVideo:
       properties:
         __typename:
@@ -240,86 +232,6 @@ components:
       - mediaContentType
       - sources
       title: GetMediaInfoNodeVideo
-    GetMediaInfoNodeMediaImage:
-      properties:
-        __typename:
-          type: string
-          enum:
-          - MediaImage
-          const: MediaImage
-          title: '  Typename'
-        id:
-          type: string
-          title: Id
-        fileStatus:
-          $ref: '#/components/schemas/FileStatus'
-        fileErrors:
-          items:
-            $ref: '#/components/schemas/GetMediaInfoNodeMediaImageFileErrors'
-          type: array
-          title: Fileerrors
-        mediaContentType:
-          $ref: '#/components/schemas/MediaContentType'
-        alt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Alt
-        image:
-          anyOf:
-          - $ref: '#/components/schemas/GetMediaInfoNodeMediaImageImage'
-          - type: 'null'
-      type: object
-      required:
-      - __typename
-      - id
-      - fileStatus
-      - fileErrors
-      - mediaContentType
-      - alt
-      - image
-      title: GetMediaInfoNodeMediaImage
-    MediaType:
-      type: string
-      enum:
-      - image
-      - video
-      title: MediaType
-    GetMediaInfoNodeMediaImageFileErrors:
-      properties:
-        code:
-          $ref: '#/components/schemas/FileErrorCode'
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Details
-        message:
-          type: string
-          title: Message
-      type: object
-      required:
-      - code
-      - details
-      - message
-      title: GetMediaInfoNodeMediaImageFileErrors
-    FileStatus:
-      type: string
-      enum:
-      - UPLOADED
-      - PROCESSING
-      - READY
-      - FAILED
-      title: FileStatus
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     GetMediaInfoNodeVideoFileErrors:
       properties:
         code:
@@ -338,16 +250,87 @@ components:
       - details
       - message
       title: GetMediaInfoNodeVideoFileErrors
-    Body_upload_media__merchant_id__upload_post:
+    GetMediaInfoNodeMediaImageFileErrors:
       properties:
-        file:
+        code:
+          $ref: '#/components/schemas/FileErrorCode'
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Details
+        message:
           type: string
-          format: binary
-          title: File
+          title: Message
       type: object
       required:
-      - file
-      title: Body_upload_media__merchant_id__upload_post
+      - code
+      - details
+      - message
+      title: GetMediaInfoNodeMediaImageFileErrors
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    GetMediaInfoNodeVideoSources:
+      properties:
+        format:
+          type: string
+          title: Format
+        height:
+          type: integer
+          title: Height
+        width:
+          type: integer
+          title: Width
+        mimeType:
+          type: string
+          title: Mimetype
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - format
+      - height
+      - width
+      - mimeType
+      - url
+      title: GetMediaInfoNodeVideoSources
+    MediaContentType:
+      type: string
+      enum:
+      - VIDEO
+      - EXTERNAL_VIDEO
+      - MODEL_3D
+      - IMAGE
+      title: MediaContentType
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     FileErrorCode:
       type: string
       enum:
@@ -385,27 +368,44 @@ components:
       - FILE_STORAGE_LIMIT_EXCEEDED
       - DUPLICATE_FILENAME_ERROR
       title: FileErrorCode
-    ValidationError:
+    GetMediaInfoNodeMediaImageImage:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+        altText:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alttext
+        height:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Height
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        url:
+          title: Url
+        width:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Width
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - altText
+      - height
+      - id
+      - url
+      - width
+      title: GetMediaInfoNodeMediaImageImage
+    MediaType:
+      type: string
+      enum:
+      - image
+      - video
+      title: MediaType
   securitySchemes:
     Auth0:
       type: oauth2
