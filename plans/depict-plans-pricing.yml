@@ -1,0 +1,106 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://depict.ai/pricing
+sources:
+- https://depict.ai/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Prices scale by monthly traffic tiers (50k/250k/500k/500k+); only the up-to-50k tier figures are
+  visible in the text. Multi-market/multi-store reserved for Custom; 500k and 500k+ plans add Slack support.
+plan_count: 6
+currency: USD
+plans:
+- name: The full Depict platform
+  price_text: $352
+  price: 352
+  currency: USD
+  period: month
+  unit: up to 50,000 sessions / month
+  included_quota: Collections, search and recommendations from one dashboard; every feature included,
+    except multi-market
+- name: The full Depict platform (listed alternate price)
+  price_text: $392 / mo, billed annually
+  price: 392
+  currency: USD
+  period: month
+- name: Merchandising
+  price_text: $152 / mo
+  price: 152
+  currency: USD
+  period: month
+- name: Search
+  price_text: $152 / mo
+  price: 152
+  currency: USD
+  period: month
+- name: Recommendations
+  price_text: $88 / mo
+  price: 88
+  currency: USD
+  period: month
+- name: Custom (multi-market & multi-store)
+  price_text: Book a demo
+  period: none
+  included_quota: Multiple storefronts, brands, currencies or languages
+rate_limit_statements:
+- Up to 50,000 sessions / month
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: The full Depict platform
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: The full Depict platform (listed alternate price)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Merchandising
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Search
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Recommendations
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Custom (multi-market & multi-store)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
