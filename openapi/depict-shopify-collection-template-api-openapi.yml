@@ -158,32 +158,6 @@ paths:
       - Shopify Collection Template
 components:
   schemas:
-    GetCollectionTemplatesResponse:
-      properties:
-        theme_onboarding_status:
-          $ref: '#/components/schemas/ThemeOnboardingStatus'
-        user_approved:
-          type: boolean
-          title: User Approved
-        templates:
-          items:
-            $ref: '#/components/schemas/CollectionTemplateWithActiveAndWrittenStatus'
-          type: array
-          title: Templates
-      type: object
-      required:
-      - theme_onboarding_status
-      - user_approved
-      - templates
-      title: GetCollectionTemplatesResponse
-    ThemeOnboardingStatus:
-      type: string
-      enum:
-      - success
-      - warning
-      - failure
-      - pending
-      title: ThemeOnboardingStatus
     LiteColumnSettings:
       properties:
         desktop_columns:
@@ -206,6 +180,27 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    CollectionTemplateWithActiveAndWrittenStatus:
+      properties:
+        template_suffix:
+          type: string
+          title: Template Suffix
+        is_depict_template:
+          type: boolean
+          title: Is Depict Template
+        active:
+          type: boolean
+          title: Active
+        written:
+          type: boolean
+          title: Written
+      type: object
+      required:
+      - template_suffix
+      - is_depict_template
+      - active
+      - written
+      title: CollectionTemplateWithActiveAndWrittenStatus
     CollectionTemplate:
       properties:
         template_suffix:
@@ -240,27 +235,32 @@ components:
       - msg
       - type
       title: ValidationError
-    CollectionTemplateWithActiveAndWrittenStatus:
+    ThemeOnboardingStatus:
+      type: string
+      enum:
+      - success
+      - warning
+      - failure
+      - pending
+      title: ThemeOnboardingStatus
+    GetCollectionTemplatesResponse:
       properties:
-        template_suffix:
-          type: string
-          title: Template Suffix
-        is_depict_template:
+        theme_onboarding_status:
+          $ref: '#/components/schemas/ThemeOnboardingStatus'
+        user_approved:
           type: boolean
-          title: Is Depict Template
-        active:
-          type: boolean
-          title: Active
-        written:
-          type: boolean
-          title: Written
+          title: User Approved
+        templates:
+          items:
+            $ref: '#/components/schemas/CollectionTemplateWithActiveAndWrittenStatus'
+          type: array
+          title: Templates
       type: object
       required:
-      - template_suffix
-      - is_depict_template
-      - active
-      - written
-      title: CollectionTemplateWithActiveAndWrittenStatus
+      - theme_onboarding_status
+      - user_approved
+      - templates
+      title: GetCollectionTemplatesResponse
   securitySchemes:
     Auth0:
       type: oauth2

@@ -123,70 +123,6 @@ components:
       required:
       - type
       title: OutOfStockProductBadge
-    SlowMoverProductBadge:
-      properties:
-        value:
-          type: number
-          title: Value
-        n_days:
-          type: integer
-          title: N Days
-        type:
-          type: string
-          enum:
-          - slow_mover
-          const: slow_mover
-          title: Type
-      type: object
-      required:
-      - value
-      - n_days
-      - type
-      title: SlowMoverProductBadge
-    OnSaleProductBadge:
-      properties:
-        type:
-          type: string
-          enum:
-          - on_sale
-          const: on_sale
-          title: Type
-        sale_percentage:
-          type: integer
-          title: Sale Percentage
-      type: object
-      required:
-      - type
-      - sale_percentage
-      title: OnSaleProductBadge
-    ProductStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - ARCHIVED
-      - DRAFT
-      title: ProductStatus
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     LiteVariant:
       properties:
         id:
@@ -208,19 +144,165 @@ components:
       - image_url
       - selected_options
       title: LiteVariant
-    VariantOption:
+    OnSaleProductBadge:
       properties:
-        name:
+        type:
           type: string
-          title: Name
-        value:
-          type: string
-          title: Value
+          enum:
+          - on_sale
+          const: on_sale
+          title: Type
+        sale_percentage:
+          type: integer
+          title: Sale Percentage
       type: object
       required:
-      - name
+      - type
+      - sale_percentage
+      title: OnSaleProductBadge
+    TrendingProductBadge:
+      properties:
+        value:
+          type: number
+          title: Value
+        n_days:
+          type: integer
+          title: N Days
+        type:
+          type: string
+          enum:
+          - trending
+          const: trending
+          title: Type
+      type: object
+      required:
       - value
-      title: VariantOption
+      - n_days
+      - type
+      title: TrendingProductBadge
+    SlowMoverProductBadge:
+      properties:
+        value:
+          type: number
+          title: Value
+        n_days:
+          type: integer
+          title: N Days
+        type:
+          type: string
+          enum:
+          - slow_mover
+          const: slow_mover
+          title: Type
+      type: object
+      required:
+      - value
+      - n_days
+      - type
+      title: SlowMoverProductBadge
+    BestsellerProductBadge:
+      properties:
+        value:
+          type: number
+          title: Value
+        n_days:
+          type: integer
+          title: N Days
+        type:
+          type: string
+          enum:
+          - bestseller
+          const: bestseller
+          title: Type
+      type: object
+      required:
+      - value
+      - n_days
+      - type
+      title: BestsellerProductBadge
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ShopifyImage:
+      properties:
+        id:
+          type: string
+          title: Id
+        url:
+          type: string
+          title: Url
+        width:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Width
+        height:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Height
+        alt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alt
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - url
+      title: ShopifyImage
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FewVariantsAvailableProductBadge:
+      properties:
+        type:
+          type: string
+          enum:
+          - few_variants_available
+          const: few_variants_available
+          title: Type
+        variant_options_available:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          type: array
+          title: Variant Options Available
+        n_variants_total:
+          type: integer
+          title: N Variants Total
+      type: object
+      required:
+      - type
+      - variant_options_available
+      - n_variants_total
+      title: FewVariantsAvailableProductBadge
     LiteProductDto:
       properties:
         main_product_id:
@@ -326,26 +408,19 @@ components:
       - published_at
       - variants
       title: LiteProductDto
-    BestsellerProductBadge:
+    VariantOption:
       properties:
-        value:
-          type: number
-          title: Value
-        n_days:
-          type: integer
-          title: N Days
-        type:
+        name:
           type: string
-          enum:
-          - bestseller
-          const: bestseller
-          title: Type
+          title: Name
+        value:
+          type: string
+          title: Value
       type: object
       required:
+      - name
       - value
-      - n_days
-      - type
-      title: BestsellerProductBadge
+      title: VariantOption
     NewInProductBadge:
       properties:
         type:
@@ -363,90 +438,6 @@ components:
       - type
       - published_at
       title: NewInProductBadge
-    CollectionInfo:
-      properties:
-        collection_id:
-          type: string
-          title: Collection Id
-        position:
-          type: integer
-          title: Position
-        title:
-          type: string
-          title: Title
-        n_products:
-          type: integer
-          title: N Products
-        image_urls:
-          items:
-            type: string
-          type: array
-          title: Image Urls
-        product_images:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Product Images
-      type: object
-      required:
-      - collection_id
-      - position
-      - title
-      - n_products
-      - image_urls
-      - product_images
-      title: CollectionInfo
-    TrendingProductBadge:
-      properties:
-        value:
-          type: number
-          title: Value
-        n_days:
-          type: integer
-          title: N Days
-        type:
-          type: string
-          enum:
-          - trending
-          const: trending
-          title: Type
-      type: object
-      required:
-      - value
-      - n_days
-      - type
-      title: TrendingProductBadge
-    ShopifyImage:
-      properties:
-        id:
-          type: string
-          title: Id
-        url:
-          type: string
-          title: Url
-        width:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Width
-        height:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Height
-        alt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Alt
-      additionalProperties: false
-      type: object
-      required:
-      - id
-      - url
-      title: ShopifyImage
     ProductFunnelMetricsResponse:
       properties:
         merchant:
@@ -521,39 +512,48 @@ components:
       - product
       - collections
       title: ProductFunnelMetricsResponse
-    FewVariantsAvailableProductBadge:
+    ProductStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - ARCHIVED
+      - DRAFT
+      title: ProductStatus
+    CollectionInfo:
       properties:
-        type:
+        collection_id:
           type: string
-          enum:
-          - few_variants_available
-          const: few_variants_available
-          title: Type
-        variant_options_available:
-          items:
-            additionalProperties:
-              type: string
-            type: object
-          type: array
-          title: Variant Options Available
-        n_variants_total:
+          title: Collection Id
+        position:
           type: integer
-          title: N Variants Total
+          title: Position
+        title:
+          type: string
+          title: Title
+        n_products:
+          type: integer
+          title: N Products
+        image_urls:
+          items:
+            type: string
+          type: array
+          title: Image Urls
+        product_images:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Product Images
       type: object
       required:
-      - type
-      - variant_options_available
-      - n_variants_total
-      title: FewVariantsAvailableProductBadge
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - collection_id
+      - position
+      - title
+      - n_products
+      - image_urls
+      - product_images
+      title: CollectionInfo
   securitySchemes:
     Auth0:
       type: oauth2

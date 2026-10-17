@@ -120,23 +120,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    SearchQueryStatsResponse:
-      properties:
-        markets:
-          items:
-            $ref: '#/components/schemas/MarketSearchQueries'
-          type: array
-          title: Markets
-        prev_markets:
-          items:
-            $ref: '#/components/schemas/MarketSearchQueries'
-          type: array
-          title: Prev Markets
-      type: object
-      required:
-      - markets
-      - prev_markets
-      title: SearchQueryStatsResponse
     ValidationError:
       properties:
         loc:
@@ -158,6 +141,23 @@ components:
       - msg
       - type
       title: ValidationError
+    SearchQueryStatsResponse:
+      properties:
+        markets:
+          items:
+            $ref: '#/components/schemas/MarketSearchQueries'
+          type: array
+          title: Markets
+        prev_markets:
+          items:
+            $ref: '#/components/schemas/MarketSearchQueries'
+          type: array
+          title: Prev Markets
+      type: object
+      required:
+      - markets
+      - prev_markets
+      title: SearchQueryStatsResponse
   securitySchemes:
     Auth0:
       type: oauth2

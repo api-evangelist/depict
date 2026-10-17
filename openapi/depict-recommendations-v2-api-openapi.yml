@@ -281,6 +281,33 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    RecommendResponse:
+      properties:
+        displays:
+          items:
+            type: object
+          type: array
+          title: Displays
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        variant:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Variant
+        experiment_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Experiment Id
+      additionalProperties: false
+      type: object
+      required:
+      - displays
+      title: RecommendResponse
     CategoryRecommendRequest:
       properties:
         tenant:
@@ -352,6 +379,174 @@ components:
       - type
       - category_id
       title: CategoryRecommendRequest
+    GeneralRecommendRequest:
+      properties:
+        tenant:
+          type: string
+          title: Tenant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          title: Market
+          description: Market identifier
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: Locale identifier
+        type:
+          type: string
+          title: Type
+          description: Type of the recommendation, e.g. `cross_sell`
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 128
+            minimum: 1
+          - type: 'null'
+          title: Limit
+          description: Maximum number of recommendations returned.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Customer identifier
+        session_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        document_referrer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Referrer
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the recommendation system
+      additionalProperties: false
+      type: object
+      required:
+      - tenant
+      - market
+      - type
+      title: GeneralRecommendRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RecommendRequest:
+      properties:
+        tenant:
+          type: string
+          title: Tenant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          title: Market
+          description: Market identifier
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: Locale identifier
+        type:
+          type: string
+          title: Type
+          description: Type of the recommendation, e.g. `cross_sell`
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 128
+            minimum: 1
+          - type: 'null'
+          title: Limit
+          description: Maximum number of recommendations returned.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Customer identifier
+        session_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        document_referrer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Referrer
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the recommendation system
+        product_id:
+          type: string
+          title: Product Id
+      additionalProperties: false
+      type: object
+      required:
+      - tenant
+      - market
+      - type
+      - product_id
+      title: RecommendRequest
     RecommendForManyRequest:
       properties:
         tenant:
@@ -425,201 +620,6 @@ components:
       - type
       - product_ids
       title: RecommendForManyRequest
-    RecommendRequest:
-      properties:
-        tenant:
-          type: string
-          title: Tenant
-          description: Identifier associated with the API integration
-        market:
-          type: string
-          title: Market
-          description: Market identifier
-        locale:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Locale
-          description: Locale identifier
-        type:
-          type: string
-          title: Type
-          description: Type of the recommendation, e.g. `cross_sell`
-        limit:
-          anyOf:
-          - type: integer
-            maximum: 128
-            minimum: 1
-          - type: 'null'
-          title: Limit
-          description: Maximum number of recommendations returned.
-        user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User Id
-          description: Customer identifier
-        session_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Session Id
-          description: Session identifier
-        dsid:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: Dsid
-          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
-        document_referrer:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Document Referrer
-        metadata:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Metadata
-          description: Metadata that can be used to modify the behaviour of the recommendation system
-        product_id:
-          type: string
-          title: Product Id
-      additionalProperties: false
-      type: object
-      required:
-      - tenant
-      - market
-      - type
-      - product_id
-      title: RecommendRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    RecommendResponse:
-      properties:
-        displays:
-          items:
-            type: object
-          type: array
-          title: Displays
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-        variant:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Variant
-        experiment_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Experiment Id
-      additionalProperties: false
-      type: object
-      required:
-      - displays
-      title: RecommendResponse
-    GeneralRecommendRequest:
-      properties:
-        tenant:
-          type: string
-          title: Tenant
-          description: Identifier associated with the API integration
-        market:
-          type: string
-          title: Market
-          description: Market identifier
-        locale:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Locale
-          description: Locale identifier
-        type:
-          type: string
-          title: Type
-          description: Type of the recommendation, e.g. `cross_sell`
-        limit:
-          anyOf:
-          - type: integer
-            maximum: 128
-            minimum: 1
-          - type: 'null'
-          title: Limit
-          description: Maximum number of recommendations returned.
-        user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User Id
-          description: Customer identifier
-        session_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Session Id
-          description: Session identifier
-        dsid:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: Dsid
-          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
-        document_referrer:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Document Referrer
-        metadata:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Metadata
-          description: Metadata that can be used to modify the behaviour of the recommendation system
-      additionalProperties: false
-      type: object
-      required:
-      - tenant
-      - market
-      - type
-      title: GeneralRecommendRequest
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     APIKeyQuery:
       type: apiKey

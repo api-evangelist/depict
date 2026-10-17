@@ -124,53 +124,6 @@ components:
       - published_at
       - popular
       title: PublishedCollectionsSortOrder
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    LikedCollectionRequest:
-      properties:
-        collection_id:
-          type: string
-          title: Collection Id
-        merchant_id:
-          type: string
-          title: Merchant Id
-        likes:
-          type: integer
-          title: Likes
-      type: object
-      required:
-      - collection_id
-      - merchant_id
-      - likes
-      title: LikedCollectionRequest
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     LiteFeatures:
       type: string
       enum:
@@ -193,6 +146,36 @@ components:
       - template_suffix
       - used_features
       title: CreatePublishedCollectionRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     LitePublishedCollectionDto:
       properties:
         merchant_id:
@@ -241,6 +224,23 @@ components:
       - merchant_display_name
       - shopify_base_url
       title: LitePublishedCollectionDto
+    LikedCollectionRequest:
+      properties:
+        collection_id:
+          type: string
+          title: Collection Id
+        merchant_id:
+          type: string
+          title: Merchant Id
+        likes:
+          type: integer
+          title: Likes
+      type: object
+      required:
+      - collection_id
+      - merchant_id
+      - likes
+      title: LikedCollectionRequest
   securitySchemes:
     Auth0:
       type: oauth2

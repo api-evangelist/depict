@@ -92,15 +92,6 @@ components:
       - locale
       - type
       title: RecommendRequestV3
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     APIDisplay:
       properties:
         variant_index:
@@ -128,6 +119,15 @@ components:
       - variant_skus
       - variant_product_ids
       title: APIDisplay
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:

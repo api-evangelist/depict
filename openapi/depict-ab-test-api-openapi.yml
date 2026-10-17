@@ -95,6 +95,101 @@ paths:
       - Ab Test
 components:
   schemas:
+    AbTestMetrics:
+      properties:
+        page_views:
+          items:
+            $ref: '#/components/schemas/AbTimeseriesMetric'
+          type: array
+          title: Page Views
+        clicks:
+          items:
+            $ref: '#/components/schemas/AbTimeseriesMetric'
+          type: array
+          title: Clicks
+        click_thru_rate:
+          items:
+            $ref: '#/components/schemas/AbTimeseriesMetric'
+          type: array
+          title: Click Thru Rate
+        p_value_click_thru_rate:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: P Value Click Thru Rate
+        add_to_carts:
+          items:
+            $ref: '#/components/schemas/AbTimeseriesMetric'
+          type: array
+          title: Add To Carts
+        add_to_cart_thru_rate:
+          items:
+            $ref: '#/components/schemas/AbTimeseriesMetric'
+          type: array
+          title: Add To Cart Thru Rate
+        p_value_add_to_cart_thru_rate:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: P Value Add To Cart Thru Rate
+        purchases:
+          items:
+            $ref: '#/components/schemas/AbTimeseriesMetric'
+          type: array
+          title: Purchases
+        purchases_thru_rate:
+          items:
+            $ref: '#/components/schemas/AbTimeseriesMetric'
+          type: array
+          title: Purchases Thru Rate
+        p_value_purchases_thru_rate:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: P Value Purchases Thru Rate
+      type: object
+      required:
+      - page_views
+      - clicks
+      - click_thru_rate
+      - p_value_click_thru_rate
+      - add_to_carts
+      - add_to_cart_thru_rate
+      - p_value_add_to_cart_thru_rate
+      - purchases
+      - purchases_thru_rate
+      - p_value_purchases_thru_rate
+      title: AbTestMetrics
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     GenerateConclusionRequest:
       properties:
         metaobject:
@@ -162,101 +257,6 @@ components:
       - experiment_name
       - notify_email
       title: ProAbTest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    AbTestMetrics:
-      properties:
-        page_views:
-          items:
-            $ref: '#/components/schemas/AbTimeseriesMetric'
-          type: array
-          title: Page Views
-        clicks:
-          items:
-            $ref: '#/components/schemas/AbTimeseriesMetric'
-          type: array
-          title: Clicks
-        click_thru_rate:
-          items:
-            $ref: '#/components/schemas/AbTimeseriesMetric'
-          type: array
-          title: Click Thru Rate
-        p_value_click_thru_rate:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: P Value Click Thru Rate
-        add_to_carts:
-          items:
-            $ref: '#/components/schemas/AbTimeseriesMetric'
-          type: array
-          title: Add To Carts
-        add_to_cart_thru_rate:
-          items:
-            $ref: '#/components/schemas/AbTimeseriesMetric'
-          type: array
-          title: Add To Cart Thru Rate
-        p_value_add_to_cart_thru_rate:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: P Value Add To Cart Thru Rate
-        purchases:
-          items:
-            $ref: '#/components/schemas/AbTimeseriesMetric'
-          type: array
-          title: Purchases
-        purchases_thru_rate:
-          items:
-            $ref: '#/components/schemas/AbTimeseriesMetric'
-          type: array
-          title: Purchases Thru Rate
-        p_value_purchases_thru_rate:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: P Value Purchases Thru Rate
-      type: object
-      required:
-      - page_views
-      - clicks
-      - click_thru_rate
-      - p_value_click_thru_rate
-      - add_to_carts
-      - add_to_cart_thru_rate
-      - p_value_add_to_cart_thru_rate
-      - purchases
-      - purchases_thru_rate
-      - p_value_purchases_thru_rate
-      title: AbTestMetrics
   securitySchemes:
     Auth0:
       type: oauth2

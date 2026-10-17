@@ -145,6 +145,12 @@ paths:
       - Instagram
 components:
   schemas:
+    FacebookMediaType:
+      type: string
+      enum:
+      - IMAGE
+      - VIDEO
+      title: FacebookMediaType
     ChildrenData:
       properties:
         data:
@@ -156,6 +162,89 @@ components:
       required:
       - data
       title: ChildrenData
+    InstagramAccount:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        profile_picture_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Profile Picture Url
+      type: object
+      required:
+      - id
+      - name
+      title: InstagramAccount
+    FacebookPostMediaType:
+      type: string
+      enum:
+      - IMAGE
+      - VIDEO
+      - CAROUSEL_ALBUM
+      title: FacebookPostMediaType
+    Media:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/MediaItem'
+          type: array
+          title: Data
+        paging:
+          anyOf:
+          - $ref: '#/components/schemas/Paging'
+          - type: 'null'
+      type: object
+      required:
+      - data
+      title: Media
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Cursors:
+      properties:
+        before:
+          type: string
+          title: Before
+        after:
+          type: string
+          title: After
+      type: object
+      required:
+      - before
+      - after
+      title: Cursors
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     MediaItem:
       properties:
         media_url:
@@ -199,27 +288,6 @@ components:
       - permalink
       - username
       title: MediaItem
-    FacebookPostMediaType:
-      type: string
-      enum:
-      - IMAGE
-      - VIDEO
-      - CAROUSEL_ALBUM
-      title: FacebookPostMediaType
-    FacebookMediaType:
-      type: string
-      enum:
-      - IMAGE
-      - VIDEO
-      title: FacebookMediaType
-    Paging:
-      properties:
-        cursors:
-          $ref: '#/components/schemas/Cursors'
-      type: object
-      required:
-      - cursors
-      title: Paging
     ChildMediaItem:
       properties:
         media_url:
@@ -241,82 +309,14 @@ components:
       - media_type
       - id
       title: ChildMediaItem
-    Media:
+    Paging:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/MediaItem'
-          type: array
-          title: Data
-        paging:
-          anyOf:
-          - $ref: '#/components/schemas/Paging'
-          - type: 'null'
+        cursors:
+          $ref: '#/components/schemas/Cursors'
       type: object
       required:
-      - data
-      title: Media
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    Cursors:
-      properties:
-        before:
-          type: string
-          title: Before
-        after:
-          type: string
-          title: After
-      type: object
-      required:
-      - before
-      - after
-      title: Cursors
-    InstagramAccount:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        profile_picture_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Profile Picture Url
-      type: object
-      required:
-      - id
-      - name
-      title: InstagramAccount
+      - cursors
+      title: Paging
   securitySchemes:
     Auth0:
       type: oauth2

@@ -181,6 +181,28 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    IngestionStatusDTO:
+      properties:
+        has_run_at_least_one_ingestion:
+          type: boolean
+          title: Has Run At Least One Ingestion
+        completion_percentage:
+          type: number
+          title: Completion Percentage
+      type: object
+      required:
+      - has_run_at_least_one_ingestion
+      - completion_percentage
+      title: IngestionStatusDTO
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ColumnSettings:
       properties:
         mobile_columns:
@@ -194,6 +216,27 @@ components:
       - mobile_columns
       - desktop_columns
       title: ColumnSettings
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     LiteMerchant:
       properties:
         id:
@@ -266,49 +309,6 @@ components:
       - multi_store_activation_code
       - variant_group_by_name
       title: LiteMerchant
-    IngestionStatusDTO:
-      properties:
-        has_run_at_least_one_ingestion:
-          type: boolean
-          title: Has Run At Least One Ingestion
-        completion_percentage:
-          type: number
-          title: Completion Percentage
-      type: object
-      required:
-      - has_run_at_least_one_ingestion
-      - completion_percentage
-      title: IngestionStatusDTO
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     Auth0:
       type: oauth2

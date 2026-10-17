@@ -114,30 +114,6 @@ paths:
       - Onboarding
 components:
   schemas:
-    ThemeOnboardingResult:
-      properties:
-        theme_id:
-          type: integer
-          title: Theme Id
-        timestamp:
-          type: string
-          format: date-time
-          title: Timestamp
-        has_changes:
-          type: boolean
-          title: Has Changes
-        resources:
-          items:
-            $ref: '#/components/schemas/OriginalThemeOnboardingResource'
-          type: array
-          title: Resources
-      type: object
-      required:
-      - theme_id
-      - timestamp
-      - has_changes
-      - resources
-      title: ThemeOnboardingResult
     ShopifyThemeWithDepictInfo:
       properties:
         theme_id:
@@ -163,20 +139,6 @@ components:
       - depict_added
       - has_depict_collection_template
       title: ShopifyThemeWithDepictInfo
-    ThemeOnboardingResource:
-      properties:
-        path:
-          type: string
-          format: path
-          title: Path
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - path
-      - content
-      title: ThemeOnboardingResource
     HTTPValidationError:
       properties:
         detail:
@@ -186,6 +148,51 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ThemeOnboardingResult:
+      properties:
+        theme_id:
+          type: integer
+          title: Theme Id
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        has_changes:
+          type: boolean
+          title: Has Changes
+        resources:
+          items:
+            $ref: '#/components/schemas/OriginalThemeOnboardingResource'
+          type: array
+          title: Resources
+      type: object
+      required:
+      - theme_id
+      - timestamp
+      - has_changes
+      - resources
+      title: ThemeOnboardingResult
     OriginalThemeOnboardingResource:
       properties:
         path:
@@ -226,27 +233,20 @@ components:
       - changed
       - error
       title: OriginalThemeOnboardingResource
-    ValidationError:
+    ThemeOnboardingResource:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        path:
           type: string
-          title: Message
-        type:
+          format: path
+          title: Path
+        content:
           type: string
-          title: Error Type
+          title: Content
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - path
+      - content
+      title: ThemeOnboardingResource
   securitySchemes:
     Auth0:
       type: oauth2
