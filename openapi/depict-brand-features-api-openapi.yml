@@ -157,6 +157,31 @@ paths:
       - Brand Features
 components:
   schemas:
+    ProSpaceContent:
+      properties:
+        type:
+          type: string
+          enum:
+          - space
+          const: space
+          title: Type
+          default: space
+        height:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Height
+      type: object
+      title: ProSpaceContent
+    StringDetailError:
+      properties:
+        detail:
+          type: string
+          title: Detail
+      type: object
+      required:
+      - detail
+      title: StringDetailError
     ProImageSetting:
       properties:
         id:
@@ -184,40 +209,23 @@ components:
       - product_gid
       - default_image_gid
       title: ProImageSetting
-    ContentBlockTextProperties:
+    LiteCollectionContentBlockClicksRow:
       properties:
-        html_tag:
+        content_block_id:
+          type: integer
+          title: Content Block Id
+        handle:
           type: string
-          title: Html Tag
-        color_hex:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Color Hex
-        bold:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Bold
-        italic:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Italic
-        underline:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Underline
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
+          title: Handle
+        nbr_clicks:
+          type: integer
+          title: Nbr Clicks
       type: object
       required:
-      - html_tag
-      title: ContentBlockTextProperties
+      - content_block_id
+      - handle
+      - nbr_clicks
+      title: LiteCollectionContentBlockClicksRow
     HTTPValidationError:
       properties:
         detail:
@@ -227,65 +235,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    BrandFeatureUpdateRequest:
-      properties:
-        brand_feature_type:
-          $ref: '#/components/schemas/BrandFeatureType'
-        upsert_metaobjects:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ProContentBlock'
-            type: array
-          - items:
-              $ref: '#/components/schemas/ProImageSetting'
-            type: array
-          - items:
-              $ref: '#/components/schemas/ProProductDuplicate'
-            type: array
-          - items:
-              $ref: '#/components/schemas/ProAbTest'
-            type: array
-          title: Upsert Metaobjects
-        delete_metaobjects_by_handle:
-          items:
-            type: string
-          type: array
-          title: Delete Metaobjects By Handle
-      type: object
-      required:
-      - brand_feature_type
-      - upsert_metaobjects
-      - delete_metaobjects_by_handle
-      title: BrandFeatureUpdateRequest
-    ProVideoContent:
-      properties:
-        type:
-          type: string
-          enum:
-          - video
-          const: video
-          title: Type
-          default: video
-        gid:
-          type: string
-          title: Gid
-        filename:
-          type: string
-          title: Filename
-      type: object
-      required:
-      - gid
-      - filename
-      title: ProVideoContent
-    StringDetailError:
-      properties:
-        detail:
-          type: string
-          title: Detail
-      type: object
-      required:
-      - detail
-      title: StringDetailError
     ProProductDuplicate:
       properties:
         id:
@@ -323,48 +272,36 @@ components:
       - product_gid
       - default_image_gid
       title: ProProductDuplicate
-    ProImageContent:
+    BrandFeatureUpdateRequest:
       properties:
-        type:
-          type: string
-          enum:
-          - image
-          const: image
-          title: Type
-          default: image
-        gid:
-          type: string
-          title: Gid
-        filename:
-          type: string
-          title: Filename
-        alt_text:
+        brand_feature_type:
+          $ref: '#/components/schemas/BrandFeatureType'
+        upsert_metaobjects:
           anyOf:
-          - type: string
-          - type: 'null'
-          title: Alt Text
+          - items:
+              $ref: '#/components/schemas/ProContentBlock'
+            type: array
+          - items:
+              $ref: '#/components/schemas/ProImageSetting'
+            type: array
+          - items:
+              $ref: '#/components/schemas/ProProductDuplicate'
+            type: array
+          - items:
+              $ref: '#/components/schemas/ProAbTest'
+            type: array
+          title: Upsert Metaobjects
+        delete_metaobjects_by_handle:
+          items:
+            type: string
+          type: array
+          title: Delete Metaobjects By Handle
       type: object
       required:
-      - gid
-      - filename
-      title: ProImageContent
-    LiteCollectionContentBlockClicksRow:
-      properties:
-        content_block_id:
-          type: integer
-          title: Content Block Id
-        handle:
-          type: string
-          title: Handle
-        nbr_clicks:
-          type: integer
-          title: Nbr Clicks
-      type: object
-      required:
-      - content_block_id
-      - handle
-      - nbr_clicks
-      title: LiteCollectionContentBlockClicksRow
+      - brand_feature_type
+      - upsert_metaobjects
+      - delete_metaobjects_by_handle
+      title: BrandFeatureUpdateRequest
     BrandFeatureType:
       type: string
       enum:
@@ -373,43 +310,102 @@ components:
       - product_duplicate
       - ab_test
       title: BrandFeatureType
-    ContentLink:
+    ValidationError:
       properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
         type:
-          $ref: '#/components/schemas/LinkType'
-        gid:
           type: string
-          title: Gid
-        handle:
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ContentBlockTextProperties:
+      properties:
+        html_tag:
           type: string
-          title: Handle
-        url:
+          title: Html Tag
+        color_hex:
           anyOf:
           - type: string
           - type: 'null'
-          title: Url
+          title: Color Hex
+        bold:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Bold
+        italic:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Italic
+        underline:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Underline
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
       type: object
       required:
-      - type
-      - gid
-      - handle
-      title: ContentLink
-    ProSpaceContent:
+      - html_tag
+      title: ContentBlockTextProperties
+    ProVideoContent:
       properties:
         type:
           type: string
           enum:
-          - space
-          const: space
+          - video
+          const: video
           title: Type
-          default: space
-        height:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Height
+          default: video
+        gid:
+          type: string
+          title: Gid
+        filename:
+          type: string
+          title: Filename
       type: object
-      title: ProSpaceContent
+      required:
+      - gid
+      - filename
+      title: ProVideoContent
+    LiteMultiStoreDataNotFound:
+      properties:
+        feature_type:
+          $ref: '#/components/schemas/BrandFeatureType'
+        target_merchant_display_name:
+          type: string
+          title: Target Merchant Display Name
+        message:
+          type: string
+          title: Message
+        product_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Product Id
+      type: object
+      required:
+      - feature_type
+      - target_merchant_display_name
+      - message
+      title: LiteMultiStoreDataNotFound
     ProInstagramVideoContent:
       properties:
         type:
@@ -442,43 +438,6 @@ components:
       - post_id
       - media_id
       title: ProInstagramVideoContent
-    ProInstagramImageContent:
-      properties:
-        type:
-          type: string
-          enum:
-          - instagram_image
-          const: instagram_image
-          title: Type
-          default: instagram_image
-        gid:
-          type: string
-          title: Gid
-        creator:
-          type: string
-          title: Creator
-        post_url:
-          type: string
-          title: Post Url
-        post_id:
-          type: string
-          title: Post Id
-        media_id:
-          type: string
-          title: Media Id
-        alt_text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Alt Text
-      type: object
-      required:
-      - gid
-      - creator
-      - post_url
-      - post_id
-      - media_id
-      title: ProInstagramImageContent
     ProContentBlock:
       properties:
         id:
@@ -541,57 +500,43 @@ components:
       - span_columns
       - content
       title: ProContentBlock
-    LinkType:
-      type: string
-      enum:
-      - collection
-      - page
-      - product
-      - article
-      - url
-      title: LinkType
-    ValidationError:
+    ProInstagramImageContent:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
         type:
           type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    LiteMultiStoreDataNotFound:
-      properties:
-        feature_type:
-          $ref: '#/components/schemas/BrandFeatureType'
-        target_merchant_display_name:
+          enum:
+          - instagram_image
+          const: instagram_image
+          title: Type
+          default: instagram_image
+        gid:
           type: string
-          title: Target Merchant Display Name
-        message:
+          title: Gid
+        creator:
           type: string
-          title: Message
-        product_id:
+          title: Creator
+        post_url:
+          type: string
+          title: Post Url
+        post_id:
+          type: string
+          title: Post Id
+        media_id:
+          type: string
+          title: Media Id
+        alt_text:
           anyOf:
           - type: string
           - type: 'null'
-          title: Product Id
+          title: Alt Text
       type: object
       required:
-      - feature_type
-      - target_merchant_display_name
-      - message
-      title: LiteMultiStoreDataNotFound
+      - gid
+      - creator
+      - post_url
+      - post_id
+      - media_id
+      title: ProInstagramImageContent
     ProAbTest:
       properties:
         id:
@@ -627,6 +572,31 @@ components:
       - experiment_name
       - notify_email
       title: ProAbTest
+    ProImageContent:
+      properties:
+        type:
+          type: string
+          enum:
+          - image
+          const: image
+          title: Type
+          default: image
+        gid:
+          type: string
+          title: Gid
+        filename:
+          type: string
+          title: Filename
+        alt_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alt Text
+      type: object
+      required:
+      - gid
+      - filename
+      title: ProImageContent
     ProContentBlockText:
       properties:
         header:
@@ -667,6 +637,36 @@ components:
           title: Gap
       type: object
       title: ProContentBlockText
+    LinkType:
+      type: string
+      enum:
+      - collection
+      - page
+      - product
+      - article
+      - url
+      title: LinkType
+    ContentLink:
+      properties:
+        type:
+          $ref: '#/components/schemas/LinkType'
+        gid:
+          type: string
+          title: Gid
+        handle:
+          type: string
+          title: Handle
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+      type: object
+      required:
+      - type
+      - gid
+      - handle
+      title: ContentLink
   securitySchemes:
     Auth0:
       type: oauth2

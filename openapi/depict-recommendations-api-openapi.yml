@@ -1,0 +1,647 @@
+openapi: 3.2.0
+info:
+  title: Depict Recommendations API
+  version: '1.0'
+tags:
+- name: Recommendations
+paths:
+  /v2/recommend/products/general:
+    post:
+      tags:
+      - Recommendations
+      summary: Recommend For User
+      operationId: Recommend_for_User_v2_recommend_products_general_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeneralRecommendRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/recommend/products/product:
+    post:
+      tags:
+      - Recommendations
+      summary: Recommend For Product And User
+      operationId: Recommend_for_Product_and_User_v2_recommend_products_product_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/recommend/products/category:
+    post:
+      tags:
+      - Recommendations
+      summary: Recommend For Category And User
+      operationId: Recommend_for_Category_and_User_v2_recommend_products_category_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryRecommendRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/recommend/products/products:
+    post:
+      tags:
+      - Recommendations
+      summary: Recommend For Products And User
+      operationId: Recommend_for_Products_and_User_v2_recommend_products_products_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendForManyRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/recommend/products:
+    post:
+      tags:
+      - Recommendations
+      summary: Recommendations
+      operationId: Recommendations_v3_recommend_products_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendRequestV3'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponseV3'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/get-displays:
+    post:
+      tags:
+      - Recommendations
+      summary: Get Displays Endpoint V3
+      operationId: get_displays_endpoint_v3_v3_get_displays_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetDisplaysRequestV3'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    GeneralRecommendRequest:
+      properties:
+        tenant:
+          type: string
+          title: Tenant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          title: Market
+          description: Market identifier
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: Locale identifier
+        type:
+          type: string
+          title: Type
+          description: Type of the recommendation, e.g. `cross_sell`
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 128.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Maximum number of recommendations returned.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Customer identifier
+        session_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        document_referrer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Referrer
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the recommendation system
+      type: object
+      required:
+      - tenant
+      - market
+      - type
+      title: GeneralRecommendRequest
+    CategoryRecommendRequest:
+      properties:
+        tenant:
+          type: string
+          title: Tenant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          title: Market
+          description: Market identifier
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: Locale identifier
+        type:
+          type: string
+          title: Type
+          description: Type of the recommendation, e.g. `cross_sell`
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 128.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Maximum number of recommendations returned.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Customer identifier
+        session_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        document_referrer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Referrer
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the recommendation system
+        category_id:
+          type: string
+          title: Category Id
+      type: object
+      required:
+      - tenant
+      - market
+      - type
+      - category_id
+      title: CategoryRecommendRequest
+    RecommendResponseV3:
+      properties:
+        displays:
+          items:
+            $ref: '#/components/schemas/APIDisplay'
+          type: array
+          title: Displays
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - displays
+      title: RecommendResponseV3
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RecommendRequestV3:
+      properties:
+        merchant:
+          type: string
+          title: Merchant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          title: Market
+          description: Market identifier
+        locale:
+          type: string
+          title: Locale
+          description: Locale identifier
+        type:
+          type: string
+          title: Type
+          description: Type of the recommendation, e.g. `cross_sell`
+        product_ids:
+          items:
+            type: string
+          type: array
+          title: Product Ids
+          description: Zero, one, or multiple product identifiers (depending on the id)
+          default: []
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 128.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Maximum number of recommendations returned.
+        session_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+      type: object
+      required:
+      - merchant
+      - market
+      - locale
+      - type
+      title: RecommendRequestV3
+    RecommendForManyRequest:
+      properties:
+        tenant:
+          type: string
+          title: Tenant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          title: Market
+          description: Market identifier
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: Locale identifier
+        type:
+          type: string
+          title: Type
+          description: Type of the recommendation, e.g. `cross_sell`
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 128.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Maximum number of recommendations returned.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Customer identifier
+        session_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        document_referrer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Referrer
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the recommendation system
+        product_ids:
+          items:
+            type: string
+          type: array
+          title: Product Ids
+      type: object
+      required:
+      - tenant
+      - market
+      - type
+      - product_ids
+      title: RecommendForManyRequest
+    RecommendResponse:
+      properties:
+        displays:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Displays
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        variant:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Variant
+        experiment_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Experiment Id
+      type: object
+      required:
+      - displays
+      title: RecommendResponse
+    RecommendRequest:
+      properties:
+        tenant:
+          type: string
+          title: Tenant
+          description: Identifier associated with the API integration
+        market:
+          type: string
+          title: Market
+          description: Market identifier
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: Locale identifier
+        type:
+          type: string
+          title: Type
+          description: Type of the recommendation, e.g. `cross_sell`
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 128.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Maximum number of recommendations returned.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Customer identifier
+        session_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        document_referrer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Referrer
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the recommendation system
+        product_id:
+          type: string
+          title: Product Id
+      type: object
+      required:
+      - tenant
+      - market
+      - type
+      - product_id
+      title: RecommendRequest
+    APIDisplay:
+      properties:
+        variant_index:
+          type: integer
+          title: Variant Index
+        variant_displays:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Variant Displays
+      type: object
+      required:
+      - variant_index
+      - variant_displays
+      title: APIDisplay
+    GetDisplaysRequestV3:
+      properties:
+        market:
+          type: string
+          minLength: 1
+          title: Market
+          description: Market identifier
+        product_ids:
+          items:
+            type: string
+          type: array
+          maxItems: 50
+          minItems: 1
+          title: Product Ids
+        merchant:
+          type: string
+          minLength: 1
+          title: Merchant
+          description: Identifier associated with the API integration
+        locale:
+          type: string
+          minLength: 1
+          title: Locale
+          description: Locale identifier
+      type: object
+      required:
+      - market
+      - product_ids
+      - merchant
+      - locale
+      title: GetDisplaysRequestV3
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError

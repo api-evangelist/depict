@@ -101,21 +101,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    UpdateProductMediaResult:
-      properties:
-        main_product_id:
-          type: string
-          title: Main Product Id
-        product_ids:
-          items:
-            type: string
-          type: array
-          title: Product Ids
-      type: object
-      required:
-      - main_product_id
-      - product_ids
-      title: UpdateProductMediaResult
     UpdateCollectionProductImagesResult:
       properties:
         main_product_id:
@@ -154,6 +139,21 @@ components:
           title: Video
       type: object
       title: UpdateCollectionProductImagesRequest
+    UpdateProductMediaResult:
+      properties:
+        main_product_id:
+          type: string
+          title: Main Product Id
+        product_ids:
+          items:
+            type: string
+          type: array
+          title: Product Ids
+      type: object
+      required:
+      - main_product_id
+      - product_ids
+      title: UpdateProductMediaResult
     UpdateProductMediaRequest:
       properties:
         main_image_url:
@@ -168,15 +168,6 @@ components:
           title: Hover Image Url
       type: object
       title: UpdateProductMediaRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -198,6 +189,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     Auth0:
       type: oauth2

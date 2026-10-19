@@ -204,6 +204,41 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    CollectionPosition:
+      properties:
+        collection_id:
+          type: string
+          title: Collection Id
+        clicks:
+          type: integer
+          title: Clicks
+          default: 0
+        position:
+          type: integer
+          title: Position
+          default: 0
+        total_products:
+          type: integer
+          title: Total Products
+          default: 0
+      type: object
+      required:
+      - collection_id
+      title: CollectionPosition
+    ProductWeeklyStatsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/WeeklyDailyDataPoint'
+          type: array
+          title: Data
+          default: []
+        currency:
+          type: string
+          title: Currency
+          default: ''
+      type: object
+      title: ProductWeeklyStatsResponse
     ProductBasicMetricsResponse:
       properties:
         currency:
@@ -284,46 +319,6 @@ components:
           default: 0
       type: object
       title: ProductBasicMetricsResponse
-    ProductToplistResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CollectionPosition'
-          type: array
-          title: Data
-          default: []
-      type: object
-      title: ProductToplistResponse
-    CollectionPosition:
-      properties:
-        collection_id:
-          type: string
-          title: Collection Id
-        clicks:
-          type: integer
-          title: Clicks
-          default: 0
-        position:
-          type: integer
-          title: Position
-          default: 0
-        total_products:
-          type: integer
-          title: Total Products
-          default: 0
-      type: object
-      required:
-      - collection_id
-      title: CollectionPosition
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -345,6 +340,30 @@ components:
       - msg
       - type
       title: ValidationError
+    ProductToplistResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CollectionPosition'
+          type: array
+          title: Data
+          default: []
+      type: object
+      title: ProductToplistResponse
+    ProductOverviewChartResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ChartDataPoint'
+          type: array
+          title: Data
+          default: []
+        currency:
+          type: string
+          title: Currency
+          default: ''
+      type: object
+      title: ProductOverviewChartResponse
     ChartDataPoint:
       properties:
         week:
@@ -391,34 +410,15 @@ components:
       required:
       - date
       title: WeeklyDailyDataPoint
-    ProductWeeklyStatsResponse:
+    HTTPValidationError:
       properties:
-        data:
+        detail:
           items:
-            $ref: '#/components/schemas/WeeklyDailyDataPoint'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Data
-          default: []
-        currency:
-          type: string
-          title: Currency
-          default: ''
+          title: Detail
       type: object
-      title: ProductWeeklyStatsResponse
-    ProductOverviewChartResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ChartDataPoint'
-          type: array
-          title: Data
-          default: []
-        currency:
-          type: string
-          title: Currency
-          default: ''
-      type: object
-      title: ProductOverviewChartResponse
+      title: HTTPValidationError
   securitySchemes:
     Auth0:
       type: oauth2

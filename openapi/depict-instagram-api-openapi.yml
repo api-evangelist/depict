@@ -145,12 +145,34 @@ paths:
       - Instagram
 components:
   schemas:
-    FacebookMediaType:
+    ChildMediaItem:
+      properties:
+        media_url:
+          type: string
+          title: Media Url
+        media_type:
+          $ref: '#/components/schemas/FacebookMediaType'
+        thumbnail_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Thumbnail Url
+        id:
+          type: string
+          title: Id
+      type: object
+      required:
+      - media_url
+      - media_type
+      - id
+      title: ChildMediaItem
+    FacebookPostMediaType:
       type: string
       enum:
       - IMAGE
       - VIDEO
-      title: FacebookMediaType
+      - CAROUSEL_ALBUM
+      title: FacebookPostMediaType
     ChildrenData:
       properties:
         data:
@@ -180,50 +202,6 @@ components:
       - id
       - name
       title: InstagramAccount
-    FacebookPostMediaType:
-      type: string
-      enum:
-      - IMAGE
-      - VIDEO
-      - CAROUSEL_ALBUM
-      title: FacebookPostMediaType
-    Media:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/MediaItem'
-          type: array
-          title: Data
-        paging:
-          anyOf:
-          - $ref: '#/components/schemas/Paging'
-          - type: 'null'
-      type: object
-      required:
-      - data
-      title: Media
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Cursors:
-      properties:
-        before:
-          type: string
-          title: Before
-        after:
-          type: string
-          title: After
-      type: object
-      required:
-      - before
-      - after
-      title: Cursors
     ValidationError:
       properties:
         loc:
@@ -245,6 +223,33 @@ components:
       - msg
       - type
       title: ValidationError
+    FacebookMediaType:
+      type: string
+      enum:
+      - IMAGE
+      - VIDEO
+      title: FacebookMediaType
+    Cursors:
+      properties:
+        before:
+          type: string
+          title: Before
+        after:
+          type: string
+          title: After
+      type: object
+      required:
+      - before
+      - after
+      title: Cursors
+    Paging:
+      properties:
+        cursors:
+          $ref: '#/components/schemas/Cursors'
+      type: object
+      required:
+      - cursors
+      title: Paging
     MediaItem:
       properties:
         media_url:
@@ -288,35 +293,30 @@ components:
       - permalink
       - username
       title: MediaItem
-    ChildMediaItem:
+    HTTPValidationError:
       properties:
-        media_url:
-          type: string
-          title: Media Url
-        media_type:
-          $ref: '#/components/schemas/FacebookMediaType'
-        thumbnail_url:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Media:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/MediaItem'
+          type: array
+          title: Data
+        paging:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/Paging'
           - type: 'null'
-          title: Thumbnail Url
-        id:
-          type: string
-          title: Id
       type: object
       required:
-      - media_url
-      - media_type
-      - id
-      title: ChildMediaItem
-    Paging:
-      properties:
-        cursors:
-          $ref: '#/components/schemas/Cursors'
-      type: object
-      required:
-      - cursors
-      title: Paging
+      - data
+      title: Media
   securitySchemes:
     Auth0:
       type: oauth2

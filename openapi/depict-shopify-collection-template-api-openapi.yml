@@ -171,6 +171,48 @@ components:
       - desktop_columns
       - mobile_columns
       title: LiteColumnSettings
+    ThemeOnboardingStatus:
+      type: string
+      enum:
+      - success
+      - warning
+      - failure
+      - pending
+      title: ThemeOnboardingStatus
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CollectionTemplate:
+      properties:
+        template_suffix:
+          type: string
+          title: Template Suffix
+        is_depict_template:
+          type: boolean
+          title: Is Depict Template
+      type: object
+      required:
+      - template_suffix
+      - is_depict_template
+      title: CollectionTemplate
     HTTPValidationError:
       properties:
         detail:
@@ -201,48 +243,6 @@ components:
       - active
       - written
       title: CollectionTemplateWithActiveAndWrittenStatus
-    CollectionTemplate:
-      properties:
-        template_suffix:
-          type: string
-          title: Template Suffix
-        is_depict_template:
-          type: boolean
-          title: Is Depict Template
-      type: object
-      required:
-      - template_suffix
-      - is_depict_template
-      title: CollectionTemplate
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ThemeOnboardingStatus:
-      type: string
-      enum:
-      - success
-      - warning
-      - failure
-      - pending
-      title: ThemeOnboardingStatus
     GetCollectionTemplatesResponse:
       properties:
         theme_onboarding_status:

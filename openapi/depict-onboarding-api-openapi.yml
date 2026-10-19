@@ -139,15 +139,6 @@ components:
       - depict_added
       - has_depict_collection_template
       title: ShopifyThemeWithDepictInfo
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -193,6 +184,29 @@ components:
       - has_changes
       - resources
       title: ThemeOnboardingResult
+    ThemeOnboardingResource:
+      properties:
+        path:
+          type: string
+          format: path
+          title: Path
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - path
+      - content
+      title: ThemeOnboardingResource
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     OriginalThemeOnboardingResource:
       properties:
         path:
@@ -233,20 +247,6 @@ components:
       - changed
       - error
       title: OriginalThemeOnboardingResource
-    ThemeOnboardingResource:
-      properties:
-        path:
-          type: string
-          format: path
-          title: Path
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - path
-      - content
-      title: ThemeOnboardingResource
   securitySchemes:
     Auth0:
       type: oauth2

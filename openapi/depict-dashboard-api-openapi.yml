@@ -87,30 +87,27 @@ paths:
       - Dashboard
 components:
   schemas:
-    GetDashboardStatsRequest:
+    ValidationError:
       properties:
-        from_date:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          format: date
-          title: From Date
-        to_date:
+          title: Message
+        type:
           type: string
-          format: date
-          title: To Date
+          title: Error Type
       type: object
       required:
-      - from_date
-      - to_date
-      title: GetDashboardStatsRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - loc
+      - msg
+      - type
+      title: ValidationError
     GetDashboardStatsResponse:
       properties:
         orders:
@@ -136,27 +133,30 @@ components:
       - revenue_estimate
       - revenue_by_currency
       title: GetDashboardStatsResponse
-    ValidationError:
+    HTTPValidationError:
       properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    GetDashboardStatsRequest:
+      properties:
+        from_date:
           type: string
-          title: Message
-        type:
+          format: date
+          title: From Date
+        to_date:
           type: string
-          title: Error Type
+          format: date
+          title: To Date
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - from_date
+      - to_date
+      title: GetDashboardStatsRequest
   securitySchemes:
     Auth0:
       type: oauth2

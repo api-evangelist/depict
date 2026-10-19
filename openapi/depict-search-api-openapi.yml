@@ -1,0 +1,1552 @@
+openapi: 3.2.0
+info:
+  title: Depict Search API
+  version: '1.0'
+tags:
+- name: Search
+paths:
+  /v2/search/results:
+    post:
+      tags:
+      - Search
+      summary: Get Results
+      operationId: Get_results_v2_search_results_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestV2'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/search/suggestions:
+    get:
+      tags:
+      - Search
+      summary: Get Suggestions
+      operationId: Get_suggestions_v2_search_suggestions_get
+      parameters:
+      - name: tenant
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Tenant
+      - name: market
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Market
+      - name: locale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+      - name: query
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: User Id
+      - name: session_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+      - name: dsid
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+      - name: metadata
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: Metadata
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/search/related:
+    post:
+      tags:
+      - Search
+      summary: Get Related Recommendations
+      operationId: Get_related_recommendations_v2_search_related_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseSearchRequestV2'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/search/content:
+    get:
+      tags:
+      - Search
+      summary: Search Through Text Content
+      operationId: Search_through_text_content_v2_search_content_get
+      parameters:
+      - name: tenant
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Tenant
+      - name: market
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Market
+      - name: locale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+      - name: query
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: User Id
+      - name: session_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+      - name: dsid
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentSearchResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/search/results:
+    post:
+      tags:
+      - Search
+      summary: Get Results
+      operationId: Get_results_v3_search_results_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestV3'
+      responses:
+        '200':
+          description: Realtime-assembled pages include both serving-engine body fields. Legacy proxy pages preserve the upstream body. The response header identifies the serving engine on both paths; absence of both body field and header means unobserved.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/SearchResponseV3'
+                - $ref: '#/components/schemas/SearchResponse'
+                title: Response Get Results V3 Search Results Post
+          headers:
+            x-depict-served-by-engine:
+              description: The serving engine on every successful v3 results page. Matches served_by_engine when realtime assembles the body.
+              schema:
+                type: string
+                enum:
+                - gpt
+                - legacy
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/search/suggestions:
+    get:
+      tags:
+      - Search
+      summary: Get Suggestions
+      operationId: Get_suggestions_v3_search_suggestions_get
+      parameters:
+      - name: merchant
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Merchant
+      - name: market
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Market
+      - name: locale
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Locale
+      - name: query
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+      - name: session_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 10
+          minimum: 1
+          default: 3
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionsResponseV3'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/search/related:
+    post:
+      tags:
+      - Search
+      summary: Get Related Recommendations
+      operationId: Get_related_recommendations_v3_search_related_post
+      parameters:
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseSearchRequestV3'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    QuerySuggestion:
+      properties:
+        type:
+          type: string
+          const: query
+          title: Type
+          default: query
+        suggestions_result_id:
+          type: string
+          title: Suggestions Result Id
+        title:
+          type: string
+          title: Title
+          description: Title for suggestion.
+      type: object
+      required:
+      - suggestions_result_id
+      - title
+      title: QuerySuggestion
+    SortMeta:
+      properties:
+        title:
+          type: string
+          title: Title
+        values:
+          items:
+            $ref: '#/components/schemas/SortingOrder'
+          type: array
+          title: Values
+          default:
+          - desc
+          - asc
+        names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Names
+      type: object
+      required:
+      - title
+      title: SortMeta
+    BaseSearchRequestV2:
+      properties:
+        market:
+          type: string
+          title: Market
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: List of filters to apply to the results.
+        sort:
+          anyOf:
+          - $ref: '#/components/schemas/SortModel-Input'
+          - type: 'null'
+          description: Specifies the sorting method. By default, the results are ordered by relevance. To find the possible values for this field, query the endpoint and look at the `sorts` field.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the search.
+        tenant:
+          type: string
+          title: Tenant
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: The locale to use for the search. If not set, the default locale will be used.
+        user_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: User Id
+          description: User identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+          description: The search query.
+      type: object
+      required:
+      - market
+      - tenant
+      title: BaseSearchRequestV2
+    SearchRequestV2:
+      properties:
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Used for cursor-based pagination. Set it to the cursor from the last response. If not set, will return the first results.
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 250.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Used for cursor-based pagination. Maximum number of results per response.
+        market:
+          type: string
+          title: Market
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: List of filters to apply to the results.
+        sort:
+          anyOf:
+          - $ref: '#/components/schemas/SortModel-Input'
+          - type: 'null'
+          description: Specifies the sorting method. By default, the results are ordered by relevance. To find the possible values for this field, query the endpoint and look at the `sorts` field.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the search.
+        tenant:
+          type: string
+          title: Tenant
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: The locale to use for the search. If not set, the default locale will be used.
+        user_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: User Id
+          description: User identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+          description: The search query.
+      type: object
+      required:
+      - market
+      - tenant
+      title: SearchRequestV2
+    ListingSuggestion:
+      properties:
+        listing_id:
+          type: string
+          format: uuid
+          title: Listing Id
+          description: Depict ID of the listing.
+        external_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External Id
+          description: ID of the listing in the merchant PIM, CMS or similar.
+        listing_type:
+          $ref: '#/components/schemas/CollectionKind'
+        show_in_breadcrumbs:
+          type: boolean
+          title: Show In Breadcrumbs
+          description: Show or hide this listing in navigation breadcrumbs.
+        show_in_quicklinks:
+          type: boolean
+          title: Show In Quicklinks
+          description: Show or hide this listing in quicklinks.
+        image_urls:
+          items:
+            type: string
+          type: array
+          title: Image Urls
+          description: List of image URLs for the listing.
+        title:
+          type: string
+          title: Title
+        slug:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Slug
+        page_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Url
+          description: The listing's own page URL from the merchant's store attributes, when ingested. Absent otherwise; a storefront that composes URLs from `ancestors` + `slug` keeps doing so.
+        type:
+          type: string
+          const: listing
+          title: Type
+          default: listing
+        suggestions_result_id:
+          type: string
+          title: Suggestions Result Id
+        ancestors:
+          items:
+            $ref: '#/components/schemas/ProductListing'
+          type: array
+          title: Ancestors
+          description: Ordered list of ancestors of the suggested listing, useful for navigation breadcrumbs. The first element is the root listing.
+      type: object
+      required:
+      - listing_id
+      - listing_type
+      - show_in_breadcrumbs
+      - show_in_quicklinks
+      - image_urls
+      - title
+      - suggestions_result_id
+      - ancestors
+      title: ListingSuggestion
+    SearchRequestV3:
+      properties:
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Used for cursor-based pagination. Set it to the cursor from the last response. If not set, will return the first results.
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 250.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Used for cursor-based pagination. Maximum number of results per response.
+        page:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Page
+          description: Used for Page-based pagination. 1-based index
+        hits_per_page:
+          anyOf:
+          - type: integer
+            maximum: 200.0
+            minimum: 1.0
+          - type: 'null'
+          title: Hits Per Page
+          description: Used for Page-based pagination. If using page-based pagination, this  is a required field.
+        market:
+          type: string
+          title: Market
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: List of filters to apply to the results.
+        sort:
+          anyOf:
+          - $ref: '#/components/schemas/SortModel-Input'
+          - type: 'null'
+          description: Specifies the sorting method. By default, the results are ordered by relevance. To find the possible values for this field, query the endpoint and look at the `sorts` field.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the search.
+        merchant:
+          type: string
+          title: Merchant
+        locale:
+          type: string
+          title: Locale
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+          description: The search query.
+      type: object
+      required:
+      - market
+      - merchant
+      - locale
+      title: SearchRequestV3
+    ECategoryType:
+      type: string
+      enum:
+      - TAG
+      - CATEGORY
+      - TENANT_CATEGORY
+      - TENANT_SECONDARY_CATEGORY
+      - CAMPAIGN
+      - BRAND
+      title: ECategoryType
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SearchSuggestionsResponse:
+      properties:
+        suggestions_request_id:
+          type: string
+          title: Suggestions Request Id
+        suggestions:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/QuerySuggestion'
+            - $ref: '#/components/schemas/LegacyCategorySuggestion'
+          type: array
+          title: Suggestions
+          description: List of suggestions for search queries that should be shown to the user while they are typing.
+      type: object
+      required:
+      - suggestions_request_id
+      - suggestions
+      title: SearchSuggestionsResponse
+    SearchSuggestionsResponseV3:
+      properties:
+        suggestions_request_id:
+          type: string
+          title: Suggestions Request Id
+        suggestions:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/SuggestionQuerySuggestion'
+            - $ref: '#/components/schemas/ListingSuggestion'
+          type: array
+          title: Suggestions
+          description: List of suggestions for search queries and product listings that should be shown to the user while they are typing.
+      type: object
+      required:
+      - suggestions_request_id
+      - suggestions
+      title: SearchSuggestionsResponseV3
+    SuggestionQuerySuggestion:
+      properties:
+        type:
+          type: string
+          const: query
+          title: Type
+          default: query
+        query:
+          type: string
+          title: Query
+          description: The suggested search query.
+        suggestions_result_id:
+          type: string
+          title: Suggestions Result Id
+      type: object
+      required:
+      - query
+      - suggestions_result_id
+      title: SuggestionQuerySuggestion
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RangeFilterMeta:
+      properties:
+        group_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Title
+        group_expanded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Group Expanded
+        type:
+          type: string
+          const: range
+          title: Type
+          default: range
+        min:
+          type: number
+          title: Min
+        max:
+          type: number
+          title: Max
+        unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unit
+        currency:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Currency
+      type: object
+      required:
+      - min
+      - max
+      title: RangeFilterMeta
+    BaseSearchRequestV3:
+      properties:
+        market:
+          type: string
+          title: Market
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: List of filters to apply to the results.
+        sort:
+          anyOf:
+          - $ref: '#/components/schemas/SortModel-Input'
+          - type: 'null'
+          description: Specifies the sorting method. By default, the results are ordered by relevance. To find the possible values for this field, query the endpoint and look at the `sorts` field.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the search.
+        merchant:
+          type: string
+          title: Merchant
+        locale:
+          type: string
+          title: Locale
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+          description: The search query.
+      type: object
+      required:
+      - market
+      - merchant
+      - locale
+      title: BaseSearchRequestV3
+    CollectionKind:
+      type: string
+      enum:
+      - long_tail_collection
+      - campaign
+      - category
+      - smart_pick
+      - style
+      - brand
+      - look
+      title: CollectionKind
+    LegacyCategorySuggestion:
+      properties:
+        category_id:
+          type: string
+          title: Category Id
+          description: Unique identifier of the category.
+        title:
+          type: string
+          title: Title
+          description: The title of the category
+        page_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Url
+          description: The full URL to the category page
+        query_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query Id
+          description: Optionally a unique query ID for the category
+        uri:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Uri
+          description: Optionally a unique URI for the category, for example men/shoes
+        category_type:
+          $ref: '#/components/schemas/ECategoryType'
+          description: The type of category, for example CAMPAIGN, TAG, or CATEGORY
+          default: CATEGORY
+        type:
+          type: string
+          const: category
+          title: Type
+          description: type
+          default: category
+        suggestions_result_id:
+          type: string
+          title: Suggestions Result Id
+      additionalProperties: false
+      type: object
+      required:
+      - category_id
+      - title
+      - suggestions_result_id
+      title: LegacyCategorySuggestion
+    SearchResponse:
+      properties:
+        n_hits:
+          type: integer
+          title: N Hits
+          description: Total number of results for this query. Not necessarily exact.
+        sorts:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SortModel-Output'
+            type: array
+          - type: 'null'
+          title: Sorts
+          description: Available methods for sorting the response. Any element from this list can be sent as `sort` in subsequent requests.
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: Available filters that can be used for filtering in the subsequent request.
+        search_request_id:
+          type: string
+          title: Search Request Id
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Cursor that can be used in the next request to get subsequent results. If this is not set, there are no more results.
+        content_search_links:
+          items:
+            $ref: '#/components/schemas/engine__search_config__ContentLink'
+          type: array
+          title: Content Search Links
+          description: List of links to content pages that match the search query.
+        displays:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Displays
+          description: The search results.
+        debug_info:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: Debug Info
+      type: object
+      required:
+      - n_hits
+      - search_request_id
+      - displays
+      title: SearchResponse
+    SearchResponseV3:
+      properties:
+        n_hits:
+          type: integer
+          title: N Hits
+          description: Total number of results for this query. Not necessarily exact.
+        sorts:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SortModel-Output'
+            type: array
+          - type: 'null'
+          title: Sorts
+          description: Available methods for sorting the response. Any element from this list can be sent as `sort` in subsequent requests.
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: Available filters that can be used for filtering in the subsequent request.
+        search_request_id:
+          type: string
+          title: Search Request Id
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Cursor that can be used in the next request to get subsequent results. If this is not set, there are no more results.
+        content_search_links:
+          items:
+            $ref: '#/components/schemas/engine__search_config__ContentLink'
+          type: array
+          title: Content Search Links
+          description: List of links to content pages that match the search query.
+        displays:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Displays
+          description: The search results.
+        debug_info:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: Debug Info
+        served_index_contract:
+          anyOf:
+          - type: string
+            enum:
+            - cf_v3
+            - main_app
+          - type: 'null'
+          title: Served Index Contract
+          description: Resolved index contract reported by the serving GPT engine; null on legacy pages or when an older engine stream does not report it.
+        served_by_engine:
+          type: string
+          enum:
+          - gpt
+          - legacy
+          title: Served By Engine
+          description: The search engine that produced this page, including empty pages.
+        served_by_engine_fallback:
+          type: boolean
+          title: Served By Engine Fallback
+          description: Whether this request was dispatched to GPT but legacy search produced the page. False when legacy search was selected before dispatch.
+      type: object
+      required:
+      - n_hits
+      - search_request_id
+      - displays
+      - served_by_engine
+      - served_by_engine_fallback
+      title: SearchResponseV3
+    HierarchicalValuesFilterMeta:
+      properties:
+        group_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Title
+        group_expanded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Group Expanded
+        type:
+          type: string
+          const: checkbox-hierarchical
+          title: Type
+          default: checkbox-hierarchical
+        values:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          title: Values
+        counts:
+          items:
+            type: integer
+          type: array
+          title: Counts
+        names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Names
+      type: object
+      required:
+      - values
+      - counts
+      title: HierarchicalValuesFilterMeta
+    engine__search_config__ContentLink:
+      properties:
+        type:
+          type: string
+          const: content_link
+          title: Type
+          default: content_link
+        title:
+          type: string
+          title: Title
+          description: Title for the content page
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Short human-readable description for the content page
+        image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Url
+          description: URL for the content page image
+        page_url:
+          type: string
+          title: Page Url
+          description: URL for the content page
+        highlights:
+          items:
+            $ref: '#/components/schemas/TypesenseHighlights'
+          type: array
+          title: Highlights
+          description: Highlights that show why the search query matched this content page
+      type: object
+      required:
+      - title
+      - description
+      - page_url
+      title: ContentLink
+    SortModel-Input:
+      properties:
+        field:
+          type: string
+          title: Field
+        order:
+          $ref: '#/components/schemas/SortingOrder'
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/SortMeta'
+          - type: 'null'
+      type: object
+      required:
+      - field
+      - order
+      title: SortModel
+    ValuesFilterMeta:
+      properties:
+        group_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Title
+        group_expanded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Group Expanded
+        type:
+          type: string
+          enum:
+          - radio
+          - checkbox
+          - checkbox-grid
+          - checkbox-color
+          title: Type
+        values:
+          items:
+            anyOf:
+            - type: string
+              enum:
+              - 'true'
+              - 'false'
+            - type: number
+            - type: integer
+            - type: string
+            - prefixItems:
+              - type: number
+              - type: number
+              type: array
+              maxItems: 2
+              minItems: 2
+            - prefixItems:
+              - type: integer
+              - type: integer
+              type: array
+              maxItems: 2
+              minItems: 2
+            - prefixItems:
+              - type: integer
+              - type: number
+              type: array
+              maxItems: 2
+              minItems: 2
+            - prefixItems:
+              - type: number
+              - type: integer
+              type: array
+              maxItems: 2
+              minItems: 2
+          type: array
+          title: Values
+        counts:
+          items:
+            type: integer
+          type: array
+          title: Counts
+        names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Names
+        swatches:
+          anyOf:
+          - items:
+              anyOf:
+              - type: string
+              - type: 'null'
+            type: array
+          - type: 'null'
+          title: Swatches
+      type: object
+      required:
+      - type
+      - values
+      - counts
+      - names
+      title: ValuesFilterMeta
+    ContentSearchResponse:
+      properties:
+        content_request_id:
+          type: string
+          title: Content Request Id
+        links:
+          items:
+            $ref: '#/components/schemas/ContentLink'
+          type: array
+          title: Links
+      type: object
+      required:
+      - content_request_id
+      - links
+      title: ContentSearchResponse
+    ProductListing:
+      properties:
+        listing_id:
+          type: string
+          format: uuid
+          title: Listing Id
+          description: Depict ID of the listing.
+        external_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External Id
+          description: ID of the listing in the merchant PIM, CMS or similar.
+        listing_type:
+          $ref: '#/components/schemas/CollectionKind'
+        show_in_breadcrumbs:
+          type: boolean
+          title: Show In Breadcrumbs
+          description: Show or hide this listing in navigation breadcrumbs.
+        show_in_quicklinks:
+          type: boolean
+          title: Show In Quicklinks
+          description: Show or hide this listing in quicklinks.
+        image_urls:
+          items:
+            type: string
+          type: array
+          title: Image Urls
+          description: List of image URLs for the listing.
+        title:
+          type: string
+          title: Title
+        slug:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Slug
+        page_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Url
+          description: The listing's own page URL from the merchant's store attributes, when ingested. Absent otherwise; a storefront that composes URLs from `ancestors` + `slug` keeps doing so.
+      type: object
+      required:
+      - listing_id
+      - listing_type
+      - show_in_breadcrumbs
+      - show_in_quicklinks
+      - image_urls
+      - title
+      title: ProductListing
+    SortModel-Output:
+      properties:
+        field:
+          type: string
+          title: Field
+        order:
+          $ref: '#/components/schemas/SortingOrder'
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/SortMeta'
+          - type: 'null'
+      type: object
+      required:
+      - field
+      - order
+      title: SortModel
+    SortingOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortingOrder
+    ContentLink:
+      properties:
+        type:
+          type: string
+          const: content_link
+          title: Type
+          default: content_link
+        title:
+          type: string
+          title: Title
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Url
+        page_url:
+          type: string
+          title: Page Url
+        highlights:
+          items:
+            $ref: '#/components/schemas/TypesenseHighlights'
+          type: array
+          title: Highlights
+      type: object
+      required:
+      - title
+      - description
+      - page_url
+      title: ContentLink
+    SearchFilter:
+      properties:
+        field:
+          type: string
+          title: Field
+        op:
+          type: string
+          enum:
+          - eq
+          - neq
+          - in
+          - nin
+          - leq
+          - geq
+          - inrange
+          title: Op
+        data:
+          anyOf:
+          - type: string
+            enum:
+            - 'true'
+            - 'false'
+          - type: number
+          - type: integer
+          - type: string
+          - prefixItems:
+            - type: number
+            - type: number
+            type: array
+            maxItems: 2
+            minItems: 2
+          - prefixItems:
+            - type: integer
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          - prefixItems:
+            - type: integer
+            - type: number
+            type: array
+            maxItems: 2
+            minItems: 2
+          - prefixItems:
+            - type: number
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          - items:
+              anyOf:
+              - type: string
+                enum:
+                - 'true'
+                - 'false'
+              - type: number
+              - type: integer
+              - type: string
+              - prefixItems:
+                - type: number
+                - type: number
+                type: array
+                maxItems: 2
+                minItems: 2
+              - prefixItems:
+                - type: integer
+                - type: integer
+                type: array
+                maxItems: 2
+                minItems: 2
+              - prefixItems:
+                - type: integer
+                - type: number
+                type: array
+                maxItems: 2
+                minItems: 2
+              - prefixItems:
+                - type: number
+                - type: integer
+                type: array
+                maxItems: 2
+                minItems: 2
+            type: array
+          - items:
+              items:
+                type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: Data
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/RangeFilterMeta'
+          - $ref: '#/components/schemas/ValuesFilterMeta'
+          - $ref: '#/components/schemas/HierarchicalValuesFilterMeta'
+          - type: 'null'
+          title: Meta
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+      type: object
+      required:
+      - field
+      - op
+      title: SearchFilter
+    RecommendResponse:
+      properties:
+        displays:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Displays
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        variant:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Variant
+        experiment_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Experiment Id
+      type: object
+      required:
+      - displays
+      title: RecommendResponse
+    TypesenseHighlights:
+      properties:
+        field:
+          type: string
+          title: Field
+        snippet:
+          type: string
+          title: Snippet
+        matched_tokens:
+          items:
+            type: string
+          type: array
+          title: Matched Tokens
+      type: object
+      required:
+      - field
+      - snippet
+      - matched_tokens
+      title: TypesenseHighlights

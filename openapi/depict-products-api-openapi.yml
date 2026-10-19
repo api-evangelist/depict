@@ -366,15 +366,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    SlowMoverMetadata:
+    TrendingMetadata:
       properties:
         type:
           type: string
           enum:
-          - slow_mover
-          const: slow_mover
+          - trending
+          const: trending
           title: Type
-          default: slow_mover
+          default: trending
         meta_data:
           type: number
           title: Meta Data
@@ -385,192 +385,7 @@ components:
       required:
       - meta_data
       - n_days
-      title: SlowMoverMetadata
-    ProductMetrics:
-      properties:
-        clicks:
-          type: integer
-          title: Clicks
-          default: 0
-        prev_clicks:
-          type: integer
-          title: Prev Clicks
-          default: 0
-        views:
-          type: integer
-          title: Views
-          default: 0
-        prev_views:
-          type: integer
-          title: Prev Views
-          default: 0
-        sold:
-          type: integer
-          title: Sold
-          default: 0
-        prev_sold:
-          type: integer
-          title: Prev Sold
-          default: 0
-        revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenue
-          default: 0
-        prev_revenue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Prev Revenue
-          default: 0
-        revenue_currency:
-          type: string
-          title: Revenue Currency
-          default: ''
-        inventory:
-          type: integer
-          title: Inventory
-          default: 0
-        click_through_rate:
-          type: number
-          title: Click Through Rate
-          default: 0
-        prev_click_through_rate:
-          type: number
-          title: Prev Click Through Rate
-          default: 0
-        sell_through_rate:
-          type: number
-          title: Sell Through Rate
-          default: 0
-        prev_sell_through_rate:
-          type: number
-          title: Prev Sell Through Rate
-          default: 0
-        add_to_carts:
-          type: integer
-          title: Add To Carts
-          default: 0
-        prev_add_to_carts:
-          type: integer
-          title: Prev Add To Carts
-          default: 0
-      type: object
-      title: ProductMetrics
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    BestsellerMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - bestseller
-          const: bestseller
-          title: Type
-          default: bestseller
-        meta_data:
-          type: number
-          title: Meta Data
-        n_days:
-          type: integer
-          title: N Days
-      type: object
-      required:
-      - meta_data
-      - n_days
-      title: BestsellerMetadata
-    ProductVisibilityResponse:
-      properties:
-        visibility:
-          additionalProperties:
-            additionalProperties:
-              additionalProperties:
-                $ref: '#/components/schemas/ProductVisibilitySurfaceState'
-              type: object
-            type: object
-          type: object
-          title: Visibility
-      type: object
-      required:
-      - visibility
-      title: ProductVisibilityResponse
-    ProductFiltersRequest:
-      properties:
-        locale_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Locale Id
-        market_group_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Market Group Id
-        filters:
-          anyOf:
-          - additionalProperties:
-              $ref: '#/components/schemas/GenericFilterValue'
-            type: object
-          - type: 'null'
-          title: Filters
-        search:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Search
-        shopper_facing_only:
-          type: boolean
-          title: Shopper Facing Only
-          default: false
-      type: object
-      title: ProductFiltersRequest
-    ProductVisibilitySurfaceState:
-      properties:
-        visible:
-          type: boolean
-          title: Visible
-        hidden:
-          type: boolean
-          title: Hidden
-        source:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Source
-        scope:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Scope
-        reason:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Reason
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-        resolved_market_group_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Resolved Market Group Id
-      type: object
-      required:
-      - visible
-      - hidden
-      title: ProductVisibilitySurfaceState
+      title: TrendingMetadata
     OnSaleMetadata:
       properties:
         type:
@@ -591,26 +406,26 @@ components:
       - min_percentage
       - max_percentage
       title: OnSaleMetadata
-    StarProductMetadata:
+    LimitedAvailabilityMetadata:
       properties:
         type:
           type: string
           enum:
-          - star_product
-          const: star_product
+          - limited_availability
+          const: limited_availability
           title: Type
-          default: star_product
-        meta_data:
-          type: number
-          title: Meta Data
-        n_days:
+          default: limited_availability
+        hidden_market_count:
           type: integer
-          title: N Days
+          title: Hidden Market Count
+        total_market_count:
+          type: integer
+          title: Total Market Count
       type: object
       required:
-      - meta_data
-      - n_days
-      title: StarProductMetadata
+      - hidden_market_count
+      - total_market_count
+      title: LimitedAvailabilityMetadata
     FilterValueOption:
       properties:
         value:
@@ -663,72 +478,62 @@ components:
       - sizes_in_stock
       - sizes_total
       title: LowStockMetadata
-    DynamicListProductsResult:
+    StarProductMetadata:
       properties:
-        products:
-          items:
-            $ref: '#/components/schemas/ListedProduct'
-          type: array
-          title: Products
-        next_cursor:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Cursor
-        has_more:
-          type: boolean
-          title: Has More
-          default: false
-        sort_options:
-          items:
-            $ref: '#/components/schemas/SortOptionItem'
-          type: array
-          title: Sort Options
-        stats:
-          $ref: '#/components/schemas/ProductListingStats'
-      type: object
-      required:
-      - products
-      - sort_options
-      - stats
-      title: DynamicListProductsResult
-    GenericFilterValue:
-      properties:
-        values:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Values
-        paths:
-          anyOf:
-          - items:
-              items:
-                type: string
-              type: array
-            type: array
-          - type: 'null'
-          title: Paths
-        operator:
+        type:
           type: string
           enum:
-          - or
-          - and
-          title: Operator
-          default: or
-        min_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min Value
-        max_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max Value
+          - star_product
+          const: star_product
+          title: Type
+          default: star_product
+        meta_data:
+          type: number
+          title: Meta Data
+        n_days:
+          type: integer
+          title: N Days
       type: object
-      title: GenericFilterValue
+      required:
+      - meta_data
+      - n_days
+      title: StarProductMetadata
+    OutOfStockMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - out_of_stock
+          const: out_of_stock
+          title: Type
+          default: out_of_stock
+      type: object
+      title: OutOfStockMetadata
+    SortOption:
+      type: string
+      enum:
+      - relevance
+      - created_at_asc
+      - created_at_desc
+      - sale_price_asc
+      - sale_price_desc
+      - title_asc
+      - title_desc
+      - clicks_asc
+      - clicks_desc
+      - views_asc
+      - views_desc
+      - sold_asc
+      - sold_desc
+      - revenue_asc
+      - revenue_desc
+      - ctr_asc
+      - ctr_desc
+      - str_asc
+      - str_desc
+      - inventory_asc
+      - inventory_desc
+      title: SortOption
     InventorySize:
       properties:
         size:
@@ -742,43 +547,6 @@ components:
       - size
       - quantity
       title: InventorySize
-    app__usecase__get_product__Collection:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        filter:
-          type: string
-          title: Filter
-        exist:
-          type: boolean
-          title: Exist
-        children:
-          items:
-            $ref: '#/components/schemas/app__usecase__get_product__Collection'
-          type: array
-          title: Children
-      type: object
-      required:
-      - id
-      - name
-      - filter
-      - exist
-      - children
-      title: Collection
-    ProductFiltersResponse:
-      properties:
-        available_filters:
-          items:
-            $ref: '#/components/schemas/DynamicAvailableFilter'
-          type: array
-          title: Available Filters
-          default: []
-      type: object
-      title: ProductFiltersResponse
     InactiveMetadata:
       properties:
         type:
@@ -790,41 +558,107 @@ components:
           default: inactive
       type: object
       title: InactiveMetadata
-    ProductVisibilityPatchRequest:
+    DynamicAvailableFilter:
       properties:
-        scope:
+        id:
+          type: integer
+          title: Id
+        title:
+          type: string
+          title: Title
+        field:
+          type: string
+          title: Field
+        type:
           type: string
           enum:
-          - market
-          - market_group
-          - global_market_group
-          title: Scope
-          default: market_group
+          - checkbox
+          - radio
+          - checkbox-grid
+          - checkbox-color
+          - range
+          - hierarchical
+          title: Type
+        op:
+          type: string
+          title: Op
+        position_priority:
+          type: integer
+          title: Position Priority
+        options:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/FilterValueOption'
+            type: array
+          - $ref: '#/components/schemas/RangeFilterBounds'
+          title: Options
+      type: object
+      required:
+      - id
+      - title
+      - field
+      - type
+      - op
+      - position_priority
+      - options
+      title: DynamicAvailableFilter
+    ProductFiltersResponse:
+      properties:
+        available_filters:
+          items:
+            $ref: '#/components/schemas/DynamicAvailableFilter'
+          type: array
+          title: Available Filters
+          default: []
+      type: object
+      title: ProductFiltersResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HiddenVisibilityLocation:
+      properties:
         market_id:
           anyOf:
           - type: string
-            maxLength: 256
-            minLength: 1
           - type: 'null'
           title: Market Id
         market_group_id:
+          type: string
+          title: Market Group Id
+        source:
+          type: string
+          title: Source
+        scope:
           anyOf:
           - type: string
-            maxLength: 256
-            minLength: 1
           - type: 'null'
-          title: Market Group Id
-        updates:
-          items:
-            $ref: '#/components/schemas/ProductVisibilityUpdateRequest'
-          type: array
-          maxItems: 100
-          minItems: 1
-          title: Updates
+          title: Scope
       type: object
       required:
-      - updates
-      title: ProductVisibilityPatchRequest
+      - market_group_id
+      - source
+      title: HiddenVisibilityLocation
+    InventoryItem:
+      properties:
+        id:
+          type: string
+          title: Id
+        sizes:
+          items:
+            $ref: '#/components/schemas/InventorySize'
+          type: array
+          title: Sizes
+      type: object
+      required:
+      - id
+      - sizes
+      title: InventoryItem
     DeadStockItem:
       properties:
         main_product_id:
@@ -864,50 +698,230 @@ components:
       - ctr
       - prev_sold
       title: DeadStockItem
-    ProductVisibilityUpdateRequest:
+    ProductVisibilityPatchRequest:
       properties:
+        scope:
+          type: string
+          enum:
+          - market
+          - market_group
+          - global_market_group
+          title: Scope
+          default: market_group
+        market_id:
+          anyOf:
+          - type: string
+            maxLength: 256
+            minLength: 1
+          - type: 'null'
+          title: Market Id
+        market_group_id:
+          anyOf:
+          - type: string
+            maxLength: 256
+            minLength: 1
+          - type: 'null'
+          title: Market Group Id
+        updates:
+          items:
+            $ref: '#/components/schemas/ProductVisibilityUpdateRequest'
+          type: array
+          maxItems: 100
+          minItems: 1
+          title: Updates
+      type: object
+      required:
+      - updates
+      title: ProductVisibilityPatchRequest
+    DeadStockResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DeadStockItem'
+          type: array
+          title: Items
+        total:
+          type: integer
+          title: Total
+        low_stock_units:
+          type: integer
+          title: Low Stock Units
+      type: object
+      required:
+      - items
+      - total
+      - low_stock_units
+      title: DeadStockResponse
+    PriceListItem:
+      properties:
+        id:
+          type: string
+          title: Id
+        original_price:
+          type: number
+          title: Original Price
+        sale_price:
+          type: number
+          title: Sale Price
+        currency:
+          type: string
+          title: Currency
+      type: object
+      required:
+      - id
+      - original_price
+      - sale_price
+      - currency
+      title: PriceListItem
+    Variant:
+      properties:
+        id:
+          type: string
+          title: Id
         main_product_id:
           type: string
-          maxLength: 512
-          minLength: 1
           title: Main Product Id
-        plp:
+        name:
+          type: string
+          title: Name
+        color_name:
           anyOf:
           - type: string
-            enum:
-            - hidden_explicit
-            - visible_explicit
-            - inherit
           - type: 'null'
-          title: Plp
-        search:
+          title: Color Name
+        image_url:
           anyOf:
           - type: string
-            enum:
-            - hidden_explicit
-            - visible_explicit
-            - inherit
-          - type: 'null'
-          title: Search
-        recs:
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: string
+          title: Image Url
+      type: object
+      required:
+      - id
+      - main_product_id
+      - name
+      - color_name
+      - image_url
+      title: Variant
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ProductVisibilitySurfaceState:
+      properties:
+        visible:
+          type: boolean
+          title: Visible
+        hidden:
+          type: boolean
+          title: Hidden
+        source:
           anyOf:
           - type: string
-            enum:
-            - hidden_explicit
-            - visible_explicit
-            - inherit
           - type: 'null'
-          title: Recs
-        expected_updated_at:
+          title: Source
+        scope:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scope
+        reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Reason
+        updated_at:
           anyOf:
           - type: string
             format: date-time
           - type: 'null'
-          title: Expected Updated At
+          title: Updated At
+        resolved_market_group_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Resolved Market Group Id
       type: object
       required:
-      - main_product_id
-      title: ProductVisibilityUpdateRequest
+      - visible
+      - hidden
+      title: ProductVisibilitySurfaceState
+    GenericFilterValue:
+      properties:
+        values:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Values
+        paths:
+          anyOf:
+          - items:
+              items:
+                type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: Paths
+        operator:
+          type: string
+          enum:
+          - or
+          - and
+          title: Operator
+          default: or
+        min_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min Value
+        max_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Value
+      type: object
+      title: GenericFilterValue
+    SlowMoverMetadata:
+      properties:
+        type:
+          type: string
+          enum:
+          - slow_mover
+          const: slow_mover
+          title: Type
+          default: slow_mover
+        meta_data:
+          type: number
+          title: Meta Data
+        n_days:
+          type: integer
+          title: N Days
+      type: object
+      required:
+      - meta_data
+      - n_days
+      title: SlowMoverMetadata
     NewInMetadata:
       properties:
         type:
@@ -925,41 +939,23 @@ components:
           title: Created At
       type: object
       title: NewInMetadata
-    InventoryItem:
+    SortOptionItem:
       properties:
         id:
           type: string
           title: Id
-        sizes:
-          items:
-            $ref: '#/components/schemas/InventorySize'
-          type: array
-          title: Sizes
+        label:
+          type: string
+          title: Label
+        selected:
+          type: boolean
+          title: Selected
       type: object
       required:
       - id
-      - sizes
-      title: InventoryItem
-    TrendingMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - trending
-          const: trending
-          title: Type
-          default: trending
-        meta_data:
-          type: number
-          title: Meta Data
-        n_days:
-          type: integer
-          title: N Days
-      type: object
-      required:
-      - meta_data
-      - n_days
-      title: TrendingMetadata
+      - label
+      - selected
+      title: SortOptionItem
     GetProductResult:
       properties:
         main_product_id:
@@ -1075,118 +1071,164 @@ components:
       - inventories
       - price_lists
       title: GetProductResult
-    Variant:
+    app__usecase__get_product__Collection:
       properties:
         id:
           type: string
           title: Id
-        main_product_id:
-          type: string
-          title: Main Product Id
         name:
           type: string
           title: Name
-        color_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Color Name
-        image_url:
-          anyOf:
-          - type: string
-            maxLength: 2083
-            minLength: 1
-            format: uri
-          - type: string
-          title: Image Url
+        filter:
+          type: string
+          title: Filter
+        exist:
+          type: boolean
+          title: Exist
+        children:
+          items:
+            $ref: '#/components/schemas/app__usecase__get_product__Collection'
+          type: array
+          title: Children
       type: object
       required:
       - id
-      - main_product_id
       - name
-      - color_name
-      - image_url
-      title: Variant
-    HiddenVisibilityLocation:
+      - filter
+      - exist
+      - children
+      title: Collection
+    ProductFiltersRequest:
       properties:
-        market_id:
+        locale_id:
           anyOf:
           - type: string
           - type: 'null'
-          title: Market Id
+          title: Locale Id
         market_group_id:
-          type: string
-          title: Market Group Id
-        source:
-          type: string
-          title: Source
-        scope:
           anyOf:
           - type: string
           - type: 'null'
-          title: Scope
+          title: Market Group Id
+        filters:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/GenericFilterValue'
+            type: object
+          - type: 'null'
+          title: Filters
+        search:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+        shopper_facing_only:
+          type: boolean
+          title: Shopper Facing Only
+          default: false
       type: object
-      required:
-      - market_group_id
-      - source
-      title: HiddenVisibilityLocation
-    ProductListingStats:
+      title: ProductFiltersRequest
+    ProductMetrics:
       properties:
-        all_products:
+        clicks:
           type: integer
-          title: All Products
-        all_out_of_stock:
+          title: Clicks
+          default: 0
+        prev_clicks:
           type: integer
-          title: All Out Of Stock
-        all_low_stock:
+          title: Prev Clicks
+          default: 0
+        views:
           type: integer
-          title: All Low Stock
-        total_products:
+          title: Views
+          default: 0
+        prev_views:
           type: integer
-          title: Total Products
-        out_of_stock:
+          title: Prev Views
+          default: 0
+        sold:
           type: integer
-          title: Out Of Stock
-        low_stock:
+          title: Sold
+          default: 0
+        prev_sold:
           type: integer
-          title: Low Stock
-        on_sale:
+          title: Prev Sold
+          default: 0
+        revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenue
+          default: 0
+        prev_revenue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Prev Revenue
+          default: 0
+        revenue_currency:
+          type: string
+          title: Revenue Currency
+          default: ''
+        inventory:
           type: integer
-          title: On Sale
-        new_in:
+          title: Inventory
+          default: 0
+        click_through_rate:
+          type: number
+          title: Click Through Rate
+          default: 0
+        prev_click_through_rate:
+          type: number
+          title: Prev Click Through Rate
+          default: 0
+        sell_through_rate:
+          type: number
+          title: Sell Through Rate
+          default: 0
+        prev_sell_through_rate:
+          type: number
+          title: Prev Sell Through Rate
+          default: 0
+        add_to_carts:
           type: integer
-          title: New In
-        inactive:
+          title: Add To Carts
+          default: 0
+        prev_add_to_carts:
           type: integer
-          title: Inactive
-        bestseller:
-          type: integer
-          title: Bestseller
-        trending:
-          type: integer
-          title: Trending
-        slow_mover:
-          type: integer
-          title: Slow Mover
-        star_product:
-          type: integer
-          title: Star Product
+          title: Prev Add To Carts
+          default: 0
+      type: object
+      title: ProductMetrics
+    DynamicListProductsResult:
+      properties:
+        products:
+          items:
+            $ref: '#/components/schemas/ListedProduct'
+          type: array
+          title: Products
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+        has_more:
+          type: boolean
+          title: Has More
+          default: false
+        sort_options:
+          items:
+            $ref: '#/components/schemas/SortOptionItem'
+          type: array
+          title: Sort Options
+        stats:
+          $ref: '#/components/schemas/ProductListingStats'
       type: object
       required:
-      - all_products
-      - all_out_of_stock
-      - all_low_stock
-      - total_products
-      - out_of_stock
-      - low_stock
-      - on_sale
-      - new_in
-      - inactive
-      - bestseller
-      - trending
-      - slow_mover
-      - star_product
-      title: ProductListingStats
+      - products
+      - sort_options
+      - stats
+      title: DynamicListProductsResult
     ListedProduct:
       properties:
         main_product_id:
@@ -1263,25 +1305,185 @@ components:
       - hover_image_url
       - metadata
       title: ListedProduct
-    DeadStockResponse:
+    BestsellerMetadata:
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DeadStockItem'
-          type: array
-          title: Items
-        total:
+        type:
+          type: string
+          enum:
+          - bestseller
+          const: bestseller
+          title: Type
+          default: bestseller
+        meta_data:
+          type: number
+          title: Meta Data
+        n_days:
           type: integer
-          title: Total
-        low_stock_units:
-          type: integer
-          title: Low Stock Units
+          title: N Days
       type: object
       required:
-      - items
-      - total
-      - low_stock_units
-      title: DeadStockResponse
+      - meta_data
+      - n_days
+      title: BestsellerMetadata
+    ProductMetricsResponse:
+      properties:
+        metrics:
+          additionalProperties:
+            $ref: '#/components/schemas/ProductMetrics'
+          type: object
+          title: Metrics
+        revenue_currency:
+          type: string
+          title: Revenue Currency
+          default: ''
+      type: object
+      required:
+      - metrics
+      title: ProductMetricsResponse
+    RangeFilterBounds:
+      properties:
+        min_value:
+          type: number
+          title: Min Value
+        max_value:
+          type: number
+          title: Max Value
+        selected_min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Selected Min
+        selected_max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Selected Max
+        unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unit
+      type: object
+      required:
+      - min_value
+      - max_value
+      title: RangeFilterBounds
+    ProductVisibilityUpdateRequest:
+      properties:
+        main_product_id:
+          type: string
+          maxLength: 512
+          minLength: 1
+          title: Main Product Id
+        plp:
+          anyOf:
+          - type: string
+            enum:
+            - hidden_explicit
+            - visible_explicit
+            - inherit
+          - type: 'null'
+          title: Plp
+        search:
+          anyOf:
+          - type: string
+            enum:
+            - hidden_explicit
+            - visible_explicit
+            - inherit
+          - type: 'null'
+          title: Search
+        recs:
+          anyOf:
+          - type: string
+            enum:
+            - hidden_explicit
+            - visible_explicit
+            - inherit
+          - type: 'null'
+          title: Recs
+        expected_updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expected Updated At
+      type: object
+      required:
+      - main_product_id
+      title: ProductVisibilityUpdateRequest
+    ProductVisibilityResponse:
+      properties:
+        visibility:
+          additionalProperties:
+            additionalProperties:
+              additionalProperties:
+                $ref: '#/components/schemas/ProductVisibilitySurfaceState'
+              type: object
+            type: object
+          type: object
+          title: Visibility
+      type: object
+      required:
+      - visibility
+      title: ProductVisibilityResponse
+    ProductListingStats:
+      properties:
+        all_products:
+          type: integer
+          title: All Products
+        all_out_of_stock:
+          type: integer
+          title: All Out Of Stock
+        all_low_stock:
+          type: integer
+          title: All Low Stock
+        total_products:
+          type: integer
+          title: Total Products
+        out_of_stock:
+          type: integer
+          title: Out Of Stock
+        low_stock:
+          type: integer
+          title: Low Stock
+        on_sale:
+          type: integer
+          title: On Sale
+        new_in:
+          type: integer
+          title: New In
+        inactive:
+          type: integer
+          title: Inactive
+        bestseller:
+          type: integer
+          title: Bestseller
+        trending:
+          type: integer
+          title: Trending
+        slow_mover:
+          type: integer
+          title: Slow Mover
+        star_product:
+          type: integer
+          title: Star Product
+      type: object
+      required:
+      - all_products
+      - all_out_of_stock
+      - all_low_stock
+      - total_products
+      - out_of_stock
+      - low_stock
+      - on_sale
+      - new_in
+      - inactive
+      - bestseller
+      - trending
+      - slow_mover
+      - star_product
+      title: ProductListingStats
     ProductMetricsRequest:
       properties:
         main_product_ids:
@@ -1302,49 +1504,6 @@ components:
           title: Market
       type: object
       title: ProductMetricsRequest
-    ProductMetricsResponse:
-      properties:
-        metrics:
-          additionalProperties:
-            $ref: '#/components/schemas/ProductMetrics'
-          type: object
-          title: Metrics
-        revenue_currency:
-          type: string
-          title: Revenue Currency
-          default: ''
-      type: object
-      required:
-      - metrics
-      title: ProductMetricsResponse
-    OutOfStockMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - out_of_stock
-          const: out_of_stock
-          title: Type
-          default: out_of_stock
-      type: object
-      title: OutOfStockMetadata
-    SortOptionItem:
-      properties:
-        id:
-          type: string
-          title: Id
-        label:
-          type: string
-          title: Label
-        selected:
-          type: boolean
-          title: Selected
-      type: object
-      required:
-      - id
-      - label
-      - selected
-      title: SortOptionItem
     ListProductsRequest:
       properties:
         locale_id:
@@ -1399,165 +1558,6 @@ components:
           default: false
       type: object
       title: ListProductsRequest
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PriceListItem:
-      properties:
-        id:
-          type: string
-          title: Id
-        original_price:
-          type: number
-          title: Original Price
-        sale_price:
-          type: number
-          title: Sale Price
-        currency:
-          type: string
-          title: Currency
-      type: object
-      required:
-      - id
-      - original_price
-      - sale_price
-      - currency
-      title: PriceListItem
-    SortOption:
-      type: string
-      enum:
-      - relevance
-      - created_at_asc
-      - created_at_desc
-      - sale_price_asc
-      - sale_price_desc
-      - title_asc
-      - title_desc
-      - clicks_asc
-      - clicks_desc
-      - views_asc
-      - views_desc
-      - sold_asc
-      - sold_desc
-      - revenue_asc
-      - revenue_desc
-      - ctr_asc
-      - ctr_desc
-      - str_asc
-      - str_desc
-      - inventory_asc
-      - inventory_desc
-      title: SortOption
-    RangeFilterBounds:
-      properties:
-        min_value:
-          type: number
-          title: Min Value
-        max_value:
-          type: number
-          title: Max Value
-        selected_min:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Selected Min
-        selected_max:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Selected Max
-        unit:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Unit
-      type: object
-      required:
-      - min_value
-      - max_value
-      title: RangeFilterBounds
-    DynamicAvailableFilter:
-      properties:
-        id:
-          type: integer
-          title: Id
-        title:
-          type: string
-          title: Title
-        field:
-          type: string
-          title: Field
-        type:
-          type: string
-          enum:
-          - checkbox
-          - radio
-          - checkbox-grid
-          - checkbox-color
-          - range
-          - hierarchical
-          title: Type
-        op:
-          type: string
-          title: Op
-        position_priority:
-          type: integer
-          title: Position Priority
-        options:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/FilterValueOption'
-            type: array
-          - $ref: '#/components/schemas/RangeFilterBounds'
-          title: Options
-      type: object
-      required:
-      - id
-      - title
-      - field
-      - type
-      - op
-      - position_priority
-      - options
-      title: DynamicAvailableFilter
-    LimitedAvailabilityMetadata:
-      properties:
-        type:
-          type: string
-          enum:
-          - limited_availability
-          const: limited_availability
-          title: Type
-          default: limited_availability
-        hidden_market_count:
-          type: integer
-          title: Hidden Market Count
-        total_market_count:
-          type: integer
-          title: Total Market Count
-      type: object
-      required:
-      - hidden_market_count
-      - total_market_count
-      title: LimitedAvailabilityMetadata
   securitySchemes:
     Auth0:
       type: oauth2

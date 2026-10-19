@@ -34,30 +34,6 @@ paths:
       - Vitals
 components:
   schemas:
-    Metric:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          enum:
-          - TTFB
-          - FCP
-          - LCP
-          - FID
-          - CLS
-          - INP
-          title: Name
-        value:
-          type: number
-          title: Value
-      type: object
-      required:
-      - id
-      - name
-      - value
-      title: Metric
     HTTPValidationError:
       properties:
         detail:
@@ -67,6 +43,27 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     Vitals:
       properties:
         appId:
@@ -110,27 +107,30 @@ components:
       - shopId
       - userId
       title: Vitals
-    ValidationError:
+    Metric:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        id:
           type: string
-          title: Message
-        type:
+          title: Id
+        name:
           type: string
-          title: Error Type
+          enum:
+          - TTFB
+          - FCP
+          - LCP
+          - FID
+          - CLS
+          - INP
+          title: Name
+        value:
+          type: number
+          title: Value
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - id
+      - name
+      - value
+      title: Metric
   securitySchemes:
     Auth0:
       type: oauth2

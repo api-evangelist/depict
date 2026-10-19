@@ -1,0 +1,896 @@
+openapi: 3.2.0
+info:
+  title: Depict Product Listing API
+  version: '1.0'
+tags:
+- name: Product Listing
+paths:
+  /v2/product-listing:
+    post:
+      tags:
+      - Product Listing
+      summary: Product Listing Endpoint V2
+      operationId: product_listing_endpoint_v2_v2_product_listing_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductListingRequestV2'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListingResponseV2'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/listings/external_id/{external_id}/products:
+    post:
+      tags:
+      - Product Listing
+      summary: Get Products In Listing, Via External Id
+      operationId: Get_Products_in_Listing__via_external_ID_v3_listings_external_id__external_id__products_post
+      parameters:
+      - name: external_id
+        in: path
+        required: true
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External Id
+      - name: listing_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Listing Id
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductListingRequestV3'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListingResponseV3'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/listings/{listing_id}/products:
+    post:
+      tags:
+      - Product Listing
+      summary: Get Products In Listing
+      operationId: Get_Products_in_Listing_v3_listings__listing_id__products_post
+      parameters:
+      - name: listing_id
+        in: path
+        required: true
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Listing Id
+      - name: port
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Port
+      - name: external_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductListingRequestV3'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListingResponseV3'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ProductListingResponseV3:
+      properties:
+        displays:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Displays
+          description: The products to be shown on the product listing page.
+        n_hits:
+          type: integer
+          title: N Hits
+          description: Total number of results for this query. Not necessarily exact.
+        sorts:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SortModel-Output'
+            type: array
+          - type: 'null'
+          title: Sorts
+          description: Available methods for sorting the response. Any element from this list can be sent as `sort` in subsequent requests.
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: Available filters that can be used for filtering in the subsequent request.
+        product_listing_request_id:
+          type: string
+          title: Product Listing Request Id
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Cursor that can be used in the next request to get subsequent results when using cursor based pagination. If this is not set, there are no more results.
+        page:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page
+          description: Page number when using page based pagination.
+      type: object
+      required:
+      - displays
+      - n_hits
+      - product_listing_request_id
+      title: ProductListingResponseV3
+    ProductListingResponseV2:
+      properties:
+        displays:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Displays
+          description: The products to be shown on the product listing page.
+        n_hits:
+          type: integer
+          title: N Hits
+          description: Total number of results for this query. Not necessarily exact.
+        sorts:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SortModel-Output'
+            type: array
+          - type: 'null'
+          title: Sorts
+          description: Available methods for sorting the response. Any element from this list can be sent as `sort` in subsequent requests.
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: Available filters that can be used for filtering in the subsequent request.
+        product_listing_request_id:
+          type: string
+          title: Product Listing Request Id
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Cursor that can be used in the next request to get subsequent results when using cursor based pagination. If this is not set, there are no more results.
+        page:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page
+          description: Deprecated, do not use.
+        grouping_ids:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Grouping Ids
+          description: Maps product ID to grouping ID. Only returned if `return_grouping_ids` is True.
+        breadcrumb:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BaseCategoryDisplay'
+            type: array
+          - type: 'null'
+          title: Breadcrumb
+          description: Breadcrumb for the current page. Ordered from less to more specific, where the last element is the current page.
+        quick_links:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BaseCategoryDisplay'
+            type: array
+          - type: 'null'
+          title: Quick Links
+          description: List of pages that can be used as quick links. Will return child pages if they exist, otherwise sibling pages.
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/PLPMetadata'
+          - type: 'null'
+          description: Metadata about the PLP requested, for example Collection/Category title, description, etc.
+      type: object
+      required:
+      - displays
+      - n_hits
+      - product_listing_request_id
+      title: ProductListingResponseV2
+    SortMeta:
+      properties:
+        title:
+          type: string
+          title: Title
+        values:
+          items:
+            $ref: '#/components/schemas/SortingOrder'
+          type: array
+          title: Values
+          default:
+          - desc
+          - asc
+        names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Names
+      type: object
+      required:
+      - title
+      title: SortMeta
+    SortModel-Output:
+      properties:
+        field:
+          type: string
+          title: Field
+        order:
+          $ref: '#/components/schemas/SortingOrder'
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/SortMeta'
+          - type: 'null'
+      type: object
+      required:
+      - field
+      - order
+      title: SortModel
+    PLPMetadata:
+      properties:
+        title:
+          type: string
+          title: Title
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        replace_meta_tags:
+          type: boolean
+          title: Replace Meta Tags
+          description: Whether to replace the page meta tags, e.g., title and description, with the ones from the collection.
+          default: false
+      type: object
+      required:
+      - title
+      title: PLPMetadata
+    BaseCategoryDisplay:
+      properties:
+        category_id:
+          type: string
+          title: Category Id
+          description: Unique identifier of the category.
+        title:
+          type: string
+          title: Title
+          description: The title of the category
+        page_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Url
+          description: The full URL to the category page
+        query_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query Id
+          description: Optionally a unique query ID for the category
+        uri:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Uri
+          description: Optionally a unique URI for the category, for example men/shoes
+        category_type:
+          $ref: '#/components/schemas/ECategoryType'
+          description: The type of category, for example CAMPAIGN, TAG, or CATEGORY
+          default: CATEGORY
+      additionalProperties: false
+      type: object
+      required:
+      - category_id
+      - title
+      title: BaseCategoryDisplay
+    SortingOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortingOrder
+    SearchFilter:
+      properties:
+        field:
+          type: string
+          title: Field
+        op:
+          type: string
+          enum:
+          - eq
+          - neq
+          - in
+          - nin
+          - leq
+          - geq
+          - inrange
+          title: Op
+        data:
+          anyOf:
+          - type: string
+            enum:
+            - 'true'
+            - 'false'
+          - type: number
+          - type: integer
+          - type: string
+          - prefixItems:
+            - type: number
+            - type: number
+            type: array
+            maxItems: 2
+            minItems: 2
+          - prefixItems:
+            - type: integer
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          - prefixItems:
+            - type: integer
+            - type: number
+            type: array
+            maxItems: 2
+            minItems: 2
+          - prefixItems:
+            - type: number
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          - items:
+              anyOf:
+              - type: string
+                enum:
+                - 'true'
+                - 'false'
+              - type: number
+              - type: integer
+              - type: string
+              - prefixItems:
+                - type: number
+                - type: number
+                type: array
+                maxItems: 2
+                minItems: 2
+              - prefixItems:
+                - type: integer
+                - type: integer
+                type: array
+                maxItems: 2
+                minItems: 2
+              - prefixItems:
+                - type: integer
+                - type: number
+                type: array
+                maxItems: 2
+                minItems: 2
+              - prefixItems:
+                - type: number
+                - type: integer
+                type: array
+                maxItems: 2
+                minItems: 2
+            type: array
+          - items:
+              items:
+                type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: Data
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/RangeFilterMeta'
+          - $ref: '#/components/schemas/ValuesFilterMeta'
+          - $ref: '#/components/schemas/HierarchicalValuesFilterMeta'
+          - type: 'null'
+          title: Meta
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+      type: object
+      required:
+      - field
+      - op
+      title: SearchFilter
+    HierarchicalValuesFilterMeta:
+      properties:
+        group_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Title
+        group_expanded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Group Expanded
+        type:
+          type: string
+          const: checkbox-hierarchical
+          title: Type
+          default: checkbox-hierarchical
+        values:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          title: Values
+        counts:
+          items:
+            type: integer
+          type: array
+          title: Counts
+        names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Names
+      type: object
+      required:
+      - values
+      - counts
+      title: HierarchicalValuesFilterMeta
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RangeFilterMeta:
+      properties:
+        group_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Title
+        group_expanded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Group Expanded
+        type:
+          type: string
+          const: range
+          title: Type
+          default: range
+        min:
+          type: number
+          title: Min
+        max:
+          type: number
+          title: Max
+        unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unit
+        currency:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Currency
+      type: object
+      required:
+      - min
+      - max
+      title: RangeFilterMeta
+    ProductListingRequestV3:
+      properties:
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Used for cursor-based pagination. Set it to the cursor from the last response. If not set, will return the first results.
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 250.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Used for cursor-based pagination. Maximum number of results per response.
+        page:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Page
+          description: Used for Page-based pagination. 1-based index
+        hits_per_page:
+          anyOf:
+          - type: integer
+            maximum: 200.0
+            minimum: 1.0
+          - type: 'null'
+          title: Hits Per Page
+          description: Used for Page-based pagination. If using page-based pagination, this  is a required field.
+        market:
+          type: string
+          title: Market
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: List of filters to apply to the results.
+        sort:
+          anyOf:
+          - $ref: '#/components/schemas/SortModel-Input'
+          - type: 'null'
+          description: Specifies the sorting method. By default, the results are ordered by relevance. To find the possible values for this field, query the endpoint and look at the `sorts` field.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the search.
+        merchant:
+          type: string
+          title: Merchant
+        locale:
+          type: string
+          title: Locale
+        listing_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Listing Id
+      type: object
+      required:
+      - market
+      - merchant
+      - locale
+      title: ProductListingRequestV3
+    ProductListingType:
+      type: string
+      enum:
+      - category
+      - collection
+      - scollection
+      title: ProductListingType
+    SortModel-Input:
+      properties:
+        field:
+          type: string
+          title: Field
+        order:
+          $ref: '#/components/schemas/SortingOrder'
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/SortMeta'
+          - type: 'null'
+      type: object
+      required:
+      - field
+      - order
+      title: SortModel
+    ProductListingRequestV2:
+      properties:
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Cursor
+          description: Used for cursor-based pagination. Set it to the cursor from the last response. If not set, will return the first results.
+        limit:
+          anyOf:
+          - type: integer
+            maximum: 250.0
+            minimum: 1.0
+          - type: 'null'
+          title: Limit
+          description: Used for cursor-based pagination. Maximum number of results per response.
+        page:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Page
+          description: Page-based pagination. We recommend using cursor-based pagination instead.
+        hits_per_page:
+          anyOf:
+          - type: integer
+            maximum: 200.0
+            minimum: 1.0
+          - type: 'null'
+          title: Hits Per Page
+          description: Page-based pagination. We recommend using cursor-based pagination instead.
+        market:
+          type: string
+          title: Market
+        filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SearchFilter'
+            type: array
+          - type: 'null'
+          title: Filters
+          description: List of filters to apply to the results.
+        sort:
+          anyOf:
+          - $ref: '#/components/schemas/SortModel-Input'
+          - type: 'null'
+          description: Specifies the sorting method. By default, the results are ordered by relevance. To find the possible values for this field, query the endpoint and look at the `sorts` field.
+        session_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Session Id
+          description: Session identifier
+        metadata:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata that can be used to modify the behaviour of the search.
+        tenant:
+          type: string
+          title: Tenant
+        locale:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locale
+          description: The locale to use for the search. If not set, the default locale will be used.
+        user_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: User Id
+          description: User identifier
+        dsid:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Dsid
+          description: Populated for integrations performed by Depict.ai only. Depict.ai Session Id
+        query_id:
+          type: string
+          minLength: 1
+          title: Query Id
+          description: ID of the page to get products for. This is typically the slug, for example `hoodies-and-sweaters`.
+        show_hidden_products:
+          type: boolean
+          title: Show Hidden Products
+          description: Disables rules to hide products.
+          default: false
+        return_grouping_ids:
+          type: boolean
+          title: Return Grouping Ids
+          description: Whether to return grouping IDs or not.
+          default: false
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/ProductListingType'
+          - type: 'null'
+          description: 'The type of query. If not set the endpoint will look up query id in the following type order: collections, categories.'
+      type: object
+      required:
+      - market
+      - tenant
+      - query_id
+      title: ProductListingRequestV2
+    ECategoryType:
+      type: string
+      enum:
+      - TAG
+      - CATEGORY
+      - TENANT_CATEGORY
+      - TENANT_SECONDARY_CATEGORY
+      - CAMPAIGN
+      - BRAND
+      title: ECategoryType
+    ValuesFilterMeta:
+      properties:
+        group_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Group Title
+        group_expanded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Group Expanded
+        type:
+          type: string
+          enum:
+          - radio
+          - checkbox
+          - checkbox-grid
+          - checkbox-color
+          title: Type
+        values:
+          items:
+            anyOf:
+            - type: string
+              enum:
+              - 'true'
+              - 'false'
+            - type: number
+            - type: integer
+            - type: string
+            - prefixItems:
+              - type: number
+              - type: number
+              type: array
+              maxItems: 2
+              minItems: 2
+            - prefixItems:
+              - type: integer
+              - type: integer
+              type: array
+              maxItems: 2
+              minItems: 2
+            - prefixItems:
+              - type: integer
+              - type: number
+              type: array
+              maxItems: 2
+              minItems: 2
+            - prefixItems:
+              - type: number
+              - type: integer
+              type: array
+              maxItems: 2
+              minItems: 2
+          type: array
+          title: Values
+        counts:
+          items:
+            type: integer
+          type: array
+          title: Counts
+        names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Names
+        swatches:
+          anyOf:
+          - items:
+              anyOf:
+              - type: string
+              - type: 'null'
+            type: array
+          - type: 'null'
+          title: Swatches
+      type: object
+      required:
+      - type
+      - values
+      - counts
+      - names
+      title: ValuesFilterMeta
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError

@@ -1,0 +1,89 @@
+openapi: 3.2.0
+info:
+  title: Depict Markets API
+  version: '1.0'
+tags:
+- name: Markets
+paths:
+  /v3/markets:
+    get:
+      tags:
+      - Markets
+      summary: Get Markets
+      operationId: get_markets_v3_markets_get
+      parameters:
+      - name: merchant
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Merchant
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/locales:
+    get:
+      tags:
+      - Markets
+      summary: Get Locales
+      operationId: get_locales_v3_locales_get
+      parameters:
+      - name: merchant
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Merchant
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
